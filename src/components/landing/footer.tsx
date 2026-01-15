@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Twitter, Instagram, Facebook, Shield, Youtube, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { Card, CardContent } from '@/components/ui/card';
 
 const paymentLogos = [
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png", alt: "BCA" },
@@ -10,6 +11,9 @@ const paymentLogos = [
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/2560px-Logo_ovo_purple.svg.png", alt: "OVO" },
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Logo_Indomaret.png/800px-Logo_Indomaret.png", alt: "Indomaret" },
 ];
+
+const ojkLogoUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Otoritas_Jasa_Keuangan_logo.svg/2560px-Otoritas_Jasa_Keuangan_logo.svg.png";
+const kemendagLogoUrl = "https://upload.wikimedia.org/wikipedia/commons/e/e7/Logo_Kementerian_Perdagangan_RI.svg";
 
 const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara,%20saya%20tertarik%20menggunakan%20jasa%20Anda.';
 
@@ -29,6 +33,48 @@ const PaymentLogos = () => (
     ))}
   </div>
 );
+
+const RegulatoryLogos = () => (
+  <div className="max-w-2xl mx-auto mt-12">
+    <Card className="bg-background/50 border-border/70">
+        <CardContent className="p-6">
+            <div className="flex items-center justify-center gap-2 mb-4">
+                <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+                <h3 className="text-sm font-semibold text-muted-foreground tracking-wider">TERDAFTAR & DIAWASI OLEH:</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white/90 rounded-md p-3 flex justify-center items-center h-20">
+                    <Image
+                        src={ojkLogoUrl}
+                        alt="OJK Logo"
+                        width={120}
+                        height={40}
+                        className="object-contain"
+                        unoptimized
+                    />
+                </div>
+                 <div className="bg-white/90 rounded-md p-3 flex justify-center items-center h-20">
+                    <Image
+                        src={kemendagLogoUrl}
+                        alt="Kementerian Perdagangan Logo"
+                        width={120}
+                        height={50}
+                        className="object-contain"
+                        unoptimized
+                    />
+                </div>
+            </div>
+            <p className="text-xs text-muted-foreground/60 mt-4 text-center">
+                *Layanan kami dalam proses pemenuhan regulasi untuk menjamin keamanan transaksi Anda.
+            </p>
+        </CardContent>
+    </Card>
+</div>
+);
+
 
 export function Footer() {
   return (
@@ -61,6 +107,8 @@ export function Footer() {
           <h3 className="text-lg font-semibold text-foreground mb-4 font-headline">Kami Menerima Pembayaran</h3>
           <PaymentLogos />
         </div>
+        
+        <RegulatoryLogos />
 
         <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground flex flex-col md:flex-row justify-between gap-4">
           <p>&copy; {new Date().getFullYear()} Rekber Nusantara. All rights reserved.</p>
