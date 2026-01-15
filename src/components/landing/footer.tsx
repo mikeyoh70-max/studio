@@ -1,8 +1,18 @@
+'use client';
+
 import Link from 'next/link';
 import { Twitter, Instagram, Facebook, ShieldCheck, Youtube, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog"
 
 const paymentLogos = [
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png", alt: "BCA" },
@@ -58,7 +68,7 @@ export function Footer() {
             </Button>
           </div>
         </div>
-
+        
         <div className="mt-12 pt-8 border-t border-border text-center">
           <h3 className="text-lg font-semibold text-foreground mb-4 font-headline">Kami Menerima Pembayaran</h3>
           <PaymentLogos />
@@ -78,7 +88,32 @@ export function Footer() {
             <ul className="space-y-3">
               <li><Link href="#" className="text-muted-foreground hover:text-primary">Syarat & Ketentuan</Link></li>
               <li><Link href="#" className="text-muted-foreground hover:text-primary">Kebijakan Privasi</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary">Kebijakan Refund</Link></li>
+              <li>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="text-muted-foreground hover:text-primary text-sm text-left">Kebijakan Refund</button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle className="font-headline text-2xl">Kebijakan Pengembalian</DialogTitle>
+                    </DialogHeader>
+                    <div className="py-4">
+                      <ul className="space-y-3 list-disc list-inside text-muted-foreground">
+                        <li>Refund dapat diajukan jika Penjual tidak mengirim barang lebih dari 24 jam.</li>
+                        <li>Refund berlaku jika barang tidak sesuai deskripsi (Wajib Video Unboxing).</li>
+                        <li>Biaya Admin & Fee Transfer tidak dapat dikembalikan.</li>
+                      </ul>
+                    </div>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button type="button">
+                          Tutup
+                        </Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </li>
               <li><Link href="#" className="text-muted-foreground hover:text-primary">Pusat Bantuan</Link></li>
             </ul>
           </div>
