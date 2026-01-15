@@ -26,7 +26,7 @@ function SubmitButton() {
       ) : (
         <>
           <Search className="mr-2 h-4 w-4" />
-          Cek Sekarang
+          Cek Nomor
         </>
       )}
     </Button>
@@ -46,19 +46,19 @@ function VerificationResult({ state }: { state: VerifyAdminState }) {
       <div
         className={cn(
           'flex flex-col items-center justify-center gap-4 rounded-lg p-6',
-          isVerified && 'bg-green-100 dark:bg-green-900/30',
-          !isVerified && !isError && 'bg-red-100 dark:bg-red-900/30',
-          isError && 'bg-yellow-100 dark:bg-yellow-900/30'
+          isVerified && 'bg-green-900/30',
+          !isVerified && !isError && 'bg-red-900/30',
+          isError && 'bg-yellow-900/30'
         )}
       >
-        {isVerified && <CheckCircle2 className="h-16 w-16 text-green-500" />}
-        {!isVerified && !isError && <XCircle className="h-16 w-16 text-red-500" />}
+        {isVerified && <CheckCircle2 className="h-16 w-16 text-green-400" />}
+        {!isVerified && !isError && <XCircle className="h-16 w-16 text-red-400" />}
         <p
           className={cn(
             'text-lg font-semibold',
-            isVerified && 'text-green-800 dark:text-green-300',
-            !isVerified && !isError && 'text-red-800 dark:text-red-300',
-            isError && 'text-yellow-800 dark:text-yellow-300'
+            isVerified && 'text-green-300',
+            !isVerified && !isError && 'text-red-300',
+            isError && 'text-yellow-300'
           )}
         >
           {isVerified ? `TERVERIFIKASI` : isError ? 'Input Tidak Valid' : 'TIDAK TERVERIFIKASI'}
@@ -66,9 +66,9 @@ function VerificationResult({ state }: { state: VerifyAdminState }) {
         <p
           className={cn(
             'text-sm',
-            isVerified && 'text-green-700 dark:text-green-400',
-            !isVerified && !isError && 'text-red-700 dark:text-red-400',
-            isError && 'text-yellow-700 dark:text-yellow-400'
+            isVerified && 'text-green-400',
+            !isVerified && !isError && 'text-red-400',
+            isError && 'text-yellow-400'
           )}
         >
           {state.message}
@@ -97,13 +97,13 @@ export function AdminVerifier() {
   }, [state, pending]);
 
   return (
-    <section id="cek-admin" className="py-20 sm:py-28 bg-card">
+    <section id="cek-admin" className="py-20 sm:py-28 bg-background">
       <div className="container mx-auto px-4">
-        <Card className="max-w-3xl mx-auto shadow-xl">
+        <Card className="max-w-3xl mx-auto shadow-xl bg-card border border-border">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">Cek Nomor WhatsApp Admin</CardTitle>
+            <CardTitle className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">Verifikasi Admin Resmi</CardTitle>
             <CardDescription className="mt-4 text-lg leading-8 text-muted-foreground">
-              Pastikan Anda hanya bertransaksi dengan Admin resmi kami. Masukkan nomor WhatsApp untuk verifikasi.
+              Pastikan Anda hanya bertransaksi dengan Admin resmi kami untuk menghindari penipuan.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -112,9 +112,9 @@ export function AdminVerifier() {
                 <Input
                   name="phoneNumber"
                   type="tel"
-                  placeholder="Contoh: 081234567890"
+                  placeholder="Masukkan nomor WhatsApp Admin"
                   required
-                  className="flex-grow text-lg p-6"
+                  className="flex-grow text-lg p-6 bg-input border-border focus:ring-ring"
                 />
                 <SubmitButton />
               </div>

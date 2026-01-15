@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Safeguard Trades | Transaksi Game Aman, Cepat, & Anti-Ribet',
+  title: 'Eskro by Safeguard',
   description: 'Jasa Rekber (Escrow Service) terpercaya untuk transaksi game online Anda. Dikelola oleh Mahasiswa Hukum. Legalitas terjamin dan anti-penipuan.',
 };
 
@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
