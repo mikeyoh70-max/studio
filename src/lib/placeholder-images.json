@@ -2,19 +2,19 @@
   "placeholderImages": [
     {
       "id": "hero-1",
-      "description": "Seorang pria sedang bermain game di komputernya di ruangan yang temaram, merepresentasikan transaksi dalam game.",
-      "imageUrl": "https://images.unsplash.com/photo-1550745165-9bc0b252726c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZXRybyUyMGdhbWluZ3xlbnwwfHx8fDE3Njg1MzEzNDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "retro gaming"
+      "description": "Seorang gamer profesional dengan headphone sedang fokus bermain game di depan layar komputernya yang menyala, melambangkan transaksi jual beli akun atau item game.",
+      "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwcm8lMjBnYW1lcnxlbnwwfHx8fDE3MjE4MzE1Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pro gamer"
     },
     {
       "id": "hero-2",
-      "description": "Dua orang berjabat tangan di atas kontrak, melambangkan kesepakatan dan keamanan dalam bertransaksi.",
-      "imageUrl": "https://images.unsplash.com/photo-1579567761406-4614871c4220?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZWFsJTIwZXN0YXRlJTIwZGVhbHxlbnwwfHx8fDE3Njg1MzM5MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "transaction handshake"
+      "description": "Dua orang sedang berjabat tangan di lingkungan bisnis yang modern, menandakan sebuah kesepakatan yang aman dan terpercaya.",
+      "imageUrl": "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzZWN1cmUlMjB0cmFuc2FjdGlvbnxlbnwwfHx8fDE3MjE4MzE1ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "secure transaction"
     },
     {
       "id": "hero-3",
-      "description": "Seorang wanita sedang duduk dan bekerja lepas di laptopnya, melambangkan transaksi untuk jasa freelance.",
+      "description": "Seorang freelancer wanita sedang bekerja di laptopnya di kafe yang nyaman, melambangkan transaksi jasa freelance online.",
       "imageUrl": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmcmVlbGFuY2VyfGVufDB8fHx8MTc2OTE3NTM5OHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "freelancer woman"
     }
