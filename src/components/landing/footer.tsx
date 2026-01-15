@@ -59,7 +59,27 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 pt-8 border-t border-border">
+          <div>
+            <h3 className="font-bold text-foreground mb-4">PERUSAHAAN</h3>
+            <ul className="space-y-3">
+              <li><Link href="#" className="text-muted-foreground hover:text-primary">Tentang Kami</Link></li>
+              <li><Link href="#" className="text-muted-foreground hover:text-primary">Hubungi Kami</Link></li>
+              <li><Link href="#" className="text-muted-foreground hover:text-primary">Karir & Tim</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-bold text-foreground mb-4">LEGALITAS</h3>
+            <ul className="space-y-3">
+              <li><Link href="#" className="text-muted-foreground hover:text-primary">Syarat & Ketentuan</Link></li>
+              <li><Link href="#" className="text-muted-foreground hover:text-primary">Kebijakan Privasi</Link></li>
+              <li><Link href="#" className="text-muted-foreground hover:text-primary">Kebijakan Refund</Link></li>
+              <li><Link href="#" className="text-muted-foreground hover:text-primary">Pusat Bantuan</Link></li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-border text-center">
           <h3 className="text-lg font-semibold text-foreground mb-4 font-headline">Kami Menerima Pembayaran</h3>
           <PaymentLogos />
         </div>
