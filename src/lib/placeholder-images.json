@@ -1,7 +1,19 @@
 {
   "placeholderImages": [
     {
-      "id": "hero-illustration",
+      "id": "hero-1",
+      "description": "Dua orang gamer sedang melakukan transaksi item dalam game secara online dengan antarmuka yang aman.",
+      "imageUrl": "https://images.unsplash.com/photo-1707872387128-7ddce34bfd86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxnYW1lJTIwdHJhbnNhY3Rpb258ZW58MHx8fHwxNzY4NDQ0OTkxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "game transaction"
+    },
+    {
+      "id": "hero-2",
+      "description": "Seorang freelancer gamer (joki) sedang bermain game secara profesional untuk klien.",
+      "imageUrl": "https://images.unsplash.com/photo-1547751936-96e8a5de7568?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmcmVlbGFuY2UlMjBnYW1lcnxlbnwwfHx8fDE3Njg0NDQ5OTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "freelance gamer"
+    },
+    {
+      "id": "hero-3",
       "description": "Seorang wanita melakukan pembayaran digital yang aman menggunakan ponselnya, melambangkan transaksi digital yang aman.",
       "imageUrl": "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwdHJhbnNhY3Rpb258ZW58MHx8fHwxNzE5NTMwNjg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "digital transaction"

@@ -3,11 +3,18 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay"
+
 
 const WHATSAPP_LINK = 'https://wa.me/6281234567890?text=Halo%20Admin%20Rekber%20Nusantara,%20saya%20ingin%20mengamankan%20transaksi%20sekarang.';
 
 export function Hero() {
-  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-illustration');
+  const heroImages = PlaceHolderImages.filter(p => p.id.startsWith('hero-'));
 
   return (
     <section id="home" className="relative w-full py-24 sm:py-32 lg:py-40 bg-background">
@@ -31,17 +38,32 @@ export function Hero() {
             </div>
           </div>
           <div className="flex justify-center">
-            {heroImage && (
-              <Image
-                src={heroImage.imageUrl}
-                alt={heroImage.description}
-                data-ai-hint={heroImage.imageHint}
-                width={600}
-                height={400}
-                className="rounded-xl shadow-2xl object-cover"
-                priority
-              />
-            )}
+          <Carousel
+              className="w-full max-w-md mx-auto"
+              plugins={[
+                Autoplay({
+                  delay: 3000,
+                  stopOnInteraction: false,
+                  stopOnMouseEnter: true,
+                }),
+              ]}
+            >
+              <CarouselContent>
+                {heroImages.map((image) => (
+                  <CarouselItem key={image.id}>
+                    <Image
+                      src={image.imageUrl}
+                      alt={image.description}
+                      data-ai-hint={image.imageHint}
+                      width={600}
+                      height={400}
+                      className="rounded-xl shadow-2xl object-cover aspect-[3/2]"
+                      priority={image.id === 'hero-1'}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </div>
         </div>
       </div>
