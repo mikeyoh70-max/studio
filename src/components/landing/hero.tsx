@@ -31,7 +31,7 @@ export function Hero() {
               Transaksi Aman dan Terpercaya.
             </h1>
             <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto lg:mx-0">
-              Jasa rekber (escrow) profesional untuk semua kebutuhan transaksi digital Anda.
+              Jasa Rekber ( Mediator ) Profesional Untuk Semua Kebutuhan transaksi Digital Anda
             </p>
             <div className="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
               <Button asChild size="lg" 
