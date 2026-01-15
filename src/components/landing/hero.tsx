@@ -66,9 +66,7 @@ export function Hero() {
                       className="rounded-xl shadow-2xl object-cover aspect-[3/2]"
                       priority={image.id === 'hero-1'}
                     />
-                    <div className="absolute inset-0 bg-black/40 rounded-xl flex items-end p-4">
-                      <p className="text-white font-semibold text-lg">{imageCaptions[index]}</p>
-                    </div>
+                     <p className="mt-4 text-center text-primary font-semibold text-lg">{imageCaptions[index]}</p>
                   </CarouselItem>
                 ))}
               </CarouselContent>
