@@ -35,8 +35,9 @@ export function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
             <div className="flex justify-center lg:justify-start mb-4">
-              <div className="inline-flex items-center gap-x-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-medium text-primary/80 ring-1 ring-inset ring-border">
-                <span className="absolute -left-1 flex h-2.5 w-2.5">
+              <div className="relative inline-flex items-center gap-x-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-medium text-primary/80 ring-1 ring-inset ring-border">
+                <span className="flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-500"></span>
                 </span>
                 <span className="ml-2">Sistem Rekber Profesional #1</span>
@@ -52,7 +53,7 @@ export function Hero() {
             </p>
             <div className="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
               <Button asChild size="lg" 
-                className="shadow-lg transform transition-transform hover:scale-105"
+                className="btn-rgb shadow-lg transform transition-transform hover:scale-105"
               >
                 <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                   Mulai Transaksi
