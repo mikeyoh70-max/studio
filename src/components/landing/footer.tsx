@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Twitter, Instagram, Facebook, ShieldCheck, Youtube, MessageCircle } from 'lucide-react';
+import { Twitter, Instagram, Facebook, ShieldCheck, Youtube, MessageCircle, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import {
@@ -12,6 +12,7 @@ import {
   DialogTrigger,
   DialogFooter,
   DialogClose,
+  DialogDescription,
 } from "@/components/ui/dialog"
 
 const paymentLogos = [
@@ -23,6 +24,9 @@ const paymentLogos = [
 ];
 
 const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara%20,%20Saya%20ingin%20Memulai%20Transaksi%20Sekarang';
+const WHATSAPP_NUMBER = '+62 895-3230-91263';
+const EMAIL_SUPPORT = 'rekbernusantara777@gmail.com';
+
 
 const PaymentLogos = () => (
   <div className="flex flex-wrap justify-center items-center gap-4">
@@ -114,7 +118,54 @@ export function Footer() {
                   </DialogContent>
                 </Dialog>
               </li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary">Pusat Bantuan</Link></li>
+              <li>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="text-muted-foreground hover:text-primary text-sm text-left">Pusat Bantuan</button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                      <DialogTitle className="font-headline text-2xl">Hubungi Dukungan</DialogTitle>
+                      <DialogDescription>
+                        Tim kami siap membantu kendala transaksi Anda.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="py-4 space-y-4">
+                      <a
+                        href={WHATSAPP_LINK}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-4 p-4 rounded-lg border bg-green-900/20 border-green-500/30 hover:bg-green-900/40 transition-colors"
+                      >
+                        <div className="flex-shrink-0 bg-green-500/20 text-green-300 rounded-full p-3">
+                          <Phone className="h-6 w-6" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-green-300">WHATSAPP ADMIN</p>
+                          <p className="text-lg font-bold text-foreground">{WHATSAPP_NUMBER}</p>
+                        </div>
+                      </a>
+                      <a
+                        href={`mailto:${EMAIL_SUPPORT}`}
+                        className="flex items-center gap-4 p-4 rounded-lg border bg-blue-900/20 border-blue-500/30 hover:bg-blue-900/40 transition-colors"
+                      >
+                        <div className="flex-shrink-0 bg-blue-500/20 text-blue-300 rounded-full p-3">
+                          <Mail className="h-6 w-6" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-blue-300">EMAIL SUPPORT</p>
+                          <p className="text-lg font-bold text-foreground">{EMAIL_SUPPORT}</p>
+                        </div>
+                      </a>
+                    </div>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button type="button" variant="secondary">Tutup</Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </li>
             </ul>
           </div>
         </div>
