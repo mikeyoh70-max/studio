@@ -62,7 +62,7 @@ export function Testimonials() {
             Apa Kata Pelanggan Kami?
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            Lihat bagaimana kami membantu para gamer bertransaksi dengan aman dan tanpa khawatir.
+            Lihat bagaimana kami membantu para Pengguna bertransaksi dengan aman dan tanpa Khawatir.
           </p>
         </div>
         <div className="mt-16">
