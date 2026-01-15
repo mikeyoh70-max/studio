@@ -37,7 +37,7 @@ const PaymentLogos = () => (
 
 const RegulatoryLogos = () => (
   <div className="max-w-2xl mx-auto mt-12">
-    <Card className="bg-background/50 border-border/70">
+    <Card className="bg-card/50 border-border/70">
         <CardContent className="p-6">
             <div className="flex items-center justify-center gap-2 mb-4">
                 <span className="relative flex h-3 w-3">
