@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Twitter, Instagram, Facebook, Shield } from 'lucide-react';
+import { Twitter, Instagram, Facebook, Shield, Youtube, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
@@ -10,6 +10,8 @@ const paymentLogos = [
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/2560px-Logo_ovo_purple.svg.png", alt: "OVO" },
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Logo_Indomaret.png/800px-Logo_Indomaret.png", alt: "Indomaret" },
 ];
+
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara,%20saya%20tertarik%20menggunakan%20jasa%20Anda.';
 
 const PaymentLogos = () => (
   <div className="flex flex-wrap justify-center items-center gap-4">
@@ -40,6 +42,11 @@ export function Footer() {
           <div className="flex space-x-2">
             <Button variant="ghost" size="icon" asChild>
               <Link href="#" aria-label="Twitter"><Twitter className="h-5 w-5" /></Link>
+            </Button>
+            <Button variant="ghost" size="icon" asChild>
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                <MessageCircle className="h-5 w-5" />
+              </a>
             </Button>
             <Button variant="ghost" size="icon" asChild>
               <Link href="#" aria-label="Instagram"><Instagram className="h-5 w-5" /></Link>
