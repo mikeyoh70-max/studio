@@ -8,8 +8,8 @@ const PaymentLogos = () => (
     <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo.svg" alt="Mandiri" className="h-6" />
     <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Bank_Negara_Indonesia_logo.svg" alt="BNI" className="h-5" />
     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_logo.svg" alt="BRI" className="h-6" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/CIMB_Niaga_logo.svg" alt="CIMB Niaga" className="h-6" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/QRIS_logo.svg/1200px-QRIS_logo.svg.png" alt="QRIS" className="h-6" />
+    <img src="https://upload.wikimedia.org/wikipedia/id/archive/3/3b/20210712133822%21CIMB_Niaga_logo.svg" alt="CIMB Niaga" className="h-6" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/QRIS_logo.svg/2560px-QRIS_logo.svg.png" alt="QRIS" className="h-6" />
   </div>
 );
 
