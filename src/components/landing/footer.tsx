@@ -3,6 +3,8 @@ import { Twitter, Instagram, Facebook, Shield, Youtube, MessageCircle } from 'lu
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
+import { KominfoLogo } from './kominfo-logo';
+import { OjkLogo } from './ojk-logo';
 
 const paymentLogos = [
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png", alt: "BCA" },
@@ -44,22 +46,10 @@ const RegulatoryLogos = () => (
             </div>
             <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white p-2 rounded-lg flex items-center justify-center">
-                    <Image
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg/600px-Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg.png"
-                        alt="Kominfo Logo"
-                        width={120}
-                        height={48}
-                        className="h-12 w-auto object-contain"
-                    />
+                    <KominfoLogo className="h-12 w-auto" />
                 </div>
                  <div className="bg-white p-2 rounded-lg flex items-center justify-center">
-                    <Image
-                        src="https://upload.wikimedia.org/wikipedia/commons/a/a2/OJK_Logo.png"
-                        alt="OJK Logo"
-                        width={120}
-                        height={48}
-                        className="h-12 w-auto object-contain"
-                    />
+                    <OjkLogo className="h-8 w-auto" />
                 </div>
             </div>
             <p className="text-xs text-muted-foreground/60 mt-4 text-center">
