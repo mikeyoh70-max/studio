@@ -13,7 +13,7 @@ const navLinks = [
   { href: '#testimonials', label: 'Testimoni' },
 ];
 
-const WHATSAPP_LINK = 'https://wa.me/6281234567890?text=Halo%20Admin%20Rekber%20Nusantara,%20saya%20tertarik%20menggunakan%20jasa%20Anda.';
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara,%20saya%20tertarik%20menggunakan%20jasa%20Anda.';
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
