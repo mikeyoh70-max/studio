@@ -31,33 +31,6 @@ const PaymentLogos = () => (
   </div>
 );
 
-const RegulatoryInfo = () => (
-  <div className="max-w-2xl mx-auto mt-12">
-    <Card className="bg-card/50 border-border/70">
-        <CardContent className="p-6">
-            <div className="flex items-center justify-center gap-2 mb-4">
-                <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                </span>
-                <h3 className="text-sm font-semibold text-muted-foreground tracking-wider">TERDAFTAR & DIAWASI OLEH:</h3>
-            </div>
-            <div className="grid grid-cols-2 gap-4 text-center">
-                <div className="bg-background/70 p-3 rounded-lg flex items-center justify-center">
-                    <span className="text-2xl font-black" style={{ color: '#002D72' }}>KOMINFO</span>
-                </div>
-                 <div className="bg-background/70 p-3 rounded-lg flex items-center justify-center">
-                    <span className="text-2xl font-black" style={{ color: '#D2232A' }}>OJK</span>
-                </div>
-            </div>
-            <p className="text-xs text-muted-foreground/60 mt-4 text-center">
-                *Layanan kami dalam proses pemenuhan regulasi untuk menjamin keamanan transaksi Anda.
-            </p>
-        </CardContent>
-    </Card>
-</div>
-);
-
 
 export function Footer() {
   return (
@@ -91,8 +64,6 @@ export function Footer() {
           <PaymentLogos />
         </div>
         
-        <RegulatoryInfo />
-
         <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground flex flex-col md:flex-row justify-between gap-4">
           <p>&copy; {new Date().getFullYear()} Rekber Nusantara. All rights reserved.</p>
           <p className="max-w-2xl mx-auto md:mx-0">
