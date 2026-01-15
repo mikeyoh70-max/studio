@@ -13,7 +13,7 @@ const paymentLogos = [
 ];
 
 const ojkLogoUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Otoritas_Jasa_Keuangan_logo.svg/2560px-Otoritas_Jasa_Keuangan_logo.svg.png";
-const kemendagLogoUrl = "https://upload.wikimedia.org/wikipedia/commons/e/e7/Logo_Kementerian_Perdagangan_RI.svg";
+const kemendagLogoUrl = "https://upload.wikimedia.org/wikipedia/id/thumb/c/c3/Logo_Kementerian_Perdagangan_Republik_Indonesia.png/800px-Logo_Kementerian_Perdagangan_Republik_Indonesia.png";
 
 const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara,%20saya%20tertarik%20menggunakan%20jasa%20Anda.';
 
