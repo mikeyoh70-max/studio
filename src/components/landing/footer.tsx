@@ -4,24 +4,24 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
 const paymentLogos = [
-  { src: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg", alt: "BCA", width: 100, height: 32 },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.png", alt: "Mandiri", width: 100, height: 32 },
-  { src: "https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1200px-BNI_logo.svg.png", alt: "BNI", width: 80, height: 32 },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/6/68/BANK_BRI_logo.png", alt: "BRI", width: 100, height: 32 },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/CIMB_Niaga_logo.svg/2560px-CIMB_Niaga_logo.svg.png", alt: "CIMB Niaga", width: 100, height: 32 },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/2560px-Logo_QRIS.svg.png", alt: "QRIS", width: 80, height: 32 },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png", alt: "BCA" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.png/2560px-Bank_Mandiri_logo_2016.png", alt: "Mandiri" },
+  { src: "https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1200px-BNI_logo.svg.png", alt: "BNI" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.png/640px-BANK_BRI_logo.png", alt: "BRI" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/CIMB_Niaga_logo.svg/2560px-CIMB_Niaga_logo.svg.png", alt: "CIMB Niaga" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/2560px-Logo_QRIS.svg.png", alt: "QRIS" },
 ];
 
 const PaymentLogos = () => (
-  <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4">
+  <div className="flex flex-wrap justify-center items-center gap-4">
     {paymentLogos.map((logo) => (
-      <div key={logo.alt} className="h-8 flex items-center">
+      <div key={logo.alt} className="flex items-center justify-center h-12">
         <Image
           src={logo.src}
           alt={logo.alt}
-          width={logo.width}
-          height={logo.height}
-          className="h-full w-auto object-contain"
+          width={100}
+          height={32}
+          className="bg-white p-1.5 rounded-md h-full w-auto object-contain"
           unoptimized
         />
       </div>
