@@ -2,21 +2,21 @@
   "placeholderImages": [
     {
       "id": "hero-1",
-      "description": "Dua orang gamer sedang melakukan transaksi item dalam game secara online dengan antarmuka yang aman.",
-      "imageUrl": "https://images.unsplash.com/photo-1546443046-ed1ce6ffd1ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Z2FtZSUyMHRyYW5zYWN0aW9ufGVufDB8fHx8MTc2ODQ0NDk5MXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "game transaction"
+      "description": "Seorang pria sedang bermain game di komputernya di ruangan yang temaram, merepresentasikan transaksi dalam game.",
+      "imageUrl": "https://images.unsplash.com/photo-1616594418293-8cfb65135a51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxnYW1lciUyMHJvb218ZW58MHx8fHwxNzY4NTMxMjU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gamer room"
     },
     {
       "id": "hero-2",
-      "description": "Seorang freelancer sedang bekerja menggunakan laptop di sebuah kafe, melambangkan jasa joki.",
-      "imageUrl": "https://images.unsplash.com/photo-1507919909716-c8262e491cde?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmcmVlbGFuY2VyJTIwd29ya2luZ3xlbnwwfHx8fDE3Njg0NDM2NTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "freelancer working"
+      "description": "Dua orang berjabat tangan di atas kontrak, melambangkan kesepakatan dan keamanan dalam bertransaksi.",
+      "imageUrl": "https://images.unsplash.com/photo-1499244571948-7ccddb3583f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoYW5kc2hha2UlMjBkZWFsfGVufDB8fHx8MTc2ODUzMTMwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "handshake deal"
     },
     {
       "id": "hero-3",
-      "description": "Seorang wanita melakukan pembayaran digital yang aman menggunakan ponselnya, melambangkan transaksi digital yang aman.",
-      "imageUrl": "https://images.unsplash.com/photo-1599050751795-6cdaafbc2319?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkaWdpdGFsJTIwcGF5bWVudHxlbnwwfHx8fDE3Njg0NTE5MDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "digital payment"
+      "description": "Tampilan close-up keyboard laptop dengan cahaya neon, memberikan nuansa teknologi dan digital.",
+      "imageUrl": "https://images.unsplash.com/photo-1550745165-9bc0b252726c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZXRybyUyMGdhbWluZ3xlbnwwfHx8fDE3Njg1MzEzNDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "retro gaming"
     }
   ]
 }
