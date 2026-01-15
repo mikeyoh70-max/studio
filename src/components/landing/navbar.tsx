@@ -10,6 +10,7 @@ const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#why-us', label: 'Kenapa Kami' },
   { href: '#cek-admin', label: 'Verifikasi Admin' },
+  { href: '#testimonials', label: 'Testimoni' },
 ];
 
 const WHATSAPP_LINK = 'https://wa.me/6281234567890?text=Halo%20Admin%20Eskro,%20saya%20tertarik%20menggunakan%20jasa%20Anda.';
