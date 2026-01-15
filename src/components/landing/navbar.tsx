@@ -41,10 +41,7 @@ export function Navbar() {
         </nav>
 
         <div className="flex flex-1 items-center justify-end space-x-4">
-          <Button asChild className="hidden md:inline-flex" style={{ backgroundColor: '#FFD700', color: '#0A192F' }}
-            onMouseOver={e => e.currentTarget.style.backgroundColor = '#f0c800'}
-            onMouseOut={e => e.currentTarget.style.backgroundColor = '#FFD700'}
-          >
+          <Button asChild className="hidden md:inline-flex bg-accent text-accent-foreground hover:bg-accent/90">
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">Hubungi Admin</a>
           </Button>
 
@@ -76,7 +73,7 @@ export function Navbar() {
                   ))}
                 </nav>
                 <div className="mt-auto">
-                   <Button asChild className="w-full" style={{ backgroundColor: '#FFD700', color: '#0A192F' }}>
+                   <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                       <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">Hubungi Admin</a>
                   </Button>
                 </div>

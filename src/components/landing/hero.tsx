@@ -21,10 +21,8 @@ export function Hero() {
               Dikelola oleh Mahasiswa Hukum. Legalitas Terjamin. Mencegah Penipuan Sejak Transaksi Pertama.
             </p>
             <div className="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
-              <Button asChild size="lg" style={{ backgroundColor: '#FFD700', color: '#0A192F' }} 
-                className="shadow-lg transform transition-transform hover:scale-105"
-                onMouseOver={e => e.currentTarget.style.backgroundColor = '#f0c800'}
-                onMouseOut={e => e.currentTarget.style.backgroundColor = '#FFD700'}
+              <Button asChild size="lg" 
+                className="shadow-lg transform transition-transform hover:scale-105 bg-accent text-accent-foreground hover:bg-accent/90"
               >
                 <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                   Amankan Transaksi Sekarang
