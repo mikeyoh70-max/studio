@@ -12,10 +12,11 @@ const paymentLogos = [
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Logo_Indomaret.png/800px-Logo_Indomaret.png", alt: "Indomaret" },
 ];
 
-const ojkLogoUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Otoritas_Jasa_Keuangan_logo.svg/2560px-Otoritas_Jasa_Keuangan_logo.svg.png";
-const kemendagLogoUrl = "https://upload.wikimedia.org/wikipedia/id/thumb/c/c3/Logo_Kementerian_Perdagangan_Republik_Indonesia.png/800px-Logo_Kementerian_Perdagangan_Republik_Indonesia.png";
+const ojkLogoUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/OJK_Logo.png/512px-OJK_Logo.png";
+const kominfoLogoUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg/512px-Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg.png";
 
-const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara,%20saya%20tertarik%20menggunakan%20jasa%20Anda.';
+
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara%20,%20Saya%20ingin%20Memulai%20Transaksi%20Sekarang';
 
 const PaymentLogos = () => (
   <div className="flex flex-wrap justify-center items-center gap-4">
@@ -58,8 +59,8 @@ const RegulatoryLogos = () => (
                 </div>
                  <div className="bg-white/90 rounded-md p-3 flex justify-center items-center h-20">
                     <Image
-                        src={kemendagLogoUrl}
-                        alt="Kementerian Perdagangan Logo"
+                        src={kominfoLogoUrl}
+                        alt="Kominfo Logo"
                         width={120}
                         height={50}
                         className="object-contain"
