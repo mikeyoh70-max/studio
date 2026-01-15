@@ -1,6 +1,14 @@
+'use client';
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
 import { Star } from 'lucide-react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay"
 
 const testimonials = [
   {
@@ -27,6 +35,22 @@ const testimonials = [
     quote:
       'Pakai jasa joki di sini hasilnya memuaskan, rank naik drastis. Yang paling penting, akun 100% aman. Gak nyesel pilih Rekber Nusantara.',
   },
+   {
+    name: 'Rina "The Strategist" Wati',
+    avatar: 'https://picsum.photos/seed/104/40/40',
+    title: 'Layanan Mediasi Andal',
+    rating: 5,
+    quote:
+      'Sempat ada sedikit masalah dengan penjual, tapi tim Rekber Nusantara jadi penengah yang adil dan solutif. Transaksi jadi aman dan kedua pihak puas.',
+  },
+  {
+    name: 'Eko "The Flash" Prasetyo',
+    avatar: 'https://picsum.photos/seed/105/40/40',
+    title: 'Sangat Direkomendasikan!',
+    rating: 5,
+    quote:
+      'Ini rekber terbaik yang pernah saya coba. Fee-nya transparan, prosesnya jelas, dan yang pasti terpercaya. Pasti akan langganan di sini.',
+  },
 ];
 
 export function Testimonials() {
@@ -41,31 +65,52 @@ export function Testimonials() {
             Lihat bagaimana kami membantu para gamer bertransaksi dengan aman dan tanpa khawatir.
           </p>
         </div>
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
-            <Card key={testimonial.name} className="bg-background shadow-lg flex flex-col">
-              <CardContent className="p-6 flex flex-col flex-grow">
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
-                <blockquote className="text-foreground italic flex-grow">
-                  "{testimonial.quote}"
-                </blockquote>
-                <div className="mt-6 flex items-center gap-4">
-                  <Avatar>
-                    <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                    <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="font-semibold text-foreground">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+        <div className="mt-16">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 4000,
+                stopOnInteraction: false,
+                stopOnMouseEnter: true,
+              }),
+            ]}
+            className="w-full"
+          >
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div className="p-4 h-full">
+                    <Card className="bg-background shadow-lg flex flex-col h-full">
+                      <CardContent className="p-6 flex flex-col flex-grow">
+                        <div className="flex mb-4">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                          ))}
+                        </div>
+                        <blockquote className="text-foreground italic flex-grow">
+                          "{testimonial.quote}"
+                        </blockquote>
+                        <div className="mt-6 flex items-center gap-4">
+                          <Avatar>
+                            <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                            <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                          </Avatar>
+                          <div>
+                            <p className="font-semibold text-foreground">{testimonial.name}</p>
+                            <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </div>
     </section>
