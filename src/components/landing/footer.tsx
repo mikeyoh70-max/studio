@@ -59,6 +59,11 @@ export function Footer() {
           </div>
         </div>
 
+        <div className="mt-12 pt-8 border-t border-border text-center">
+          <h3 className="text-lg font-semibold text-foreground mb-4 font-headline">Kami Menerima Pembayaran</h3>
+          <PaymentLogos />
+        </div>
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 pt-8 border-t border-border">
           <div>
             <h3 className="font-bold text-foreground mb-4">PERUSAHAAN</h3>
@@ -77,11 +82,6 @@ export function Footer() {
               <li><Link href="#" className="text-muted-foreground hover:text-primary">Pusat Bantuan</Link></li>
             </ul>
           </div>
-        </div>
-
-        <div className="mt-12 pt-8 border-t border-border text-center">
-          <h3 className="text-lg font-semibold text-foreground mb-4 font-headline">Kami Menerima Pembayaran</h3>
-          <PaymentLogos />
         </div>
         
         <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground flex flex-col md:flex-row justify-between gap-4">
