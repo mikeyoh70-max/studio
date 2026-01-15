@@ -3,19 +3,19 @@
     {
       "id": "hero-1",
       "description": "Dua orang gamer sedang melakukan transaksi item dalam game secara online dengan antarmuka yang aman.",
-      "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxnYW1lJTIwdG91cm5hbWVudHxlbnwwfHx8fDE3MTk1ODM2MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1546443046-ed1ce6ffd1ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Z2FtZSUyMHRyYW5zYWN0aW9ufGVufDB8fHx8MTc2ODQ0NDk5MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "game transaction"
     },
     {
       "id": "hero-2",
-      "description": "Seorang gamer profesional bermain game Mobile Legend di sebuah turnamen.",
-      "imageUrl": "https://images.unsplash.com/photo-1629429408209-1f912961dbd8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBnYW1lcnxlbnwwfHx8fDE3MTk1ODU4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "mobile gamer"
+      "description": "Seorang freelancer sedang bekerja menggunakan laptop di sebuah kafe, melambangkan jasa joki.",
+      "imageUrl": "https://images.unsplash.com/photo-1507919909716-c8262e491cde?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmcmVlbGFuY2VyJTIwd29ya2luZ3xlbnwwfHx8fDE3Njg0NDM2NTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "freelancer working"
     },
     {
       "id": "hero-3",
       "description": "Seorang wanita melakukan pembayaran digital yang aman menggunakan ponselnya, melambangkan transaksi digital yang aman.",
-      "imageUrl": "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwcGF5bWVudHxlbnwwfHx8fDE3MTk1MzA2ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1599050751795-6cdaafbc2319?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkaWdpdGFsJTIwcGF5bWVudHxlbnwwfHx8fDE3Njg0NTE5MDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "digital payment"
     }
   ]
