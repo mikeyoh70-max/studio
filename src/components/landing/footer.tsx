@@ -45,16 +45,16 @@ const RegulatoryLogos = () => (
             <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white p-2 rounded-lg flex items-center justify-center">
                     <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/a/a2/OJK_Logo.png"
-                        alt="OJK Logo"
+                        src="https://storage.googleapis.com/source-uploads.decentralized-ai.internal.goog/3a0ca25862e67a049f57f6f4e195726e/kominfo.png"
+                        alt="Kominfo Logo"
                         className="h-12 w-auto object-contain"
                         referrerPolicy="no-referrer"
                     />
                 </div>
                  <div className="bg-white p-2 rounded-lg flex items-center justify-center">
                     <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg/600px-Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg.png"
-                        alt="Kominfo Logo"
+                        src="https://upload.wikimedia.org/wikipedia/commons/a/a2/OJK_Logo.png"
+                        alt="OJK Logo"
                         className="h-12 w-auto object-contain"
                         referrerPolicy="no-referrer"
                     />
