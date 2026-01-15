@@ -13,6 +13,12 @@ import Autoplay from "embla-carousel-autoplay"
 
 const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara,%20saya%20ingin%20mengamankan%20transaksi%20sekarang.';
 
+const imageCaptions = [
+  "Jual Beli Akun",
+  "Jasa Freelance",
+  "Transaksi Digital Lainnya"
+];
+
 export function Hero() {
   const heroImages = PlaceHolderImages.filter(p => p.id.startsWith('hero-'));
 
@@ -49,8 +55,8 @@ export function Hero() {
               ]}
             >
               <CarouselContent>
-                {heroImages.map((image) => (
-                  <CarouselItem key={image.id}>
+                {heroImages.map((image, index) => (
+                  <CarouselItem key={image.id} className="relative">
                     <Image
                       src={image.imageUrl}
                       alt={image.description}
@@ -60,6 +66,9 @@ export function Hero() {
                       className="rounded-xl shadow-2xl object-cover aspect-[3/2]"
                       priority={image.id === 'hero-1'}
                     />
+                    <div className="absolute inset-0 bg-black/40 rounded-xl flex items-end p-4">
+                      <p className="text-white font-semibold text-lg">{imageCaptions[index]}</p>
+                    </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
