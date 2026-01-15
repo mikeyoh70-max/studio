@@ -47,23 +47,23 @@ const RegulatoryLogos = () => (
                 <h3 className="text-sm font-semibold text-muted-foreground tracking-wider">TERDAFTAR & DIAWASI OLEH:</h3>
             </div>
             <div className="grid grid-cols-2 gap-4">
-                <div className="flex justify-center items-center h-20">
+                <div className="bg-white p-2 rounded-lg flex items-center justify-center">
                     <Image
                         src={ojkLogoUrl}
                         alt="OJK Logo"
                         width={120}
                         height={40}
-                        className="bg-white p-2 rounded-lg h-12 w-auto object-contain"
+                        className="h-12 w-auto object-contain"
                         unoptimized
                     />
                 </div>
-                 <div className="flex justify-center items-center h-20">
+                 <div className="bg-white p-2 rounded-lg flex items-center justify-center">
                     <Image
                         src={kominfoLogoUrl}
                         alt="Kominfo Logo"
                         width={120}
                         height={50}
-                        className="bg-white p-2 rounded-lg h-12 w-auto object-contain"
+                        className="h-12 w-auto object-contain"
                         unoptimized
                     />
                 </div>
