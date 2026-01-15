@@ -48,23 +48,19 @@ const RegulatoryLogos = () => (
             </div>
             <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white p-2 rounded-lg flex items-center justify-center">
-                    <Image
-                        src={ojkLogoUrl}
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/a/a2/OJK_Logo.png"
                         alt="OJK Logo"
-                        width={120}
-                        height={40}
                         className="h-12 w-auto object-contain"
-                        unoptimized
+                        referrerPolicy="no-referrer"
                     />
                 </div>
                  <div className="bg-white p-2 rounded-lg flex items-center justify-center">
-                    <Image
-                        src={kominfoLogoUrl}
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg/600px-Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg.png"
                         alt="Kominfo Logo"
-                        width={120}
-                        height={50}
                         className="h-12 w-auto object-contain"
-                        unoptimized
+                        referrerPolicy="no-referrer"
                     />
                 </div>
             </div>
