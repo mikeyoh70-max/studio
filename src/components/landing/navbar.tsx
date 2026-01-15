@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, Shield, X } from 'lucide-react';
+import { Menu, ShieldCheck, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
@@ -23,7 +23,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <Link href="#home" className="mr-6 flex items-center space-x-2">
-          <Shield className="h-6 w-6 text-primary" />
+          <ShieldCheck className="h-6 w-6 text-primary" />
           <span className="font-bold inline-block font-headline">Rekber Nusantara</span>
         </Link>
         
@@ -55,7 +55,7 @@ export function Navbar() {
               <div className="flex flex-col h-full">
                 <div className="mb-8">
                   <Link href="#home" className="flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Shield className="h-6 w-6 text-primary" />
+                    <ShieldCheck className="h-6 w-6 text-primary" />
                     <span className="font-bold font-headline">Rekber Nusantara</span>
                   </Link>
                 </div>

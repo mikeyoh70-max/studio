@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Twitter, Instagram, Facebook, Shield, Youtube, MessageCircle } from 'lucide-react';
+import { Twitter, Instagram, Facebook, ShieldCheck, Youtube, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
@@ -38,7 +38,7 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center space-x-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <ShieldCheck className="h-7 w-7 text-primary" />
             <span className="text-xl font-bold font-headline">Rekber Nusantara</span>
           </div>
           <div className="flex space-x-2">
