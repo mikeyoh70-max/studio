@@ -3,8 +3,8 @@
     {
       "id": "hero-1",
       "description": "Seorang pria sedang bermain game di komputernya di ruangan yang temaram, merepresentasikan transaksi dalam game.",
-      "imageUrl": "https://images.unsplash.com/photo-1616594418293-8cfb65135a51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxnYW1lciUyMHJvb218ZW58MHx8fHwxNzY4NTMxMjU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "gamer room"
+      "imageUrl": "https://images.unsplash.com/photo-1550745165-9bc0b252726c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZXRybyUyMGdhbWluZ3xlbnwwfHx8fDE3Njg1MzEzNDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "retro gaming"
     },
     {
       "id": "hero-2",
@@ -14,9 +14,9 @@
     },
     {
       "id": "hero-3",
-      "description": "Tampilan close-up keyboard laptop dengan cahaya neon, memberikan nuansa teknologi dan digital.",
-      "imageUrl": "https://images.unsplash.com/photo-1550745165-9bc0b252726c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZXRybyUyMGdhbWluZ3xlbnwwfHx8fDE3Njg1MzEzNDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "retro gaming"
+      "description": "Seorang wanita sedang duduk dan bekerja lepas di laptopnya, melambangkan transaksi untuk jasa freelance.",
+      "imageUrl": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmcmVlbGFuY2VyfGVufDB8fHx8MTc2OTE3NTM5OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "freelancer woman"
     }
   ]
 }
