@@ -6,13 +6,6 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 
-const feeTiers = [
-  { upTo: 999999, feePercent: 0.05, label: "5%" },
-  { upTo: 4999999, feePercent: 0.03, label: "3%" },
-  { upTo: Infinity, feePercent: 0.02, label: "2%" },
-];
-const MINIMUM_FEE = 10000;
-
 const formatCurrency = (value: number) => {
   return new Intl.NumberFormat('id-ID', {
     style: 'currency',
@@ -23,15 +16,25 @@ const formatCurrency = (value: number) => {
 };
 
 export function FeeCalculator() {
-  const [amount, setAmount] = useState<number>(500000);
+  const [amount, setAmount] = useState<number>(150000);
 
   const calculatedFee = useMemo(() => {
     if (isNaN(amount) || amount <= 0) {
       return 0;
     }
-    const tier = feeTiers.find(t => amount <= t.upTo);
-    const fee = tier ? amount * tier.feePercent : 0;
-    return Math.max(fee, MINIMUM_FEE);
+    if (amount < 100000) {
+      return 4000;
+    }
+    if (amount >= 100000 && amount < 500000) {
+      return 10000;
+    }
+    if (amount >= 500000 && amount <= 1000000) {
+      return 20000;
+    }
+    if (amount > 1000000) {
+      return amount * 0.01;
+    }
+    return 0;
   }, [amount]);
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +53,7 @@ export function FeeCalculator() {
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
               Transparansi adalah kunci. Hitung estimasi biaya jasa rekber untuk transaksi Anda dengan mudah.
             </p>
-            <Card className="mt-10 shadow-lg">
+            <Card className="mt-10 shadow-lg bg-card border-border">
               <CardHeader>
                 <CardTitle>Hitung Fee Rekber</CardTitle>
               </CardHeader>
@@ -61,10 +64,10 @@ export function FeeCalculator() {
                     <Input
                       id="transaction-amount"
                       type="text"
-                      value={amount.toLocaleString('id-ID')}
+                      value={amount > 0 ? amount.toLocaleString('id-ID') : ''}
                       onChange={handleAmountChange}
-                      placeholder="Contoh: 500000"
-                      className="mt-1 text-lg p-6"
+                      placeholder="Contoh: 150000"
+                      className="mt-1 text-lg p-6 bg-input border-border"
                     />
                   </div>
                   <div className="p-6 rounded-lg bg-primary text-primary-foreground">
@@ -78,10 +81,10 @@ export function FeeCalculator() {
             </Card>
           </div>
           <div className="mt-12 lg:mt-0">
-            <Card className="shadow-lg">
+            <Card className="shadow-lg bg-card border-border">
               <CardHeader>
                 <CardTitle>Tabel Biaya</CardTitle>
-                <CardDescription>Biaya jasa kami bersifat progresif. Semakin besar transaksi Anda, semakin kecil persentase biayanya.</CardDescription>
+                <CardDescription>Biaya jasa kami dirancang agar terjangkau dan transparan untuk semua skala transaksi.</CardDescription>
               </CardHeader>
               <CardContent>
                 <Table>
@@ -93,21 +96,20 @@ export function FeeCalculator() {
                   </TableHeader>
                   <TableBody>
                     <TableRow>
-                      <TableCell>Rp 1 - Rp 999.999</TableCell>
-                      <TableCell className="text-right"><Badge variant="secondary">5%</Badge></TableCell>
+                      <TableCell>Rp 1 - Rp 99.999</TableCell>
+                      <TableCell className="text-right"><Badge variant="secondary">Rp 4.000</Badge></TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell>Rp 1.000.000 - Rp 4.999.999</TableCell>
-                      <TableCell className="text-right"><Badge variant="secondary">3%</Badge></TableCell>
+                      <TableCell>Rp 100.000 - Rp 499.999</TableCell>
+                      <TableCell className="text-right"><Badge variant="secondary">Rp 10.000</Badge></TableCell>
+                    </TableRow>
+                     <TableRow>
+                      <TableCell>Rp 500.000 - Rp 1.000.000</TableCell>
+                      <TableCell className="text-right"><Badge variant="secondary">Rp 20.000</Badge></TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell>&gt; Rp 5.000.000</TableCell>
-                      <TableCell className="text-right"><Badge variant="secondary">2%</Badge></TableCell>
-                    </TableRow>
-                    <TableRow className="bg-muted/50">
-                       <TableCell colSpan={2} className="text-center font-medium">
-                         Fee minimal adalah {formatCurrency(MINIMUM_FEE)}
-                      </TableCell>
+                      <TableCell>&gt; Rp 1.000.000</TableCell>
+                      <TableCell className="text-right"><Badge variant="secondary">1%</Badge></TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>

@@ -9,12 +9,12 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#why-us', label: 'Kenapa Kami' },
-  { href: '#cek-admin', label: 'Verifikasi Admin' },
+  { href: '#cek-fee', label: 'Cek Fee' },
   { href: '#testimonials', label: 'Testimoni' },
   { href: '#faq', label: 'FAQ' },
 ];
 
-const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara,%20saya%20tertarik%20menggunakan%20jasa%20Anda.';
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara%20,%20Saya%20ingin%20Memulai%20Transaksi%20Sekarang';
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
