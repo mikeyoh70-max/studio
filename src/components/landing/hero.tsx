@@ -24,11 +24,28 @@ export function Hero() {
 
   return (
     <section id="home" className="relative w-full py-24 sm:py-32 lg:py-40 bg-background">
-      <div className="container mx-auto px-4">
+       <div
+        aria-hidden="true"
+        className="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20"
+      >
+        <div className="blur-[106px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700" />
+        <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600" />
+      </div>
+      <div className="container mx-auto px-4 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
-            <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl font-headline">
-              Transaksi Aman dan Terpercaya.
+            <div className="flex justify-center lg:justify-start mb-4">
+              <div className="inline-flex items-center gap-x-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-medium text-primary/80 ring-1 ring-inset ring-border">
+                <span className="absolute -left-1 flex h-2.5 w-2.5">
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-500"></span>
+                </span>
+                <span className="ml-2">Sistem Rekber Profesional #1</span>
+              </div>
+            </div>
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl font-headline">
+              <span className="text-foreground">Transaksi Digital.</span>
+              <span className="block text-sky-400">Aman &</span>
+              <span className="block text-teal-400">Terkendali.</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto lg:mx-0">
               Jasa Rekber ( Mediator ) Profesional Untuk Semua Kebutuhan transaksi Digital Anda
