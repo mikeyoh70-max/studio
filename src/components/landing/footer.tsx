@@ -5,10 +5,6 @@ import Image from 'next/image';
 
 const paymentLogos = [
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png", alt: "BCA" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.png", alt: "Mandiri" },
-  { src: "https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1200px-BNI_logo.svg.png", alt: "BNI" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/6/68/BANK_BRI_logo.png", alt: "BRI" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/b/b8/CIMB_Niaga_logo.svg", alt: "CIMB Niaga" },
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/2560px-Logo_QRIS.svg.png", alt: "QRIS" },
 ];
 
