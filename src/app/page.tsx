@@ -4,6 +4,7 @@ import { AdminVerifier } from '@/components/landing/admin-verifier';
 import { WhyUs } from '@/components/landing/why-us';
 import { Testimonials } from '@/components/landing/testimonials';
 import { Footer } from '@/components/landing/footer';
+import { Faq } from '@/components/landing/faq';
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <WhyUs />
         <AdminVerifier />
         <Testimonials />
+        <Faq />
       </main>
       <Footer />
     </div>

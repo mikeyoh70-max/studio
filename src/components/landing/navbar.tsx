@@ -11,6 +11,7 @@ const navLinks = [
   { href: '#why-us', label: 'Kenapa Kami' },
   { href: '#cek-admin', label: 'Verifikasi Admin' },
   { href: '#testimonials', label: 'Testimoni' },
+  { href: '#faq', label: 'FAQ' },
 ];
 
 const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara,%20saya%20tertarik%20menggunakan%20jasa%20Anda.';
