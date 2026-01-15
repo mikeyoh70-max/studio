@@ -9,6 +9,7 @@ const paymentLogos = [
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png", alt: "Dana" },
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/2560px-Logo_ovo_purple.svg.png", alt: "OVO" },
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Logo_Indomaret.png/800px-Logo_Indomaret.png", alt: "Indomaret" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/ShopeePay_logo.svg/2560px-ShopeePay_logo.svg.png", alt: "ShopeePay" },
 ];
 
 const PaymentLogos = () => (
