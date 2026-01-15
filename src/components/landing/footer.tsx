@@ -1,18 +1,33 @@
 import Link from 'next/link';
 import { Twitter, Instagram, Facebook, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+
+const paymentLogos = [
+  { src: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia_logo.svg", alt: "BCA", width: 100, height: 24 },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo.svg", alt: "Mandiri", width: 100, height: 24 },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Bank_Negara_Indonesia_logo.svg", alt: "BNI", width: 80, height: 24 },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_logo.svg", alt: "BRI", width: 100, height: 24 },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/6/68/CIMB_Niaga_logo.svg", alt: "CIMB Niaga", width: 100, height: 24 },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/QRIS_logo.svg/1200px-QRIS_logo.svg.png", alt: "QRIS", width: 80, height: 24 },
+];
 
 const PaymentLogos = () => (
-  <div className="flex flex-wrap justify-center items-center gap-4">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia_logo.svg" alt="BCA" className="h-6" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo.svg" alt="Mandiri" className="h-6" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Bank_Negara_Indonesia_logo.svg" alt="BNI" className="h-5" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_logo.svg" alt="BRI" className="h-6" />
-    <img src="https://upload.wikimedia.org/wikipedia/id/archive/3/3b/20210712133822%21CIMB_Niaga_logo.svg" alt="CIMB Niaga" className="h-6" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/QRIS_logo.svg/2560px-QRIS_logo.svg.png" alt="QRIS" className="h-6" />
+  <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-4">
+    {paymentLogos.map((logo) => (
+      <div key={logo.alt} className="h-6 flex items-center">
+        <Image
+          src={logo.src}
+          alt={logo.alt}
+          width={logo.width}
+          height={logo.height}
+          className="h-full w-auto object-contain"
+          unoptimized
+        />
+      </div>
+    ))}
   </div>
 );
-
 
 export function Footer() {
   return (
