@@ -3,8 +3,6 @@ import { Twitter, Instagram, Facebook, Shield, Youtube, MessageCircle } from 'lu
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
-import { KominfoLogo } from './kominfo-logo';
-import { OjkLogo } from './ojk-logo';
 
 const paymentLogos = [
   { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png", alt: "BCA" },
@@ -33,7 +31,7 @@ const PaymentLogos = () => (
   </div>
 );
 
-const RegulatoryLogos = () => (
+const RegulatoryInfo = () => (
   <div className="max-w-2xl mx-auto mt-12">
     <Card className="bg-card/50 border-border/70">
         <CardContent className="p-6">
@@ -44,12 +42,12 @@ const RegulatoryLogos = () => (
                 </span>
                 <h3 className="text-sm font-semibold text-muted-foreground tracking-wider">TERDAFTAR & DIAWASI OLEH:</h3>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white p-2 rounded-lg flex items-center justify-center">
-                    <KominfoLogo className="h-12 w-auto" />
+            <div className="grid grid-cols-2 gap-4 text-center">
+                <div className="bg-background/70 p-3 rounded-lg flex items-center justify-center">
+                    <span className="text-2xl font-black" style={{ color: '#002D72' }}>KOMINFO</span>
                 </div>
-                 <div className="bg-white p-2 rounded-lg flex items-center justify-center">
-                    <OjkLogo className="h-8 w-auto" />
+                 <div className="bg-background/70 p-3 rounded-lg flex items-center justify-center">
+                    <span className="text-2xl font-black" style={{ color: '#D2232A' }}>OJK</span>
                 </div>
             </div>
             <p className="text-xs text-muted-foreground/60 mt-4 text-center">
@@ -93,7 +91,7 @@ export function Footer() {
           <PaymentLogos />
         </div>
         
-        <RegulatoryLogos />
+        <RegulatoryInfo />
 
         <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground flex flex-col md:flex-row justify-between gap-4">
           <p>&copy; {new Date().getFullYear()} Rekber Nusantara. All rights reserved.</p>
