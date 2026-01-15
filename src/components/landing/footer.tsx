@@ -53,7 +53,7 @@ const RegulatoryLogos = () => (
                 </div>
                  <div className="bg-white p-2 rounded-lg flex items-center justify-center">
                     <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/a/a2/OJK_Logo.png"
+                        src="https://storage.googleapis.com/source-uploads.decentralized-ai.internal.goog/79b1836f3ca878b273418d1844b20531/ojk.png"
                         alt="OJK Logo"
                         className="h-12 w-auto object-contain"
                         referrerPolicy="no-referrer"
