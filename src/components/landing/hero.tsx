@@ -11,7 +11,7 @@ import {
 import Autoplay from "embla-carousel-autoplay"
 
 
-const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara,%20saya%20ingin%20mengamankan%20transaksi%20sekarang.';
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara%20,%20Saya%20ingin%20Memulai%20Transaksi%20Sekarang';
 
 const imageCaptions = [
   "Jual Beli Akun Game",
