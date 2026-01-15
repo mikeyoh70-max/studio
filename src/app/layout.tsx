@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Eskro by Safeguard',
+  title: 'Rekber Nusantara by Safeguard',
   description: 'Jasa Rekber (Escrow Service) terpercaya untuk transaksi game online Anda. Dikelola oleh Mahasiswa Hukum. Legalitas terjamin dan anti-penipuan.',
 };
 

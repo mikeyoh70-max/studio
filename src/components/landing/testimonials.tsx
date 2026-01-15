@@ -9,7 +9,7 @@ const testimonials = [
     title: 'Top Up Diamond Tercepat',
     rating: 5,
     quote:
-      'Prosesnya cepet banget, gak sampe 5 menit diamond udah masuk. Adminnya juga ramah dan fast response. Puas banget sama layanan Eskro!',
+      'Prosesnya cepet banget, gak sampe 5 menit diamond udah masuk. Adminnya juga ramah dan fast response. Puas banget sama layanan Rekber Nusantara!',
   },
   {
     name: 'Siti "The Shadow" Nurhaliza',
@@ -17,7 +17,7 @@ const testimonials = [
     title: 'Transaksi Akun Aman',
     rating: 5,
     quote:
-      'Awalnya ragu transaksi akun gede, tapi Eskro bikin semuanya aman terkendali. Fitur verifikasi adminnya bikin tenang. Recommended!',
+      'Awalnya ragu transaksi akun gede, tapi Rekber Nusantara bikin semuanya aman terkendali. Fitur verifikasi adminnya bikin tenang. Recommended!',
   },
   {
     name: 'Budi "The Legend" Santoso',
@@ -25,7 +25,7 @@ const testimonials = [
     title: 'Jasa Joki Terpercaya',
     rating: 5,
     quote:
-      'Pakai jasa joki di sini hasilnya memuaskan, rank naik drastis. Yang paling penting, akun 100% aman. Gak nyesel pilih Eskro.',
+      'Pakai jasa joki di sini hasilnya memuaskan, rank naik drastis. Yang paling penting, akun 100% aman. Gak nyesel pilih Rekber Nusantara.',
   },
 ];
 

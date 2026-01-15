@@ -25,7 +25,7 @@ export function WhyUs() {
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl font-headline">
-            Kenapa Memilih Eskro?
+            Kenapa Memilih Rekber Nusantara?
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
             Kami menawarkan keamanan, kecepatan, dan keadilan dalam setiap transaksi.

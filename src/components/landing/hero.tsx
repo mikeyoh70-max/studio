@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-const WHATSAPP_LINK = 'https://wa.me/6281234567890?text=Halo%20Admin%20Eskro,%20saya%20ingin%20mengamankan%20transaksi%20sekarang.';
+const WHATSAPP_LINK = 'https://wa.me/6281234567890?text=Halo%20Admin%20Rekber%20Nusantara,%20saya%20ingin%20mengamankan%20transaksi%20sekarang.';
 
 export function Hero() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-illustration');

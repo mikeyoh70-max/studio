@@ -13,7 +13,7 @@ const navLinks = [
   { href: '#testimonials', label: 'Testimoni' },
 ];
 
-const WHATSAPP_LINK = 'https://wa.me/6281234567890?text=Halo%20Admin%20Eskro,%20saya%20tertarik%20menggunakan%20jasa%20Anda.';
+const WHATSAPP_LINK = 'https://wa.me/6281234567890?text=Halo%20Admin%20Rekber%20Nusantara,%20saya%20tertarik%20menggunakan%20jasa%20Anda.';
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -23,7 +23,7 @@ export function Navbar() {
       <div className="container flex h-16 items-center">
         <Link href="#home" className="mr-6 flex items-center space-x-2">
           <Shield className="h-6 w-6 text-primary" />
-          <span className="font-bold inline-block font-headline">Eskro</span>
+          <span className="font-bold inline-block font-headline">Rekber Nusantara</span>
         </Link>
         
         <nav className="hidden md:flex md:items-center md:gap-6 text-sm font-medium">
@@ -55,7 +55,7 @@ export function Navbar() {
                 <div className="mb-8">
                   <Link href="#home" className="flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
                     <Shield className="h-6 w-6 text-primary" />
-                    <span className="font-bold font-headline">Eskro</span>
+                    <span className="font-bold font-headline">Rekber Nusantara</span>
                   </Link>
                 </div>
                 <nav className="flex flex-col gap-6 text-lg font-medium">

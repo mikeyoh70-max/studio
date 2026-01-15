@@ -9,7 +9,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center space-x-2">
             <Shield className="h-7 w-7 text-primary" />
-            <span className="text-xl font-bold font-headline">Eskro</span>
+            <span className="text-xl font-bold font-headline">Rekber Nusantara</span>
           </div>
           <div className="flex space-x-2">
             <Button variant="ghost" size="icon" asChild>
@@ -24,7 +24,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground flex flex-col md:flex-row justify-between gap-4">
-          <p>&copy; {new Date().getFullYear()} Eskro. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Rekber Nusantara. All rights reserved.</p>
           <p className="max-w-2xl mx-auto md:mx-0">
             Layanan mediasi independen untuk transaksi aman.
           </p>
