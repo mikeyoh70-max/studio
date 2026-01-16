@@ -23,7 +23,7 @@ export function FeeCalculator() {
       return 0;
     }
     if (amount < 100000) {
-      return 4000;
+      return 3000;
     }
     if (amount >= 100000 && amount < 500000) {
       return 8000;
@@ -97,7 +97,7 @@ export function FeeCalculator() {
                   <TableBody>
                     <TableRow>
                       <TableCell>Rp 1 - Rp 99.999</TableCell>
-                      <TableCell className="text-right"><Badge variant="secondary">Rp 4.000</Badge></TableCell>
+                      <TableCell className="text-right"><Badge variant="secondary">Rp 3.000</Badge></TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell>Rp 100.000 - Rp 499.999</TableCell>
