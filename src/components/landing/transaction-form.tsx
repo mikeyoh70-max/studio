@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -19,12 +18,9 @@ const formSchema = z.object({
   sellerPhone: z.string().min(8, { message: 'Nomor Penjual harus diisi.' }).regex(/^[0-9+]+$/, "Hanya angka dan karakter '+' yang diperbolehkan."),
   buyerPhone: z.string().min(8, { message: 'Nomor Pembeli harus diisi.' }).regex(/^[0-9+]+$/, "Hanya angka dan karakter '+' yang diperbolehkan."),
   description: z.string().min(10, { message: 'Deskripsi harus diisi (min. 10 karakter).' }),
-  amount: z.preprocess(
-    (a) => parseInt(z.string().parse(a).replace(/[^0-9]/g, ''), 10),
-    z.number().min(10000, { message: 'Nominal transaksi minimal Rp 10.000.' })
-  ),
+  amount: z.number().min(10000, { message: 'Nominal transaksi minimal Rp 10.000.' }),
   terms: z.boolean().refine((val) => val === true, {
-    message: 'Anda harus menyetujui Aturan & Ketentuan.',
+    message: 'Anda harus menyetujui Aturan & Ketentuan yang berlaku.',
   }),
 });
 
@@ -129,11 +125,15 @@ export function TransactionForm() {
                     <FormItem>
                       <FormLabel>Nominal Transaksi (IDR)</FormLabel>
                       <FormControl>
-                        <Input 
-                          type="number"
-                          placeholder="Contoh: 150000" 
+                         <Input
+                          placeholder="Contoh: 150000"
                           {...field}
-                           onChange={e => field.onChange(e.target.valueAsNumber || 0)}
+                          type="text"
+                          value={field.value > 0 ? field.value.toLocaleString('id-ID') : ''}
+                          onChange={(e) => {
+                            const value = e.target.value.replace(/[^0-9]/g, '');
+                            field.onChange(Number(value) || 0);
+                          }}
                         />
                       </FormControl>
                       <FormMessage />
