@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -26,6 +27,8 @@ const formSchema = z.object({
 export function TransactionForm() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,45 +40,41 @@ export function TransactionForm() {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const adminPhone = '62895323091263';
-      const { sellerPhone, buyerPhone, description, amount } = values;
-
-      const formattedAmount = new Intl.NumberFormat('id-ID', {
-        style: 'currency',
-        currency: 'IDR',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      }).format(amount);
-
-      const message = `Halo Admin Rekber Nusantara,
-
-Saya ingin memulai transaksi baru dengan detail:
-- Deskripsi: ${description}
-- No. Penjual: ${sellerPhone}
-- No. Pembeli: ${buyerPhone}
-- Nominal: ${formattedAmount}
-
-Mohon segera dibuatkan grup WhatsApp untuk mediasi. Terima kasih.`;
-
-      const whatsappUrl = `https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`;
-
-      window.open(whatsappUrl, '_blank');
-      
-      toast({
-        title: 'Mengarahkan ke WhatsApp!',
-        description: 'Silakan lanjutkan chat dengan admin untuk membuat grup transaksi.',
+      const response = await fetch('/api/transaction/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sellerPhone: values.sellerPhone,
+          buyerPhone: values.buyerPhone,
+          description: values.description,
+          amount: values.amount,
+        }),
       });
 
-      form.reset();
+      if (!response.ok) {
+        throw new Error('Gagal membuat transaksi di server.');
+      }
+
+      const { transactionId } = await response.json();
+
+      toast({
+        title: 'Transaksi Dibuat!',
+        description: 'Anda akan diarahkan ke ruang obrolan.',
+      });
+
+      router.push(`/chat/${transactionId}`);
+
     } catch (error) {
       console.error(error);
       toast({
         variant: 'destructive',
         title: 'Terjadi Kesalahan',
-        description: 'Gagal mempersiapkan data untuk WhatsApp.',
+        description: 'Gagal membuat ruang transaksi.',
       });
     } finally {
       setIsLoading(false);
@@ -90,7 +89,7 @@ Mohon segera dibuatkan grup WhatsApp untuk mediasi. Terima kasih.`;
             Mulai Transaksi Aman
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            Isi formulir di bawah ini untuk memulai transaksi melalui WhatsApp. Admin akan membuatkan grup untuk Anda, Penjual, dan Admin.
+            Isi formulir di bawah ini untuk membuat ruang chat mediasi. Link chat akan dibuat otomatis dan dapat dibagikan ke Penjual & Pembeli.
           </p>
         </div>
         <Card className="max-w-2xl mx-auto mt-12 bg-card border-border shadow-lg">
@@ -106,7 +105,7 @@ Mohon segera dibuatkan grup WhatsApp untuk mediasi. Terima kasih.`;
                     name="sellerPhone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Nomor Penjual</FormLabel>
+                        <FormLabel>Nomor WhatsApp Penjual</FormLabel>
                         <FormControl>
                           <Input placeholder="Masukkan nomor penjual" {...field} />
                         </FormControl>
@@ -119,7 +118,7 @@ Mohon segera dibuatkan grup WhatsApp untuk mediasi. Terima kasih.`;
                     name="buyerPhone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Nomor Pembeli</FormLabel>
+                        <FormLabel>Nomor WhatsApp Pembeli</FormLabel>
                         <FormControl>
                           <Input placeholder="Masukkan nomor pembeli" {...field} />
                         </FormControl>
@@ -187,10 +186,10 @@ Mohon segera dibuatkan grup WhatsApp untuk mediasi. Terima kasih.`;
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Mengarahkan ke WhatsApp...
+                      Membuat Ruang Transaksi...
                     </>
                   ) : (
-                    'Buat Transaksi via WhatsApp'
+                    'Buat Ruang Transaksi'
                   )}
                 </Button>
               </form>
