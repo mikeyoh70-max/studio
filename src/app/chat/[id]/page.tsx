@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -8,11 +7,12 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/componen
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Send, Loader2, ArrowLeft } from 'lucide-react';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Send, Loader2, ArrowLeft, LogIn, ShieldCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import { AdminLoginDialog } from '@/components/chat/admin-login-dialog';
 
 interface Message {
   id: string;
@@ -46,9 +46,14 @@ export default function ChatPage() {
   const [currentUser, setCurrentUser] = useState({ id: '', name: '' });
   const [transactionDetails, setTransactionDetails] = useState<TransactionDetails | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false);
+  const [forceRerender, setForceRerender] = useState(0);
 
   const socketRef = useRef<Socket | null>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+
+  const ADMIN_USER_ID = 'admin_safeguard_trades';
+  const isCurrentUserAdmin = currentUser.id === ADMIN_USER_ID;
 
   useEffect(() => {
     // Initialize user
@@ -81,17 +86,27 @@ export default function ChatPage() {
     fetchTransactionDetails();
 
     // Initialize Socket.io
-    socketRef.current = io();
-    socketRef.current.emit('join-room', transactionId);
+    if (!socketRef.current) {
+        socketRef.current = io();
 
-    socketRef.current.on('receive-message', (message: Message) => {
-      setMessages((prev) => [...prev, message]);
-    });
+        socketRef.current.on('connect', () => {
+            console.log('Socket connected:', socketRef.current?.id);
+            socketRef.current?.emit('join-room', transactionId);
+        });
+
+        socketRef.current.on('receive-message', (message: Message) => {
+            setMessages((prev) => [...prev, message]);
+        });
+    }
+
 
     return () => {
-      socketRef.current?.disconnect();
+      if (socketRef.current?.connected) {
+          socketRef.current.disconnect();
+          socketRef.current = null;
+      }
     };
-  }, [transactionId]);
+  }, [transactionId, forceRerender]);
 
   useEffect(() => {
     // Auto-scroll to bottom
@@ -115,6 +130,12 @@ export default function ChatPage() {
       setNewMessage('');
     }
   };
+
+  const handleVerificationSuccess = () => {
+    localStorage.setItem('userId', ADMIN_USER_ID);
+    localStorage.setItem('userName', 'Admin Resmi');
+    setForceRerender(Date.now());
+  };
   
   if (isLoading) {
     return (
@@ -126,6 +147,11 @@ export default function ChatPage() {
 
   return (
     <div className="flex flex-col h-screen">
+       <AdminLoginDialog 
+          open={isAdminLoginOpen} 
+          onOpenChange={setIsAdminLoginOpen} 
+          onVerificationSuccess={handleVerificationSuccess} 
+      />
       <CardHeader className="flex flex-row items-center justify-between border-b bg-card">
          <div className="flex items-center gap-4">
              <Button variant="ghost" size="icon" asChild>
@@ -141,6 +167,11 @@ export default function ChatPage() {
                  <p className="text-sm text-muted-foreground">{formatCurrency(transactionDetails?.amount || 0)}</p>
             </div>
          </div>
+         {!isCurrentUserAdmin && (
+            <Button variant="outline" size="sm" onClick={() => setIsAdminLoginOpen(true)}>
+                <LogIn className="mr-2 h-4 w-4" /> Admin
+            </Button>
+         )}
       </CardHeader>
       
       <CardContent className="flex-1 p-0">
@@ -148,15 +179,27 @@ export default function ChatPage() {
           <div className="p-4 md:p-6 space-y-4">
             {messages.map((msg) => {
               const isMe = msg.senderId === currentUser.id;
+              const isSenderAdmin = msg.senderId === ADMIN_USER_ID;
               return (
                 <div key={msg.id} className={cn('flex items-end gap-2', isMe ? 'justify-end' : 'justify-start')}>
                   {!isMe && (
                      <Avatar className="h-8 w-8">
-                       <AvatarFallback>{msg.senderName.charAt(0)}</AvatarFallback>
+                        {isSenderAdmin ? (
+                            <AvatarFallback className="bg-sky-500/20 text-sky-400">
+                                <ShieldCheck className="h-5 w-5" />
+                            </AvatarFallback>
+                        ) : (
+                            <AvatarFallback>{msg.senderName.charAt(0)}</AvatarFallback>
+                        )}
                      </Avatar>
                   )}
                   <div className={cn('max-w-xs md:max-w-md lg:max-w-lg rounded-lg px-4 py-2', isMe ? 'bg-primary text-primary-foreground' : 'bg-muted')}>
-                    {!isMe && <p className="text-xs font-bold mb-1">{msg.senderName}</p>}
+                    {!isMe && (
+                        <p className="text-xs font-bold mb-1 flex items-center gap-1.5">
+                            {isSenderAdmin && <ShieldCheck className="h-4 w-4 text-sky-400" />}
+                            {msg.senderName}
+                        </p>
+                    )}
                     <p className="text-sm">{msg.text}</p>
                     <p className="text-xs mt-1 opacity-70 text-right">{format(new Date(msg.timestamp), 'HH:mm')}</p>
                   </div>
