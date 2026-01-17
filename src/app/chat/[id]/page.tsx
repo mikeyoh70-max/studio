@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Send, Loader2, ArrowLeft, LogIn, ShieldCheck } from 'lucide-react';
+import { Send, Loader2, ArrowLeft, LogIn, ShieldCheck, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import Link from 'next/link';
@@ -25,6 +25,8 @@ interface Message {
 interface TransactionDetails {
     description: string;
     amount: number;
+    buyerPhone: string;
+    sellerPhone: string;
 }
 
 const formatCurrency = (value: number) => {
@@ -165,6 +167,16 @@ export default function ChatPage() {
             <div>
                  <CardTitle className="text-base font-bold md:text-lg">{transactionDetails?.description || `Transaksi ${transactionId}`}</CardTitle>
                  <p className="text-sm text-muted-foreground">{formatCurrency(transactionDetails?.amount || 0)}</p>
+                 <div className="flex items-center gap-x-4 flex-wrap text-xs text-muted-foreground mt-1">
+                    <div className="flex items-center gap-1.5">
+                        <User className="h-3 w-3" />
+                        <span>Penjual: {transactionDetails?.sellerPhone}</span>
+                    </div>
+                     <div className="flex items-center gap-1.5">
+                        <User className="h-3 w-3" />
+                        <span>Pembeli: {transactionDetails?.buyerPhone}</span>
+                    </div>
+                 </div>
             </div>
          </div>
          {!isCurrentUserAdmin && (
