@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/landing/navbar';
 import { Hero } from '@/components/landing/hero';
+import { TransactionForm } from '@/components/landing/transaction-form';
 import { FeeCalculator } from '@/components/landing/fee-calculator';
 import { WhyUs } from '@/components/landing/why-us';
 import { Testimonials } from '@/components/landing/testimonials';
@@ -12,6 +13,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <TransactionForm />
         <WhyUs />
         <FeeCalculator />
         <Testimonials />

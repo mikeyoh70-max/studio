@@ -1,0 +1,193 @@
+
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Checkbox } from '@/components/ui/checkbox';
+import { useToast } from '@/hooks/use-toast';
+import { Loader2 } from 'lucide-react';
+
+const formSchema = z.object({
+  sellerPhone: z.string().min(8, { message: 'Nomor Penjual harus diisi.' }).regex(/^[0-9+]+$/, "Hanya angka dan karakter '+' yang diperbolehkan."),
+  buyerPhone: z.string().min(8, { message: 'Nomor Pembeli harus diisi.' }).regex(/^[0-9+]+$/, "Hanya angka dan karakter '+' yang diperbolehkan."),
+  description: z.string().min(10, { message: 'Deskripsi harus diisi (min. 10 karakter).' }),
+  amount: z.preprocess(
+    (a) => parseInt(z.string().parse(a).replace(/[^0-9]/g, ''), 10),
+    z.number().min(10000, { message: 'Nominal transaksi minimal Rp 10.000.' })
+  ),
+  terms: z.boolean().refine((val) => val === true, {
+    message: 'Anda harus menyetujui Aturan & Ketentuan.',
+  }),
+});
+
+export function TransactionForm() {
+  const router = useRouter();
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      sellerPhone: '',
+      buyerPhone: '',
+      description: '',
+      amount: 0,
+      terms: false,
+    },
+  });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/transaction/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error('Gagal membuat transaksi. Coba lagi nanti.');
+      }
+
+      const { transactionId } = await response.json();
+      
+      toast({
+        title: 'Transaksi Dibuat!',
+        description: 'Anda akan diarahkan ke ruang obrolan.',
+      });
+      
+      router.push(`/chat/${transactionId}`);
+
+    } catch (error) {
+      console.error(error);
+      toast({
+        variant: 'destructive',
+        title: 'Terjadi Kesalahan',
+        description: error instanceof Error ? error.message : String(error),
+      });
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <section id="buat-transaksi" className="py-20 sm:py-28">
+      <div className="container mx-auto px-4">
+        <div className="text-center max-w-3xl mx-auto">
+           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl font-headline">
+            Mulai Transaksi Aman
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-muted-foreground">
+            Isi formulir di bawah ini untuk membuat ruang transaksi pribadi Anda. Pembeli, Penjual, dan Admin akan diundang untuk berdiskusi.
+          </p>
+        </div>
+        <Card className="max-w-2xl mx-auto mt-12 bg-card border-border shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-center font-headline text-2xl">Formulir Transaksi</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="sellerPhone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Nomor Penjual</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Masukkan nomor penjual" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="buyerPhone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Nomor Pembeli</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Masukkan nomor pembeli" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                 <FormField
+                  control={form.control}
+                  name="amount"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nominal Transaksi (IDR)</FormLabel>
+                      <FormControl>
+                        <Input 
+                          type="number"
+                          placeholder="Contoh: 150000" 
+                          {...field}
+                           onChange={e => field.onChange(e.target.valueAsNumber || 0)}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Deskripsi Transaksi</FormLabel>
+                      <FormControl>
+                        <Textarea placeholder="Contoh: Jual beli akun game MLBB, level 30, skin legend." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="terms"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                       <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel>
+                          Saya akan mematuhi Aturan & Ketentuan yang berlaku.
+                        </FormLabel>
+                        <FormMessage />
+                      </div>
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" className="w-full btn-rgb" size="lg" disabled={isLoading}>
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Membuat Ruang Transaksi...
+                    </>
+                  ) : (
+                    'Buat Transaksi'
+                  )}
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+  )
+}
