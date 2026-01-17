@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -25,7 +24,6 @@ const formSchema = z.object({
 });
 
 export function TransactionForm() {
-  const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -39,35 +37,47 @@ export function TransactionForm() {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/transaction/create', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      });
+      const adminPhone = '62895323091263';
+      const { sellerPhone, buyerPhone, description, amount } = values;
 
-      if (!response.ok) {
-        throw new Error('Gagal membuat transaksi. Coba lagi nanti.');
-      }
+      const formattedAmount = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(amount);
 
-      const { transactionId } = await response.json();
+      const message = `Halo Admin Rekber Nusantara,
+
+Saya ingin memulai transaksi baru dengan detail:
+- Deskripsi: ${description}
+- No. Penjual: ${sellerPhone}
+- No. Pembeli: ${buyerPhone}
+- Nominal: ${formattedAmount}
+
+Mohon segera dibuatkan grup WhatsApp untuk mediasi. Terima kasih.`;
+
+      const whatsappUrl = `https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`;
+
+      window.open(whatsappUrl, '_blank');
       
       toast({
-        title: 'Transaksi Dibuat!',
-        description: 'Anda akan diarahkan ke ruang obrolan.',
+        title: 'Mengarahkan ke WhatsApp!',
+        description: 'Silakan lanjutkan chat dengan admin untuk membuat grup transaksi.',
       });
-      
-      router.push(`/chat/${transactionId}`);
 
+      form.reset();
     } catch (error) {
       console.error(error);
       toast({
         variant: 'destructive',
         title: 'Terjadi Kesalahan',
-        description: error instanceof Error ? error.message : String(error),
+        description: 'Gagal mempersiapkan data untuk WhatsApp.',
       });
+    } finally {
       setIsLoading(false);
     }
   };
@@ -80,7 +90,7 @@ export function TransactionForm() {
             Mulai Transaksi Aman
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            Isi formulir di bawah ini untuk membuat ruang transaksi pribadi Anda. Pembeli, Penjual, dan Admin akan diundang untuk berdiskusi.
+            Isi formulir di bawah ini untuk memulai transaksi melalui WhatsApp. Admin akan membuatkan grup untuk Anda, Penjual, dan Admin.
           </p>
         </div>
         <Card className="max-w-2xl mx-auto mt-12 bg-card border-border shadow-lg">
@@ -177,10 +187,10 @@ export function TransactionForm() {
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Membuat Ruang Transaksi...
+                      Mengarahkan ke WhatsApp...
                     </>
                   ) : (
-                    'Buat Transaksi'
+                    'Buat Transaksi via WhatsApp'
                   )}
                 </Button>
               </form>
