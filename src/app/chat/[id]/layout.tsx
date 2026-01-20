@@ -4,9 +4,6 @@ export default function ChatLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <div className="flex flex-col h-screen bg-background">
-      {children}
-    </div>
-  );
+  // This layout is no longer actively used as the flow reverts to WhatsApp.
+  return <>{children}</>;
 }
