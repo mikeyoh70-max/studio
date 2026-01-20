@@ -6,6 +6,7 @@ import { WhyUs } from '@/components/landing/why-us';
 import { Testimonials } from '@/components/landing/testimonials';
 import { Footer } from '@/components/landing/footer';
 import { Faq } from '@/components/landing/faq';
+import { AdminVerification } from '@/components/landing/admin-verification';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <TransactionForm />
         <WhyUs />
         <FeeCalculator />
+        <AdminVerification />
         <Testimonials />
         <Faq />
       </main>

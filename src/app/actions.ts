@@ -2,10 +2,8 @@
 
 // A mock list of verified admin numbers. In a real application, this would come from a database.
 const verifiedAdmins = [
-  '081234567890',
-  '+6281234567890',
-  '089876543210',
-  '+6289876543210',
+  '0895323091263',
+  '+62895323091263'
 ];
 
 export interface VerifyAdminState {
@@ -42,7 +40,7 @@ export async function verifyAdmin(
   if (isVerified) {
     return {
       status: 'VERIFIED',
-      message: 'Nomor terverifikasi sebagai Admin Resmi Safeguard Trades.',
+      message: 'Nomor terverifikasi sebagai Admin Resmi Rekber Nusantara.',
       number: phoneNumber,
     };
   } else {

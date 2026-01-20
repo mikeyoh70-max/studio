@@ -8,8 +8,10 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const navLinks = [
   { href: '#home', label: 'Home' },
+  { href: '#buat-transaksi', label: 'Transaksi' },
   { href: '#why-us', label: 'Kenapa Kami' },
   { href: '#cek-fee', label: 'Cek Fee' },
+  { href: '#verify-admin', label: 'Verifikasi' },
   { href: '#testimonials', label: 'Testimoni' },
   { href: '#faq', label: 'FAQ' },
 ];
