@@ -64,27 +64,27 @@ export function AdminVerification() {
             {state.status !== 'UNSET' && (
               <div className="mt-6 animate-scale-in">
                 {state.status === 'VERIFIED' && (
-                  <Alert variant="default" className="bg-green-900/30 border-green-500/50 text-green-200">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <AlertTitle className="font-bold text-green-300">Nomor Terverifikasi!</AlertTitle>
+                  <Alert>
+                    <CheckCircle className="h-5 w-5" />
+                    <AlertTitle className="font-bold">Nomor Terverifikasi!</AlertTitle>
                     <AlertDescription>
                       {state.message}
                     </AlertDescription>
                   </Alert>
                 )}
                 {state.status === 'UNVERIFIED' && (
-                   <Alert variant="destructive" className="bg-red-900/30 border-red-500/50 text-red-200">
-                    <XCircle className="h-5 w-5 text-red-400" />
-                    <AlertTitle className="font-bold text-red-300">BUKAN ADMIN RESMI!</AlertTitle>
+                   <Alert variant="destructive">
+                    <XCircle className="h-5 w-5" />
+                    <AlertTitle className="font-bold">BUKAN ADMIN RESMI!</AlertTitle>
                     <AlertDescription>
                        {state.message}
                     </AlertDescription>
                   </Alert>
                 )}
                  {state.status === 'ERROR' && (
-                   <Alert variant="destructive" className="bg-yellow-900/30 border-yellow-500/50 text-yellow-200">
-                    <AlertCircle className="h-5 w-5 text-yellow-400" />
-                    <AlertTitle className="font-bold text-yellow-300">Input Tidak Valid</AlertTitle>
+                   <Alert variant="destructive">
+                    <AlertCircle className="h-5 w-5" />
+                    <AlertTitle className="font-bold">Input Tidak Valid</AlertTitle>
                     <AlertDescription>
                        {state.message}
                     </AlertDescription>
