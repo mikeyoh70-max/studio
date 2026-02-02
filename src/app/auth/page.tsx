@@ -60,10 +60,16 @@ const getFriendlyErrorMessage = (errorCode: string): string => {
       return 'Email atau password salah. Silakan coba lagi.';
     case 'auth/network-request-failed':
         return 'Koneksi internet bermasalah. Silakan coba lagi.';
-    case 'auth/invalid-api-key':
-        return 'Konfigurasi Firebase tidak valid. Mohon hubungi administrator.';
+    case 'auth/unauthorized-domain':
+        return 'Domain ini tidak diizinkan. Pastikan "localhost" sudah ditambahkan di Authorized Domains pada Firebase Console.';
+    case 'auth/popup-closed-by-user':
+        return 'Proses login dibatalkan karena pop-up ditutup.';
+    case 'auth/cancelled-popup-request':
+        return 'Beberapa pop-up login dibuka. Silakan coba lagi.';
+    case 'auth/operation-not-allowed':
+        return 'Metode login ini belum diaktifkan di Firebase Console.';
     default:
-      return 'Terjadi kesalahan yang tidak diketahui. Silakan coba beberapa saat lagi.';
+      return `Terjadi kesalahan yang tidak diketahui (${errorCode}). Silakan coba beberapa saat lagi.`;
   }
 };
 
