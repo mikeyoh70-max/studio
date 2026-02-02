@@ -85,6 +85,7 @@ export function Footer() {
               <li><Link href="#" className="text-muted-foreground hover:text-primary">Tentang Kami</Link></li>
               <li><Link href="#" className="text-muted-foreground hover:text-primary">Hubungi Kami</Link></li>
               <li><Link href="#" className="text-muted-foreground hover:text-primary">Karir & Tim</Link></li>
+              <li><Link href="/login" className="text-muted-foreground hover:text-primary">Admin Login</Link></li>
             </ul>
           </div>
           <div>
