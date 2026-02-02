@@ -66,6 +66,7 @@ export default function TransactionsPage() {
     const fetchTransactions = async () => {
       if (user && db) {
         try {
+          // Query transactions where buyerId matches the current user's UID
           const q = query(
             collection(db, 'transactions'),
             where('buyerId', '==', user.uid),
@@ -90,6 +91,7 @@ export default function TransactionsPage() {
     }
   }, [user, authLoading]);
 
+  // Loading state while checking auth
   if (authLoading || (!user && !authLoading)) {
     return (
       <div className="container mx-auto px-4 py-12">

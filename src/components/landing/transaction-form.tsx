@@ -78,13 +78,18 @@ export function TransactionForm() {
     }
 
     try {
+      // Save the transaction to Firestore
       const docRef = await addDoc(collection(db, 'transactions'), {
-        ...values,
-        buyerId: user.uid,
+        buyerId: user.uid, // This is the "key" to the user's room
+        sellerPhone: values.sellerPhone,
+        buyerPhone: values.buyerPhone,
+        description: values.description,
+        amount: values.amount,
         status: 'pending',
         createdAt: serverTimestamp(),
       });
 
+      // Prepare and open WhatsApp link
       const message = `Halo Admin Rekber Nusantara, saya ingin memulai transaksi baru.
 
 *ID Transaksi:* ${docRef.id}
@@ -103,7 +108,7 @@ Mohon untuk dibuatkan grup transaksinya. Terima kasih!`;
 
       toast({
         title: 'Transaksi Disimpan & Mengarahkan ke WhatsApp',
-        description: 'Transaksi Anda telah disimpan dan Anda akan diarahkan ke WhatsApp.',
+        description: 'Anda dapat melihat riwayat transaksi Anda di halaman profil.',
       });
 
       form.reset();
@@ -112,7 +117,7 @@ Mohon untuk dibuatkan grup transaksinya. Terima kasih!`;
       toast({
         variant: 'destructive',
         title: 'Terjadi Kesalahan',
-        description: 'Gagal menyimpan transaksi ke database.',
+        description: 'Gagal menyimpan transaksi ke database. Pastikan aturan Firestore sudah benar.',
       });
     } finally {
       setIsLoading(false);
