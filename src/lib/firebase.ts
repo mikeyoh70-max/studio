@@ -1,5 +1,5 @@
-import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { initializeApp, getApps, getApp, type FirebaseApp } from 'firebase/app';
+import { getAuth, type Auth } from 'firebase/auth';
 
 // IMPORTANT: Add your Firebase project configuration to a .env.local file
 const firebaseConfig = {
@@ -11,8 +11,24 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-const auth = getAuth(app);
+let app: FirebaseApp | null = null;
+let auth: Auth | null = null;
+
+// Initialize Firebase only if API key and Project ID are provided
+if (firebaseConfig.apiKey && firebaseConfig.projectId) {
+  try {
+    app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+    auth = getAuth(app);
+  } catch (error) {
+    console.error('Firebase initialization error', error);
+    app = null;
+    auth = null;
+  }
+} else {
+  // This warning will be shown in the server console, which is helpful for developers.
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn('Firebase config is missing or incomplete. Please set up your .env.local file. Firebase features will be disabled.');
+  }
+}
 
 export { app, auth };

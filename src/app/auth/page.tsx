@@ -23,6 +23,13 @@ export default function AuthPage() {
     setLoading(true);
     setError(null);
     
+    // Check if Firebase is configured before proceeding
+    if (!auth) {
+      setError('Authentication service is currently unavailable. Please contact support.');
+      setLoading(false);
+      return;
+    }
+
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
@@ -64,64 +71,66 @@ export default function AuthPage() {
             <span className="text-xl font-bold font-headline">Rekber Nusantara</span>
         </Link>
       </div>
-      <Tabs defaultValue="sign-in" className="w-full max-w-sm">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="sign-in">Sign In</TabsTrigger>
-          <TabsTrigger value="sign-up">Sign Up</TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="sign-in">
-          <Card className="bg-card border-border">
-            <CardHeader>
-              <CardTitle>Welcome Back</CardTitle>
-              <CardDescription>Sign in to your account to continue.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={(e) => handleAuthAction('signIn', e)} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email-signin">Email</Label>
-                  <Input id="email-signin" name="email" type="email" placeholder="m@example.com" required />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password-signin">Password</Label>
-                  <Input id="password-signin" name="password" type="password" required />
-                </div>
-                <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? <Loader2 className="animate-spin" /> : 'Sign In'}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        </TabsContent>
+      <div className="w-full max-w-sm">
+        <Tabs defaultValue="sign-in">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="sign-in">Sign In</TabsTrigger>
+            <TabsTrigger value="sign-up">Sign Up</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="sign-in">
+            <Card className="bg-card border-border">
+              <CardHeader>
+                <CardTitle>Welcome Back</CardTitle>
+                <CardDescription>Sign in to your account to continue.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={(e) => handleAuthAction('signIn', e)} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="email-signin">Email</Label>
+                    <Input id="email-signin" name="email" type="email" placeholder="m@example.com" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="password-signin">Password</Label>
+                    <Input id="password-signin" name="password" type="password" required />
+                  </div>
+                  <Button type="submit" className="w-full" disabled={loading}>
+                    {loading ? <Loader2 className="animate-spin" /> : 'Sign In'}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-        <TabsContent value="sign-up">
-          <Card className="bg-card border-border">
-            <CardHeader>
-              <CardTitle>Create an Account</CardTitle>
-              <CardDescription>Enter your details to create a new account.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={(e) => handleAuthAction('signUp', e)} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="name-signup">Name</Label>
-                  <Input id="name-signup" name="name" placeholder="John Doe" required />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email-signup">Email</Label>
-                  <Input id="email-signup" name="email" type="email" placeholder="m@example.com" required />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password-signup">Password</Label>
-                  <Input id="password-signup" name="password" type="password" required />
-                </div>
-                <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? <Loader2 className="animate-spin" /> : 'Sign Up'}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        </TabsContent>
-         {error && (
+          <TabsContent value="sign-up">
+            <Card className="bg-card border-border">
+              <CardHeader>
+                <CardTitle>Create an Account</CardTitle>
+                <CardDescription>Enter your details to create a new account.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={(e) => handleAuthAction('signUp', e)} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name-signup">Name</Label>
+                    <Input id="name-signup" name="name" placeholder="John Doe" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email-signup">Email</Label>
+                    <Input id="email-signup" name="email" type="email" placeholder="m@example.com" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="password-signup">Password</Label>
+                    <Input id="password-signup" name="password" type="password" required />
+                  </div>
+                  <Button type="submit" className="w-full" disabled={loading}>
+                    {loading ? <Loader2 className="animate-spin" /> : 'Sign Up'}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
+        {error && (
             <div className="mt-4 animate-scale-in">
               <Alert variant="destructive">
                 <AlertCircle className="h-5 w-5" />
@@ -130,7 +139,7 @@ export default function AuthPage() {
               </Alert>
             </div>
           )}
-      </Tabs>
+      </div>
     </div>
   );
 }
