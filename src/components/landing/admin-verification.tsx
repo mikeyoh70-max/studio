@@ -64,7 +64,7 @@ export function AdminVerification() {
             {state.status !== 'UNSET' && (
               <div className="mt-6 animate-scale-in">
                 {state.status === 'VERIFIED' && (
-                  <Alert>
+                  <Alert variant="success">
                     <CheckCircle className="h-5 w-5" />
                     <AlertTitle className="font-bold">Nomor Terverifikasi!</AlertTitle>
                     <AlertDescription>
