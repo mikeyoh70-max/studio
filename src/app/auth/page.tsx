@@ -40,8 +40,10 @@ const getFriendlyErrorMessage = (errorCode: string): string => {
     case 'auth/wrong-password':
     case 'auth/invalid-credential':
       return 'Email atau password salah. Silakan coba lagi.';
+    case 'auth/network-request-failed':
+        return 'Koneksi internet bermasalah. Silakan coba lagi.';
     default:
-      return 'Terjadi kesalahan. Silakan coba beberapa saat lagi.';
+      return 'Terjadi kesalahan yang tidak diketahui. Silakan coba beberapa saat lagi.';
   }
 };
 

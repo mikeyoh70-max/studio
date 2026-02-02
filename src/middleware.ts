@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
  
-// Admin and user login features have been removed.
-// This middleware is no longer needed.
+// This middleware is not actively used for auth anymore,
+// but can be used for other purposes in the future.
 export function middleware(request: NextRequest) {
   return NextResponse.next()
 }

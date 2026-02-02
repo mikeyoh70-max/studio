@@ -25,6 +25,8 @@ if (isFirebaseConfigured(firebaseConfig)) {
   }
   auth = getAuth(app);
 } else {
+  // This warning will show in the server console
+  // if the environment variables are not set.
   console.warn(
     'Firebase configuration is incomplete. Authentication features will be disabled. Please check your .env.local file.'
   );

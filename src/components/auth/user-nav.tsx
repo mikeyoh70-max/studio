@@ -20,7 +20,11 @@ import { LogOut, User as UserIcon } from 'lucide-react';
 import Link from 'next/link';
 
 export function UserNav() {
-  const { user, signOut: logout } = useAuth();
+  const { user, signOut: logout, loading } = useAuth();
+
+  if (loading) {
+    return <Button variant="ghost" className="w-24 animate-pulse"></Button>;
+  }
 
   if (!user) {
     return (

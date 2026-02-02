@@ -14,6 +14,7 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail,
   Auth,
   User,
 } from 'firebase/auth';
@@ -30,6 +31,7 @@ interface AuthContextType {
   signIn: (email: string, password: string) => Promise<any>;
   signOut: () => Promise<void>;
   signInWithGoogle: () => Promise<any>;
+  sendPasswordReset: (email: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -39,6 +41,7 @@ const AuthContext = createContext<AuthContextType>({
   signIn: async () => {},
   signOut: async () => {},
   signInWithGoogle: async () => {},
+  sendPasswordReset: async () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -52,6 +55,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (!isFirebaseConfigured) {
+      console.warn('Firebase is not configured. Auth features are disabled.');
       setLoading(false);
       return;
     }
@@ -84,6 +88,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return signInWithPopup(auth as Auth, provider);
   };
 
+  const sendPasswordReset = (email: string) => {
+    if (!isFirebaseConfigured) throw new Error("Firebase is not configured.");
+    return sendPasswordResetEmail(auth as Auth, email);
+  };
+
   const value = {
     user,
     loading,
@@ -91,11 +100,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     signIn,
     signOut,
     signInWithGoogle,
+    sendPasswordReset,
   };
 
+  // Render children only when loading is false.
+  // This prevents a flash of unauthenticated content.
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 };
