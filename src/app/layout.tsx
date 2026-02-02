@@ -4,8 +4,8 @@ import { Toaster } from '@/components/ui/toaster';
 import { AuthProvider } from '@/context/auth-context';
 
 export const metadata: Metadata = {
-  title: 'Rekber Nusantara by Safeguard',
-  description: 'Jasa Rekber (Escrow Service) terpercaya untuk transaksi game online Anda. Dikelola oleh Mahasiswa Hukum. Legalitas terjamin dan anti-penipuan.',
+  title: 'CariRekber - Direktori Jasa Rekber Terpercaya',
+  description: 'Temukan Jasa Rekber (Escrow Service) terpercaya untuk transaksi game online, akun, dan produk digital Anda. Bandingkan dan pilih yang terbaik.',
 };
 
 export default function RootLayout({

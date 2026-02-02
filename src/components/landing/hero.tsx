@@ -12,9 +12,9 @@ import Autoplay from "embla-carousel-autoplay"
 
 
 const imageCaptions = [
-  "Jual Beli Akun Game",
-  "Jasa Freelance",
-  "Transaksi Digital Lainnya"
+  "Transaksi Akun Game",
+  "Jasa & Produk Digital",
+  "Top Up & Voucher"
 ];
 
 export function Hero() {
@@ -37,23 +37,23 @@ export function Hero() {
                 <span className="flex h-2.5 w-2.5">
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-500"></span>
                 </span>
-                <span className="ml-2">Sistem Rekber Profesional #1</span>
+                <span className="ml-2">Direktori Rekber Terpercaya #1</span>
               </div>
             </div>
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl font-headline">
-              <span className="text-foreground">Transaksi Digital.</span>
-              <span className="block text-sky-400">Aman &</span>
-              <span className="block text-teal-400">Terkendali.</span>
+              <span className="text-foreground">Temukan Jasa Rekber.</span>
+              <span className="block text-sky-400">Terpercaya &</span>
+              <span className="block text-teal-400">Telah Diulas.</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto lg:mx-0">
-              Jasa Rekber ( Mediator ) Profesional Untuk Semua Kebutuhan transaksi Digital Anda
+              Cari, bandingkan, dan pilih jasa Rekening Bersama terbaik untuk semua kebutuhan transaksi digital Anda dengan aman.
             </p>
             <div className="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
               <Button asChild size="lg" 
                 className="btn-rgb shadow-lg transform transition-transform hover:scale-105"
               >
-                <a href="#buat-transaksi">
-                  Mulai Transaksi
+                <a href="#rekber-list">
+                  Lihat Daftar Rekber
                 </a>
               </Button>
             </div>

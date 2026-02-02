@@ -1,12 +1,9 @@
 import { Navbar } from '@/components/landing/navbar';
 import { Hero } from '@/components/landing/hero';
-import { TransactionForm } from '@/components/landing/transaction-form';
-import { FeeCalculator } from '@/components/landing/fee-calculator';
-import { WhyUs } from '@/components/landing/why-us';
+import { RekberListings } from '@/components/landing/rekber-listings';
 import { Testimonials } from '@/components/landing/testimonials';
 import { Footer } from '@/components/landing/footer';
 import { Faq } from '@/components/landing/faq';
-import { AdminVerification } from '@/components/landing/admin-verification';
 
 export default function Home() {
   return (
@@ -14,10 +11,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <TransactionForm />
-        <WhyUs />
-        <FeeCalculator />
-        <AdminVerification />
+        <RekberListings />
         <Testimonials />
         <Faq />
       </main>
