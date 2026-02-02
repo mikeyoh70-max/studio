@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -13,6 +12,10 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
+import { useAuth } from '@/context/auth-context';
+import { db } from '@/lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+
 
 const formSchema = z.object({
   sellerPhone: z.string().min(8, { message: 'Nomor Penjual harus diisi.' }).regex(/^[0-9+]+$/, "Hanya angka dan karakter '+' yang diperbolehkan."),
@@ -36,6 +39,7 @@ const formatCurrency = (value: number) => {
 
 export function TransactionForm() {
   const { toast } = useToast();
+  const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const ADMIN_WHATSAPP_NUMBER = '62895323091263';
 
@@ -53,8 +57,37 @@ export function TransactionForm() {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
 
+    if (!user) {
+      toast({
+        variant: 'destructive',
+        title: 'Anda harus login',
+        description: 'Silakan login terlebih dahulu untuk memulai transaksi.',
+      });
+      setIsLoading(false);
+      return;
+    }
+    
+    if (!db) {
+        toast({
+            variant: "destructive",
+            title: "Database Error",
+            description: "Gagal terhubung ke database. Cek konfigurasi Firebase.",
+        });
+        setIsLoading(false);
+        return;
+    }
+
     try {
+      const docRef = await addDoc(collection(db, 'transactions'), {
+        ...values,
+        buyerId: user.uid,
+        status: 'pending',
+        createdAt: serverTimestamp(),
+      });
+
       const message = `Halo Admin Rekber Nusantara, saya ingin memulai transaksi baru.
+
+*ID Transaksi:* ${docRef.id}
 
 Berikut detailnya:
 - *Nomor Penjual:* ${values.sellerPhone}
@@ -69,17 +102,17 @@ Mohon untuk dibuatkan grup transaksinya. Terima kasih!`;
       window.open(whatsappUrl, '_blank');
 
       toast({
-        title: 'Mengarahkan ke WhatsApp',
-        description: 'Anda akan diarahkan ke WhatsApp untuk melanjutkan transaksi.',
+        title: 'Transaksi Disimpan & Mengarahkan ke WhatsApp',
+        description: 'Transaksi Anda telah disimpan dan Anda akan diarahkan ke WhatsApp.',
       });
 
       form.reset();
     } catch (error) {
-      console.error(error);
+      console.error("Error adding document: ", error);
       toast({
         variant: 'destructive',
         title: 'Terjadi Kesalahan',
-        description: 'Gagal membuat link WhatsApp.',
+        description: 'Gagal menyimpan transaksi ke database.',
       });
     } finally {
       setIsLoading(false);
@@ -191,10 +224,10 @@ Mohon untuk dibuatkan grup transaksinya. Terima kasih!`;
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Mengarahkan...
+                      Memproses...
                     </>
                   ) : (
-                    'Mulai Transaksi via WhatsApp'
+                    'Simpan & Lanjut ke WhatsApp'
                   )}
                 </Button>
               </form>
