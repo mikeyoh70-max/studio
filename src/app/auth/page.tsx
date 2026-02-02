@@ -41,7 +41,6 @@ export default function AuthPage() {
     setLoading(true);
     setError(null);
     
-    // Check if Firebase is configured before proceeding
     if (!auth) {
       setError('Authentication service is currently unavailable. Please contact support.');
       setLoading(false);
@@ -51,13 +50,10 @@ export default function AuthPage() {
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
-    const name = formData.get('name') as string; // For sign up
+    const name = formData.get('name') as string;
 
     try {
       if (action === 'signUp') {
-        if (password.length < 6) {
-            throw new Error("Password should be at least 6 characters");
-        }
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         if (userCredential.user) {
           await updateProfile(userCredential.user, { displayName: name });
@@ -65,15 +61,27 @@ export default function AuthPage() {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
-      router.push('/'); // Redirect to home after login/signup
+      router.push('/');
     } catch (err: any) {
-      let friendlyMessage = 'An unknown error occurred. Please try again.';
-      if (err.code === 'auth/email-already-in-use') {
-        friendlyMessage = 'This email is already in use. Please sign in or use a different email.';
-      } else if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') {
-        friendlyMessage = 'Invalid email or password. Please check your credentials.';
-      } else if (err.message) {
-        friendlyMessage = err.message;
+      let friendlyMessage = 'Terjadi kesalahan. Silakan coba lagi.';
+      switch (err.code) {
+        case 'auth/email-already-in-use':
+          friendlyMessage = 'Email ini sudah terdaftar. Silakan login atau gunakan email lain.';
+          break;
+        case 'auth/invalid-email':
+          friendlyMessage = 'Format email tidak valid. Mohon periksa kembali.';
+          break;
+        case 'auth/weak-password':
+          friendlyMessage = 'Password terlalu lemah. Gunakan minimal 6 karakter.';
+          break;
+        case 'auth/user-not-found':
+        case 'auth/wrong-password':
+        case 'auth/invalid-credential':
+          friendlyMessage = 'Email atau password salah. Mohon periksa kembali.';
+          break;
+        default:
+          friendlyMessage = err.message || 'Terjadi kesalahan yang tidak diketahui. Silakan coba lagi.';
+          break;
       }
       setError(friendlyMessage);
     } finally {
