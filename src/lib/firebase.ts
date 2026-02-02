@@ -21,6 +21,7 @@ if (firebaseConfig.apiKey && firebaseConfig.projectId) {
     auth = getAuth(app);
   } catch (error) {
     console.error('Firebase initialization error', error);
+    // Ensure app and auth are null if initialization fails
     app = null;
     auth = null;
   }
