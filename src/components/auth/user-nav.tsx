@@ -16,14 +16,14 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/context/auth-context';
-import { LogOut, User as UserIcon } from 'lucide-react';
+import { LogOut, User as UserIcon, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
 export function UserNav() {
   const { user, signOut: logout, loading } = useAuth();
 
   if (loading) {
-    return <Button variant="ghost" className="w-24 animate-pulse"></Button>;
+    return <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full"><Loader2 className="animate-spin" /></Button>;
   }
 
   if (!user) {

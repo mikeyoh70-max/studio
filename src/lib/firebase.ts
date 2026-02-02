@@ -18,15 +18,18 @@ let app;
 let auth: Auth | null = null;
 
 if (isFirebaseConfigured(firebaseConfig)) {
-  if (!getApps().length) {
-    app = initializeApp(firebaseConfig);
-  } else {
-    app = getApp();
+  try {
+    if (!getApps().length) {
+      app = initializeApp(firebaseConfig);
+    } else {
+      app = getApp();
+    }
+    auth = getAuth(app);
+  } catch (error) {
+    console.error("Firebase initialization error:", error);
+    // auth remains null
   }
-  auth = getAuth(app);
 } else {
-  // This warning will show in the server console
-  // if the environment variables are not set.
   console.warn(
     'Firebase configuration is incomplete. Authentication features will be disabled. Please check your .env.local file.'
   );

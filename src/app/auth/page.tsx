@@ -14,6 +14,17 @@ import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ShieldCheck, Loader2 } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose,
+  DialogDescription,
+} from "@/components/ui/dialog"
+
 
 const signUpSchema = z.object({
   email: z.string().email({ message: 'Format email tidak valid.' }),
@@ -25,8 +36,15 @@ const signInSchema = z.object({
   password: z.string().min(1, { message: 'Password harus diisi.' }),
 });
 
+const resetPasswordSchema = z.object({
+  email: z.string().email({ message: 'Format email tidak valid.' }),
+});
+
+
 type SignUpFormValues = z.infer<typeof signUpSchema>;
 type SignInFormValues = z.infer<typeof signInSchema>;
+type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;
+
 
 const getFriendlyErrorMessage = (errorCode: string): string => {
   switch (errorCode) {
@@ -42,6 +60,8 @@ const getFriendlyErrorMessage = (errorCode: string): string => {
       return 'Email atau password salah. Silakan coba lagi.';
     case 'auth/network-request-failed':
         return 'Koneksi internet bermasalah. Silakan coba lagi.';
+    case 'auth/invalid-api-key':
+        return 'Konfigurasi Firebase tidak valid. Mohon hubungi administrator.';
     default:
       return 'Terjadi kesalahan yang tidak diketahui. Silakan coba beberapa saat lagi.';
   }
@@ -52,7 +72,8 @@ export default function AuthPage() {
   const [activeTab, setActiveTab] = useState<'signin' | 'signup'>('signin');
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { signUp, signIn, signInWithGoogle } = useAuth();
+  const [resetStatus, setResetStatus] = useState<{message: string; isError: boolean} | null>(null);
+  const { signUp, signIn, signInWithGoogle, sendPasswordReset } = useAuth();
   const router = useRouter();
 
   const {
@@ -70,6 +91,15 @@ export default function AuthPage() {
   } = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),
   });
+
+  const {
+    register: registerReset,
+    handleSubmit: handleSubmitReset,
+    formState: { errors: errorsReset },
+  } = useForm<ResetPasswordFormValues>({
+    resolver: zodResolver(resetPasswordSchema),
+  });
+
 
   const handleSignUp: SubmitHandler<SignUpFormValues> = async (data) => {
     setIsLoading(true);
@@ -113,6 +143,22 @@ export default function AuthPage() {
     }
   };
 
+    const handlePasswordReset: SubmitHandler<ResetPasswordFormValues> = async (data) => {
+    setIsLoading(true);
+    setResetStatus(null);
+    try {
+      await sendPasswordReset(data.email);
+      setResetStatus({ message: 'Link untuk reset password telah dikirim ke email Anda.', isError: false });
+    } catch (e) {
+      const authError = e as AuthError;
+      const friendlyMessage = getFriendlyErrorMessage(authError.code);
+      setResetStatus({ message: friendlyMessage, isError: true });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-background p-4">
       <div className="w-full max-w-md">
@@ -125,18 +171,19 @@ export default function AuthPage() {
             Masuk atau buat akun untuk melanjutkan.
           </p>
         </div>
+
+        {error && (
+            <Alert variant="destructive" className="mb-4">
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'signin' | 'signup')} className="w-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="signin">Masuk</TabsTrigger>
             <TabsTrigger value="signup">Daftar</TabsTrigger>
           </TabsList>
           
-          {error && (
-            <Alert variant="destructive" className="mt-4">
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-
           <TabsContent value="signin">
             <Card>
               <CardHeader>
@@ -151,7 +198,39 @@ export default function AuthPage() {
                     {errorsSignIn.email && <p className="text-sm text-destructive">{errorsSignIn.email.message}</p>}
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="password-signin">Password</Label>
+                    <div className="flex items-center justify-between">
+                        <Label htmlFor="password-signin">Password</Label>
+                         <Dialog>
+                            <DialogTrigger asChild>
+                               <button type="button" className="text-xs text-muted-foreground hover:text-primary">Lupa Password?</button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-md">
+                                <DialogHeader>
+                                <DialogTitle>Reset Password</DialogTitle>
+                                <DialogDescription>
+                                    Masukkan email Anda untuk menerima link reset password.
+                                </DialogDescription>
+                                </DialogHeader>
+                                <form onSubmit={handleSubmitReset(handlePasswordReset)} className="space-y-4">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="email-reset">Email</Label>
+                                        <Input id="email-reset" type="email" placeholder="email@contoh.com" {...registerReset('email')} />
+                                        {errorsReset.email && <p className="text-sm text-destructive">{errorsReset.email.message}</p>}
+                                    </div>
+                                    {resetStatus && (
+                                        <Alert variant={resetStatus.isError ? 'destructive' : 'success'}>
+                                            <AlertDescription>{resetStatus.message}</AlertDescription>
+                                        </Alert>
+                                    )}
+                                    <DialogFooter>
+                                         <Button type="submit" disabled={isLoading}>
+                                            {isLoading ? <Loader2 className="animate-spin" /> : 'Kirim Link'}
+                                        </Button>
+                                    </DialogFooter>
+                                </form>
+                            </DialogContent>
+                        </Dialog>
+                    </div>
                     <Input id="password-signin" type="password" {...registerSignIn('password')} />
                     {errorsSignIn.password && <p className="text-sm text-destructive">{errorsSignIn.password.message}</p>}
                   </div>

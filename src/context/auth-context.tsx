@@ -103,8 +103,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     sendPasswordReset,
   };
 
-  // Render children only when loading is false.
-  // This prevents a flash of unauthenticated content.
   return (
     <AuthContext.Provider value={value}>
       {children}

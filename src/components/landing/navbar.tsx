@@ -17,8 +17,6 @@ const navLinks = [
   { href: '#faq', label: 'FAQ' },
 ];
 
-const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara%20,%20Saya%20ingin%20Memulai%20Transaksi%20Sekarang';
-
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -43,7 +41,7 @@ export function Navbar() {
         </nav>
 
         <div className="flex flex-1 items-center justify-end space-x-4">
-          <div className='hidden md:flex items-center gap-2'>
+          <div className='flex items-center gap-2'>
              <UserNav />
           </div>
           
@@ -74,12 +72,6 @@ export function Navbar() {
                     </Link>
                   ))}
                 </nav>
-                <div className="mt-auto space-y-2">
-                   <UserNav />
-                   <Button asChild className="w-full" variant="outline">
-                      <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">Hubungi Kami</a>
-                  </Button>
-                </div>
               </div>
             </SheetContent>
           </Sheet>
