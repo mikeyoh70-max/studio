@@ -4,8 +4,8 @@ import { Toaster } from '@/components/ui/toaster';
 import { AuthProvider } from '@/context/auth-context';
 
 export const metadata: Metadata = {
-  title: 'CariRekber - Direktori Jasa Rekber Terpercaya',
-  description: 'Temukan Jasa Rekber (Escrow Service) terpercaya untuk transaksi game online, akun, dan produk digital Anda. Bandingkan dan pilih yang terbaik.',
+  title: 'Rekber Nusantara - Jasa Rekening Bersama Terpercaya',
+  description: 'Jasa Rekening Bersama (Rekber) terpercaya untuk transaksi game online, akun, dan produk digital Anda. Aman, cepat, dan biaya transparan.',
 };
 
 export default function RootLayout({

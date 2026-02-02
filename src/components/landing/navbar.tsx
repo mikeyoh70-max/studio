@@ -9,8 +9,9 @@ import { UserNav } from '@/components/auth/user-nav';
 
 const navLinks = [
   { href: '#home', label: 'Home' },
-  { href: '#rekber-list', label: 'Daftar Rekber' },
-  { href: '#testimonials', label: 'Testimoni' },
+  { href: '#why-us', label: 'Mengapa Kami' },
+  { href: '#buat-transaksi', label: 'Buat Transaksi' },
+  { href: '#cek-fee', label: 'Cek Fee' },
   { href: '#faq', label: 'FAQ' },
 ];
 
@@ -22,7 +23,7 @@ export function Navbar() {
       <div className="container flex h-16 items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <ShieldCheck className="h-6 w-6 text-primary" />
-          <span className="font-bold inline-block font-headline">CariRekber</span>
+          <span className="font-bold inline-block font-headline">Rekber Nusantara</span>
         </Link>
         
         <nav className="hidden md:flex md:items-center md:gap-6 text-sm font-medium">
@@ -54,7 +55,7 @@ export function Navbar() {
                 <div className="mb-8">
                   <Link href="#home" className="flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
                     <ShieldCheck className="h-6 w-6 text-primary" />
-                    <span className="font-bold font-headline">CariRekber</span>
+                    <span className="font-bold font-headline">Rekber Nusantara</span>
                   </Link>
                 </div>
                 <nav className="flex flex-col gap-6 text-lg font-medium">
