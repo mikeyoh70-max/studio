@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { Menu, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { useAuth } from '@/context/auth-context';
-import { UserNav } from '@/components/auth/user-nav';
 
 
 const navLinks = [
@@ -23,12 +21,6 @@ const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%2
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user, signOut } = useAuth();
-
-  const handleSignOut = () => {
-    signOut();
-    setIsMobileMenuOpen(false);
-  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -55,13 +47,6 @@ export function Navbar() {
             <Button asChild variant="ghost">
               <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">Hubungi Kami</a>
             </Button>
-            {user ? (
-              <UserNav />
-            ) : (
-              <Button asChild>
-                <Link href="/auth">Login</Link>
-              </Button>
-            )}
           </div>
           
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
@@ -92,20 +77,9 @@ export function Navbar() {
                   ))}
                 </nav>
                 <div className="mt-auto space-y-2">
-                   {user ? (
-                     <Button onClick={handleSignOut} className="w-full" variant="secondary">
-                        Logout
-                      </Button>
-                   ) : (
-                    <>
-                      <Button asChild className="w-full">
-                        <Link href="/auth" onClick={() => setIsMobileMenuOpen(false)}>Login Pelanggan</Link>
-                      </Button>
-                      <Button asChild className="w-full" variant="outline">
-                          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">Hubungi Kami</a>
-                      </Button>
-                    </>
-                   )}
+                   <Button asChild className="w-full" variant="outline">
+                      <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">Hubungi Kami</a>
+                  </Button>
                 </div>
               </div>
             </SheetContent>
