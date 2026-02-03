@@ -46,7 +46,9 @@ type SignInFormValues = z.infer<typeof signInSchema>;
 type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;
 
 
-const getFriendlyErrorMessage = (errorCode: string): string => {
+const getFriendlyErrorMessage = (errorCode?: string): string => {
+  if (!errorCode) return 'Terjadi kesalahan koneksi. Pastikan domain sudah terdaftar di Firebase Console.';
+  
   switch (errorCode) {
     case 'auth/email-already-in-use':
       return 'Email ini sudah terdaftar. Silakan login atau gunakan email lain.';
@@ -61,15 +63,15 @@ const getFriendlyErrorMessage = (errorCode: string): string => {
     case 'auth/network-request-failed':
         return 'Koneksi internet bermasalah. Silakan coba lagi.';
     case 'auth/unauthorized-domain':
-        return 'Domain ini tidak diizinkan. Pastikan "localhost" sudah ditambahkan di Authorized Domains pada Firebase Console.';
+        return 'Domain ini belum didaftarkan di Authorized Domains pada Firebase Console.';
     case 'auth/popup-closed-by-user':
-        return 'Proses login dibatalkan karena pop-up ditutup.';
+        return 'Proses login dibatalkan karena jendela login ditutup.';
     case 'auth/cancelled-popup-request':
-        return 'Beberapa pop-up login dibuka. Silakan coba lagi.';
+        return 'Proses login sedang berjalan di jendela lain.';
     case 'auth/operation-not-allowed':
         return 'Metode login ini belum diaktifkan di Firebase Console.';
     default:
-      return `Terjadi kesalahan yang tidak diketahui (${errorCode}). Silakan coba beberapa saat lagi.`;
+      return `Terjadi kesalahan: ${errorCode}. Silakan coba beberapa saat lagi.`;
   }
 };
 
@@ -142,8 +144,9 @@ export default function AuthPage() {
       await signInWithGoogle();
       router.push('/');
     } catch (e) {
-      const authError = e as AuthError;
-      setError(getFriendlyErrorMessage(authError.code));
+      const authError = e as any;
+      setError(getFriendlyErrorMessage(authError.code || authError.message));
+      console.error("Google Auth Error:", e);
     } finally {
       setIsLoading(false);
     }
