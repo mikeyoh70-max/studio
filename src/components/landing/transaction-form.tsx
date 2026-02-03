@@ -51,24 +51,23 @@ export function TransactionForm() {
       toast({
         variant: 'destructive',
         title: 'Anda harus login',
-        description: 'Silakan login terlebih dahulu untuk memulai transaksi.',
+        description: 'Silakan login terlebih dahulu untuk membuat transaksi.',
       });
       setIsLoading(false);
       return;
     }
-    
+
     if (!db) {
-        toast({
-            variant: "destructive",
-            title: "Database Error",
-            description: "Gagal terhubung ke database.",
-        });
-        setIsLoading(false);
-        return;
+      toast({
+        variant: 'destructive',
+        title: 'Database Error',
+        description: 'Gagal terhubung ke database.',
+      });
+      setIsLoading(false);
+      return;
     }
 
     try {
-      // Save the transaction to Firestore
       const docRef = await addDoc(collection(db, 'transactions'), {
         buyerId: user.uid,
         sellerPhone: values.sellerPhone,
@@ -79,9 +78,8 @@ export function TransactionForm() {
         createdAt: serverTimestamp(),
       });
 
-      // Initial system message in chat
       await addDoc(collection(db, 'transactions', docRef.id, 'messages'), {
-        text: `Halo! Transaksi baru telah dibuat. Silakan tunggu Admin bergabung ke dalam chat room ini.`,
+        text: `Halo! Transaksi baru telah dibuat dengan ID: ${docRef.id}. Silakan tunggu Admin bergabung ke dalam chat room ini.`,
         senderId: 'system',
         senderName: 'Sistem',
         timestamp: serverTimestamp(),
@@ -92,7 +90,6 @@ export function TransactionForm() {
         description: 'Membuka Room Chat Anda...',
       });
 
-      // Redirect to internal chat room instead of WhatsApp
       router.push(`/chat/${docRef.id}`);
     } catch (error) {
       console.error("Error adding document: ", error);
@@ -110,7 +107,7 @@ export function TransactionForm() {
     <section id="buat-transaksi" className="py-20 sm:py-28">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto">
-           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl font-headline">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl font-headline">
             Mulai Transaksi Aman
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
@@ -226,5 +223,5 @@ export function TransactionForm() {
         </Card>
       </div>
     </section>
-  )
+  );
 }

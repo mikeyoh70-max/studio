@@ -18,10 +18,9 @@ import {
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Send, ArrowLeft, ShieldCheck, User, Info, Loader2 } from 'lucide-react';
+import { Send, ArrowLeft, ShieldCheck, Info, Loader2 } from 'lucide-react';
 import { Navbar } from '@/components/landing/navbar';
 import { Footer } from '@/components/landing/footer';
 
@@ -51,14 +50,12 @@ export default function ChatPage() {
   const [isLoading, setIsLoading] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Redirect if not logged in
   useEffect(() => {
     if (!authLoading && !user) {
       router.push('/auth');
     }
   }, [user, authLoading, router]);
 
-  // Fetch Transaction Details
   useEffect(() => {
     const fetchTx = async () => {
       if (!id || !db) return;
@@ -78,7 +75,6 @@ export default function ChatPage() {
     fetchTx();
   }, [id]);
 
-  // Real-time Messages Listener
   useEffect(() => {
     if (!id || !db) return;
 
@@ -94,7 +90,6 @@ export default function ChatPage() {
       })) as Message[];
       setMessages(msgs);
       
-      // Auto scroll to bottom
       setTimeout(() => {
         if (scrollRef.current) {
           scrollRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -153,7 +148,6 @@ export default function ChatPage() {
     <div className="flex flex-col min-h-screen bg-background">
       <Navbar />
       <main className="flex-1 container mx-auto px-4 py-8 flex flex-col lg:flex-row gap-6">
-        {/* Detail Transaksi Sidebar */}
         <div className="lg:w-1/3 space-y-6">
           <Button variant="ghost" onClick={() => router.push('/transactions')} className="mb-4">
             <ArrowLeft className="mr-2 h-4 w-4" /> Kembali
@@ -193,7 +187,6 @@ export default function ChatPage() {
           </div>
         </div>
 
-        {/* Chat Area */}
         <Card className="flex-1 flex flex-col h-[70vh] border-border shadow-xl">
           <CardHeader className="border-b bg-card py-4">
             <div className="flex items-center justify-between">
@@ -236,9 +229,6 @@ export default function ChatPage() {
                       <div className={`flex flex-col max-w-[80%] ${isMe ? 'items-end' : 'items-start'}`}>
                         <div className="flex items-center gap-1 mb-1 px-1">
                           <span className="text-[10px] text-muted-foreground font-bold">{msg.senderName}</span>
-                          {msg.senderId === 'admin' && (
-                             <Badge className="bg-blue-600 text-[8px] h-3 px-1">ADMIN</Badge>
-                          )}
                         </div>
                         <div
                           className={`px-4 py-2 rounded-2xl text-sm shadow-sm ${
