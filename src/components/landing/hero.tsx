@@ -49,7 +49,7 @@ export function Hero() {
             Jasa Rekening Bersama terpercaya untuk semua kebutuhan transaksi digital Anda. Cepat, aman, dan biaya transparan.
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 w-full">
+          <div className="flex items-center justify-center w-full mb-16">
             <Button asChild size="lg" 
               className="btn-rgb h-14 px-12 text-lg shadow-xl transform transition-transform hover:scale-105"
             >
