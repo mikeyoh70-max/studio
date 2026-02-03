@@ -60,10 +60,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
 
-    // Sangat penting untuk menangani hasil redirect setelah user kembali dari Google
-    getRedirectResult(auth as Auth).catch((error) => {
-      console.error("Redirect Result Error:", error);
-    });
+    // Menangani hasil dari signInWithRedirect saat halaman dimuat ulang
+    const checkRedirectResult = async () => {
+      try {
+        const result = await getRedirectResult(auth as Auth);
+        if (result) {
+          console.log("Berhasil login via redirect:", result.user);
+        }
+      } catch (error: any) {
+        console.error("Gagal memproses hasil redirect:", error);
+        // Dispatch custom event untuk ditangkap di halaman Auth jika perlu
+        window.dispatchEvent(new CustomEvent('auth-error', { detail: error }));
+      }
+    };
+
+    checkRedirectResult();
 
     const unsubscribe = onAuthStateChanged(auth as Auth, (user) => {
       setUser(user);
@@ -74,12 +85,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [isFirebaseConfigured]);
 
   const signUp = (email: string, password: string) => {
-     if (!isFirebaseConfigured) throw new Error("Firebase is not configured.");
+     if (!isFirebaseConfigured) throw new Error("Firebase belum terkonfigurasi. Cek Environment Variables.");
     return createUserWithEmailAndPassword(auth as Auth, email, password);
   };
 
   const signIn = (email: string, password: string) => {
-    if (!isFirebaseConfigured) throw new Error("Firebase is not configured.");
+    if (!isFirebaseConfigured) throw new Error("Firebase belum terkonfigurasi. Cek Environment Variables.");
     return signInWithEmailAndPassword(auth as Auth, email, password);
   };
 
@@ -89,20 +100,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signInWithGoogle = async () => {
-    if (!isFirebaseConfigured) throw new Error("Firebase is not configured.");
+    if (!isFirebaseConfigured) throw new Error("Firebase belum terkonfigurasi. Cek Environment Variables.");
     const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
     
     try {
-      // Coba popup dulu (untuk Desktop)
+      // Coba popup dulu
       return await signInWithPopup(auth as Auth, provider);
     } catch (error: any) {
-      // Jika popup diblokir (biasa di HP) atau gagal, gunakan redirect
-      console.warn("Popup blocked or failed, switching to redirect method...");
+      // Jika di HP atau popup diblokir, gunakan redirect
       if (
         error.code === 'auth/popup-blocked' || 
         error.code === 'auth/cancelled-popup-request' ||
-        error.code === 'auth/popup-closed-by-user'
+        error.code === 'auth/popup-closed-by-user' ||
+        /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
       ) {
+        console.log("Beralih ke metode Redirect untuk kemudahan di mobile...");
         return await signInWithRedirect(auth as Auth, provider);
       }
       throw error;
@@ -110,7 +123,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const sendPasswordReset = (email: string) => {
-    if (!isFirebaseConfigured) throw new Error("Firebase is not configured.");
+    if (!isFirebaseConfigured) throw new Error("Firebase belum terkonfigurasi.");
     return sendPasswordResetEmail(auth as Auth, email);
   };
 

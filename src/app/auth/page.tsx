@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -12,7 +12,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ShieldCheck, Loader2 } from 'lucide-react';
+import { ShieldCheck, Loader2, AlertCircle } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import {
   Dialog,
@@ -47,7 +47,7 @@ type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;
 
 
 const getFriendlyErrorMessage = (errorCode?: string): string => {
-  if (!errorCode) return 'Terjadi kesalahan koneksi. Pastikan domain sudah terdaftar di Firebase Console.';
+  if (!errorCode) return 'Terjadi kesalahan. Pastikan Anda sudah mengaktifkan Google Provider di Firebase Console.';
   
   switch (errorCode) {
     case 'auth/email-already-in-use':
@@ -63,15 +63,13 @@ const getFriendlyErrorMessage = (errorCode?: string): string => {
     case 'auth/network-request-failed':
         return 'Koneksi internet bermasalah. Silakan coba lagi.';
     case 'auth/unauthorized-domain':
-        return 'Domain ini belum didaftarkan di Authorized Domains pada Firebase Console.';
-    case 'auth/popup-closed-by-user':
-        return 'Proses login dibatalkan karena jendela login ditutup.';
-    case 'auth/cancelled-popup-request':
-        return 'Proses login sedang berjalan di jendela lain.';
+        return 'Domain ini belum didaftarkan di Authorized Domains pada Firebase Console (Authentication > Settings).';
     case 'auth/operation-not-allowed':
-        return 'Metode login ini belum diaktifkan di Firebase Console.';
+        return 'Metode login ini (Google/Email) belum diaktifkan di tab "Sign-in method" di Firebase Console.';
+    case 'auth/popup-closed-by-user':
+        return 'Jendela login ditutup sebelum selesai.';
     default:
-      return `Terjadi kesalahan: ${errorCode}. Silakan coba beberapa saat lagi.`;
+      return `Kesalahan: ${errorCode}. Pastikan konfigurasi Firebase sudah benar.`;
   }
 };
 
@@ -81,8 +79,24 @@ export default function AuthPage() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [resetStatus, setResetStatus] = useState<{message: string; isError: boolean} | null>(null);
-  const { signUp, signIn, signInWithGoogle, sendPasswordReset } = useAuth();
+  const { signUp, signIn, signInWithGoogle, sendPasswordReset, user } = useAuth();
   const router = useRouter();
+
+  // Menangkap error dari redirect jika ada
+  useEffect(() => {
+    const handleAuthError = (event: any) => {
+      setError(getFriendlyErrorMessage(event.detail?.code));
+    };
+    window.addEventListener('auth-error', handleAuthError);
+    return () => window.removeEventListener('auth-error', handleAuthError);
+  }, []);
+
+  // Jika sudah login, langsung ke home
+  useEffect(() => {
+    if (user) {
+      router.push('/');
+    }
+  }, [user, router]);
 
   const {
     register: registerSignUp,
@@ -114,7 +128,6 @@ export default function AuthPage() {
     setError(null);
     try {
       await signUp(data.email, data.password);
-      router.push('/');
     } catch (e) {
       const authError = e as AuthError;
       setError(getFriendlyErrorMessage(authError.code));
@@ -128,7 +141,6 @@ export default function AuthPage() {
     setError(null);
     try {
       await signIn(data.email, data.password);
-      router.push('/');
     } catch (e) {
       const authError = e as AuthError;
       setError(getFriendlyErrorMessage(authError.code));
@@ -142,12 +154,10 @@ export default function AuthPage() {
     setError(null);
     try {
       await signInWithGoogle();
-      router.push('/');
+      // Redirect ditangani oleh useEffect yang memantau 'user' atau getRedirectResult
     } catch (e) {
       const authError = e as any;
-      setError(getFriendlyErrorMessage(authError.code || authError.message));
-      console.error("Google Auth Error:", e);
-    } finally {
+      setError(getFriendlyErrorMessage(authError.code));
       setIsLoading(false);
     }
   };
@@ -183,6 +193,8 @@ export default function AuthPage() {
 
         {error && (
             <Alert variant="destructive" className="mb-4">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>Gagal Masuk</AlertTitle>
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
