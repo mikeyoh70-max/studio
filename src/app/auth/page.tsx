@@ -47,29 +47,31 @@ type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;
 
 
 const getFriendlyErrorMessage = (errorCode?: string): string => {
-  if (!errorCode) return 'Terjadi kesalahan. Pastikan Anda sudah mengaktifkan Google Provider di Firebase Console.';
+  if (!errorCode) return 'Terjadi kesalahan sistem.';
   
   switch (errorCode) {
     case 'auth/email-already-in-use':
-      return 'Email ini sudah terdaftar. Silakan login atau gunakan email lain.';
+      return 'Email ini sudah terdaftar.';
     case 'auth/weak-password':
-      return 'Password terlalu lemah. Gunakan minimal 6 karakter.';
+      return 'Password terlalu lemah (min. 6 karakter).';
     case 'auth/invalid-email':
-      return 'Format email tidak valid. Mohon periksa kembali.';
+      return 'Format email salah.';
     case 'auth/user-not-found':
     case 'auth/wrong-password':
     case 'auth/invalid-credential':
-      return 'Email atau password salah. Silakan coba lagi.';
+      return 'Email atau password salah.';
     case 'auth/network-request-failed':
-        return 'Koneksi internet bermasalah. Silakan coba lagi.';
+        return 'Koneksi internet bermasalah.';
     case 'auth/unauthorized-domain':
-        return 'Domain ini belum didaftarkan di Authorized Domains pada Firebase Console (Authentication > Settings).';
+        return 'Domain ini belum diizinkan di Firebase Console (Settings > Authorized Domains).';
     case 'auth/operation-not-allowed':
-        return 'Metode login ini (Google/Email) belum diaktifkan di tab "Sign-in method" di Firebase Console.';
+        return 'Metode login ini belum diaktifkan di Firebase Console.';
     case 'auth/popup-closed-by-user':
-        return 'Jendela login ditutup sebelum selesai.';
+        return 'Login dibatalkan karena jendela ditutup.';
+    case 'auth/cancelled-popup-request':
+        return 'Proses login tumpang tindih, silakan coba lagi.';
     default:
-      return `Kesalahan: ${errorCode}. Pastikan konfigurasi Firebase sudah benar.`;
+      return `Kesalahan: ${errorCode}. Silakan hubungi Admin.`;
   }
 };
 
@@ -79,24 +81,23 @@ export default function AuthPage() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [resetStatus, setResetStatus] = useState<{message: string; isError: boolean} | null>(null);
-  const { signUp, signIn, signInWithGoogle, sendPasswordReset, user } = useAuth();
+  const { signUp, signIn, signInWithGoogle, sendPasswordReset, user, loading: authLoading } = useAuth();
   const router = useRouter();
 
-  // Menangkap error dari redirect jika ada
   useEffect(() => {
     const handleAuthError = (event: any) => {
       setError(getFriendlyErrorMessage(event.detail?.code));
+      setIsLoading(false);
     };
     window.addEventListener('auth-error', handleAuthError);
     return () => window.removeEventListener('auth-error', handleAuthError);
   }, []);
 
-  // Jika sudah login, langsung ke home
   useEffect(() => {
-    if (user) {
+    if (user && !authLoading) {
       router.push('/');
     }
-  }, [user, router]);
+  }, [user, authLoading, router]);
 
   const {
     register: registerSignUp,
@@ -154,7 +155,6 @@ export default function AuthPage() {
     setError(null);
     try {
       await signInWithGoogle();
-      // Redirect ditangani oleh useEffect yang memantau 'user' atau getRedirectResult
     } catch (e) {
       const authError = e as any;
       setError(getFriendlyErrorMessage(authError.code));
@@ -167,16 +167,22 @@ export default function AuthPage() {
     setResetStatus(null);
     try {
       await sendPasswordReset(data.email);
-      setResetStatus({ message: 'Link untuk reset password telah dikirim ke email Anda.', isError: false });
+      setResetStatus({ message: 'Link reset password terkirim!', isError: false });
     } catch (e) {
       const authError = e as AuthError;
-      const friendlyMessage = getFriendlyErrorMessage(authError.code);
-      setResetStatus({ message: friendlyMessage, isError: true });
+      setResetStatus({ message: getFriendlyErrorMessage(authError.code), isError: true });
     } finally {
       setIsLoading(false);
     }
   };
 
+  if (authLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-background">
+        <Loader2 className="animate-spin h-10 w-10 text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-background p-4">
@@ -187,7 +193,7 @@ export default function AuthPage() {
             <span className="text-2xl font-bold font-headline">Rekber Nusantara</span>
           </Link>
           <p className="text-muted-foreground mt-2">
-            Masuk atau buat akun untuk melanjutkan.
+            Masuk untuk memulai transaksi aman.
           </p>
         </div>
 
@@ -208,10 +214,24 @@ export default function AuthPage() {
           <TabsContent value="signin">
             <Card>
               <CardHeader>
-                <CardTitle>Selamat Datang Kembali</CardTitle>
-                <CardDescription>Masukkan detail akun Anda untuk masuk.</CardDescription>
+                <CardTitle>Selamat Datang</CardTitle>
+                <CardDescription>Gunakan akun Google untuk proses lebih cepat.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
+                <Button variant="outline" className="w-full h-12 text-base" onClick={handleGoogleSignIn} disabled={isLoading}>
+                  {isLoading ? <Loader2 className="animate-spin mr-2" /> : <svg className="mr-2 h-5 w-5" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 381.5 512 244 512 111.8 512 0 400.2 0 261.8S111.8 11.6 244 11.6c67.8 0 125.6 27.2 169.1 69.1l-64.3 62.4C319.3 118.5 284.2 99.8 244 99.8c-76.3 0-138.6 62.2-138.6 138.6s62.2 138.6 138.6 138.6c86.9 0 117.8-63.4 122.9-96.8H244v-75.9h244.1c2.6 13 4.1 26.6 4.1 40.8z"></path></svg>}
+                  Lanjut dengan Google
+                </Button>
+
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-card px-2 text-muted-foreground">Atau dengan Email</span>
+                  </div>
+                </div>
+
                 <form onSubmit={handleSubmitSignIn(handleSignIn)} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="email-signin">Email</Label>
@@ -228,9 +248,6 @@ export default function AuthPage() {
                             <DialogContent className="sm:max-w-md">
                                 <DialogHeader>
                                 <DialogTitle>Reset Password</DialogTitle>
-                                <DialogDescription>
-                                    Masukkan email Anda untuk menerima link reset password.
-                                </DialogDescription>
                                 </DialogHeader>
                                 <form onSubmit={handleSubmitReset(handlePasswordReset)} className="space-y-4">
                                     <div className="space-y-2">
@@ -259,18 +276,6 @@ export default function AuthPage() {
                     {isLoading ? <Loader2 className="animate-spin" /> : 'Masuk'}
                   </Button>
                 </form>
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
-                  </div>
-                  <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-card px-2 text-muted-foreground">Atau lanjut dengan</span>
-                  </div>
-                </div>
-                <Button variant="outline" className="w-full" onClick={handleGoogleSignIn} disabled={isLoading}>
-                  {isLoading ? <Loader2 className="animate-spin mr-2" /> : <svg className="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 381.5 512 244 512 111.8 512 0 400.2 0 261.8S111.8 11.6 244 11.6c67.8 0 125.6 27.2 169.1 69.1l-64.3 62.4C319.3 118.5 284.2 99.8 244 99.8c-76.3 0-138.6 62.2-138.6 138.6s62.2 138.6 138.6 138.6c86.9 0 117.8-63.4 122.9-96.8H244v-75.9h244.1c2.6 13 4.1 26.6 4.1 40.8z"></path></svg>}
-                  Google
-                </Button>
               </CardContent>
             </Card>
           </TabsContent>
@@ -278,10 +283,24 @@ export default function AuthPage() {
           <TabsContent value="signup">
             <Card>
               <CardHeader>
-                <CardTitle>Buat Akun Baru</CardTitle>
-                <CardDescription>Isi detail di bawah untuk membuat akun Anda.</CardDescription>
+                <CardTitle>Daftar Akun</CardTitle>
+                <CardDescription>Proses cepat dan data aman bersama kami.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
+                <Button variant="outline" className="w-full h-12 text-base" onClick={handleGoogleSignIn} disabled={isLoading}>
+                  {isLoading ? <Loader2 className="animate-spin mr-2" /> : <svg className="mr-2 h-5 w-5" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 381.5 512 244 512 111.8 512 0 400.2 0 261.8S111.8 11.6 244 11.6c67.8 0 125.6 27.2 169.1 69.1l-64.3 62.4C319.3 118.5 284.2 99.8 244 99.8c-76.3 0-138.6 62.2-138.6 138.6s62.2 138.6 138.6 138.6c86.9 0 117.8-63.4 122.9-96.8H244v-75.9h244.1c2.6 13 4.1 26.6 4.1 40.8z"></path></svg>}
+                  Daftar dengan Google
+                </Button>
+
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-card px-2 text-muted-foreground">Atau dengan Email</span>
+                  </div>
+                </div>
+
                 <form onSubmit={handleSubmitSignUp(handleSignUp)} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="email-signup">Email</Label>
@@ -297,18 +316,6 @@ export default function AuthPage() {
                     {isLoading ? <Loader2 className="animate-spin" /> : 'Buat Akun'}
                   </Button>
                 </form>
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
-                  </div>
-                  <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-card px-2 text-muted-foreground">Atau lanjut dengan</span>
-                  </div>
-                </div>
-                 <Button variant="outline" className="w-full" onClick={handleGoogleSignIn} disabled={isLoading}>
-                  {isLoading ? <Loader2 className="animate-spin mr-2" /> : <svg className="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 381.5 512 244 512 111.8 512 0 400.2 0 261.8S111.8 11.6 244 11.6c67.8 0 125.6 27.2 169.1 69.1l-64.3 62.4C319.3 118.5 284.2 99.8 244 99.8c-76.3 0-138.6 62.2-138.6 138.6s62.2 138.6 138.6 138.6c86.9 0 117.8-63.4 122.9-96.8H244v-75.9h244.1c2.6 13 4.1 26.6 4.1 40.8z"></path></svg>}
-                  Google
-                </Button>
               </CardContent>
             </Card>
           </TabsContent>
