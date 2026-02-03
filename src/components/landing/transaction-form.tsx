@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -17,12 +16,22 @@ import { Loader2, Link2, ShieldCheck } from 'lucide-react';
 import { useAuth } from '@/context/auth-context';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { Badge } from '@/components/ui/badge';
+
+// Regex yang lebih santai untuk nomor telepon (boleh pakai spasi, plus, atau dash)
+const phoneRegex = /^[0-9+\s-]+$/;
 
 const formSchema = z.object({
-  sellerPhone: z.string().min(8, { message: 'Nomor WhatsApp Penjual wajib diisi.' }).regex(/^[0-9+]+$/, "Gunakan format angka."),
-  buyerPhone: z.string().min(8, { message: 'Nomor WhatsApp Pembeli wajib diisi.' }).regex(/^[0-9+]+$/, "Gunakan format angka."),
-  description: z.string().min(10, { message: 'Berikan deskripsi barang yang jelas (min. 10 karakter).' }),
-  amount: z.number().min(10000, { message: 'Minimal transaksi Rp 10.000.' }),
+  sellerPhone: z.string()
+    .min(8, { message: 'Nomor WhatsApp Penjual minimal 8 karakter.' })
+    .regex(phoneRegex, "Gunakan format angka yang valid."),
+  buyerPhone: z.string()
+    .min(8, { message: 'Nomor WhatsApp Pembeli minimal 8 karakter.' })
+    .regex(phoneRegex, "Gunakan format angka yang valid."),
+  description: z.string()
+    .min(10, { message: 'Deskripsi minimal 10 karakter.' }),
+  amount: z.number()
+    .min(10000, { message: 'Minimal transaksi Rp 10.000.' }),
   terms: z.boolean().refine((val) => val === true, {
     message: 'Anda harus menyetujui aturan layanan.',
   }),
@@ -60,39 +69,42 @@ export function TransactionForm() {
     }
 
     try {
-      if (!db) throw new Error("Firestore not initialized");
+      if (!db) {
+        throw new Error("Koneksi Database Gagal. Pastikan Firebase API Key sudah diatur.");
+      }
 
+      // 1. Simpan Transaksi Utama
       const docRef = await addDoc(collection(db, 'transactions'), {
         buyerId: user.uid,
-        buyerName: user.displayName || 'Buyer',
-        sellerPhone: values.sellerPhone,
-        buyerPhone: values.buyerPhone,
+        buyerName: user.displayName || user.email?.split('@')[0] || 'Buyer',
+        sellerPhone: values.sellerPhone.replace(/[\s-]/g, ''), // Normalisasi nomor
+        buyerPhone: values.buyerPhone.replace(/[\s-]/g, ''),
         description: values.description,
         amount: values.amount,
         status: 'pending',
         createdAt: serverTimestamp(),
       });
 
-      // Pesan sistem awal
+      // 2. Berikan pesan sistem awal di Room Chat
       await addDoc(collection(db, 'transactions', docRef.id, 'messages'), {
-        text: `🛡️ Sistem: Room Chat berhasil dibuat. Penjual (${values.sellerPhone}) dan Pembeli (${values.buyerPhone}) silakan berdiskusi di sini.`,
+        text: `🛡️ Sistem Keamanan: Room Chat berhasil dibuat untuk ID: ${docRef.id}. Penjual (${values.sellerPhone}) dan Pembeli (${values.buyerPhone}) silakan berdiskusi secara transparan di sini.`,
         senderId: 'system',
         senderName: 'Sistem Keamanan',
         timestamp: serverTimestamp(),
       });
 
       toast({
-        title: 'Link Room Berhasil Dibuat!',
-        description: 'Mengarahkan Anda ke Room Chat...',
+        title: 'Berhasil!',
+        description: 'Link Transaksi telah dibuat. Mengalihkan ke Room Chat...',
       });
 
       router.push(`/chat/${docRef.id}`);
-    } catch (error) {
-      console.error("Error:", error);
+    } catch (error: any) {
+      console.error("Error creating transaction:", error);
       toast({
         variant: 'destructive',
-        title: 'Gagal Membuat Transaksi',
-        description: 'Terjadi kesalahan pada server. Silakan coba lagi.',
+        title: 'Gagal Membuat Link',
+        description: error.message || 'Terjadi kesalahan sistem. Coba lagi nanti.',
       });
     } finally {
       setIsLoading(false);
@@ -126,9 +138,9 @@ export function TransactionForm() {
                     name="sellerPhone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>WA Penjual (Identitas)</FormLabel>
+                        <FormLabel>WA Penjual</FormLabel>
                         <FormControl>
-                          <Input placeholder="Contoh: 0812..." {...field} />
+                          <Input placeholder="0812..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -139,9 +151,9 @@ export function TransactionForm() {
                     name="buyerPhone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>WA Pembeli (Identitas)</FormLabel>
+                        <FormLabel>WA Pembeli</FormLabel>
                         <FormControl>
-                          <Input placeholder="Contoh: 0812..." {...field} />
+                          <Input placeholder="0895..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -179,7 +191,7 @@ export function TransactionForm() {
                       <FormLabel>Deskripsi Barang/Jasa</FormLabel>
                       <FormControl>
                         <Textarea 
-                          placeholder="Tuliskan detail apa yang ditransaksikan agar Admin mudah memantau." 
+                          placeholder="Contoh: Jual akun ML Mythic skin 200+ aman." 
                           className="min-h-[100px]"
                           {...field} 
                         />
@@ -201,9 +213,10 @@ export function TransactionForm() {
                         />
                       </FormControl>
                       <div className="space-y-1 leading-none">
-                        <FormLabel className="text-xs">
-                          Saya setuju bahwa transaksi ini akan menggunakan sistem Rekber Nusantara dan mematuhi kebijakan yang berlaku.
+                        <FormLabel className="text-xs cursor-pointer">
+                          Saya setuju untuk menggunakan sistem Rekber Nusantara dan mematuhi kebijakan keamanan yang berlaku.
                         </FormLabel>
+                        <FormMessage />
                       </div>
                     </FormItem>
                   )}
@@ -225,5 +238,3 @@ export function TransactionForm() {
     </section>
   );
 }
-
-import { Badge } from '@/components/ui/badge';
