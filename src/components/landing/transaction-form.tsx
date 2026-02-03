@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -11,11 +12,10 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2 } from 'lucide-react';
+import { Loader2, MessageSquare } from 'lucide-react';
 import { useAuth } from '@/context/auth-context';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-
 
 const formSchema = z.object({
   sellerPhone: z.string().min(8, { message: 'Nomor Penjual harus diisi.' }).regex(/^[0-9+]+$/, "Hanya angka dan karakter '+' yang diperbolehkan."),
@@ -27,21 +27,11 @@ const formSchema = z.object({
   }),
 });
 
-const formatCurrency = (value: number) => {
-  return new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(value);
-};
-
-
 export function TransactionForm() {
   const { toast } = useToast();
   const { user } = useAuth();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const ADMIN_WHATSAPP_NUMBER = '62895323091263';
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -71,7 +61,7 @@ export function TransactionForm() {
         toast({
             variant: "destructive",
             title: "Database Error",
-            description: "Gagal terhubung ke database. Cek konfigurasi Firebase.",
+            description: "Gagal terhubung ke database.",
         });
         setIsLoading(false);
         return;
@@ -80,7 +70,7 @@ export function TransactionForm() {
     try {
       // Save the transaction to Firestore
       const docRef = await addDoc(collection(db, 'transactions'), {
-        buyerId: user.uid, // This is the "key" to the user's room
+        buyerId: user.uid,
         sellerPhone: values.sellerPhone,
         buyerPhone: values.buyerPhone,
         description: values.description,
@@ -89,35 +79,27 @@ export function TransactionForm() {
         createdAt: serverTimestamp(),
       });
 
-      // Prepare and open WhatsApp link
-      const message = `Halo Admin Rekber Nusantara, saya ingin memulai transaksi baru.
-
-*ID Transaksi:* ${docRef.id}
-
-Berikut detailnya:
-- *Nomor Penjual:* ${values.sellerPhone}
-- *Nomor Pembeli:* ${values.buyerPhone}
-- *Deskripsi:* ${values.description}
-- *Nominal:* ${formatCurrency(values.amount)}
-
-Mohon untuk dibuatkan grup transaksinya. Terima kasih!`;
-
-      const whatsappUrl = `https://wa.me/${ADMIN_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-      
-      window.open(whatsappUrl, '_blank');
-
-      toast({
-        title: 'Transaksi Disimpan & Mengarahkan ke WhatsApp',
-        description: 'Anda dapat melihat riwayat transaksi Anda di halaman profil.',
+      // Initial system message in chat
+      await addDoc(collection(db, 'transactions', docRef.id, 'messages'), {
+        text: `Halo! Transaksi baru telah dibuat. Silakan tunggu Admin bergabung ke dalam chat room ini.`,
+        senderId: 'system',
+        senderName: 'Sistem',
+        timestamp: serverTimestamp(),
       });
 
-      form.reset();
+      toast({
+        title: 'Transaksi Berhasil Dibuat',
+        description: 'Membuka Room Chat Anda...',
+      });
+
+      // Redirect to internal chat room instead of WhatsApp
+      router.push(`/chat/${docRef.id}`);
     } catch (error) {
       console.error("Error adding document: ", error);
       toast({
         variant: 'destructive',
         title: 'Terjadi Kesalahan',
-        description: 'Gagal menyimpan transaksi ke database. Pastikan aturan Firestore sudah benar.',
+        description: 'Gagal membuat transaksi. Silakan coba lagi.',
       });
     } finally {
       setIsLoading(false);
@@ -132,7 +114,7 @@ Mohon untuk dibuatkan grup transaksinya. Terima kasih!`;
             Mulai Transaksi Aman
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            Isi formulir di bawah ini untuk memulai transaksi melalui WhatsApp Admin.
+            Isi formulir di bawah ini untuk membuka Room Chat eksklusif dengan Admin kami.
           </p>
         </div>
         <Card className="max-w-2xl mx-auto mt-12 bg-card border-border shadow-lg">
@@ -229,10 +211,13 @@ Mohon untuk dibuatkan grup transaksinya. Terima kasih!`;
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Memproses...
+                      Membuka Room Chat...
                     </>
                   ) : (
-                    'Simpan & Lanjut ke WhatsApp'
+                    <span className="flex items-center gap-2">
+                      <MessageSquare className="h-5 w-5" />
+                      Buat & Mulai Chat
+                    </span>
                   )}
                 </Button>
               </form>

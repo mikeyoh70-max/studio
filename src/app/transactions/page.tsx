@@ -11,7 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Eye } from 'lucide-react';
+import { Eye, MessageSquare } from 'lucide-react';
 
 interface Transaction {
   id: string;
@@ -117,7 +117,7 @@ export default function TransactionsPage() {
         <CardHeader>
           <CardTitle>Daftar Transaksi</CardTitle>
           <CardDescription>
-            Berikut adalah semua transaksi yang pernah Anda mulai. Klik ikon mata untuk detail.
+            Berikut adalah semua transaksi Anda. Klik ikon chat untuk berbicara dengan Admin.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -152,11 +152,18 @@ export default function TransactionsPage() {
                     <TableCell>{formatDate(tx.createdAt)}</TableCell>
                     <TableCell className="text-right font-semibold">{formatCurrency(tx.amount)}</TableCell>
                     <TableCell className="text-right">
-                      <Button variant="ghost" size="icon" asChild title="Lihat Detail">
-                        <Link href={`/transactions/${tx.id}`}>
-                          <Eye className="h-4 w-4" />
-                        </Link>
-                      </Button>
+                      <div className="flex justify-end gap-2">
+                         <Button variant="ghost" size="icon" asChild title="Lihat Chat">
+                          <Link href={`/chat/${tx.id}`}>
+                            <MessageSquare className="h-4 w-4 text-primary" />
+                          </Link>
+                        </Button>
+                        <Button variant="ghost" size="icon" asChild title="Lihat Detail">
+                          <Link href={`/transactions/${tx.id}`}>
+                            <Eye className="h-4 w-4" />
+                          </Link>
+                        </Button>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))}

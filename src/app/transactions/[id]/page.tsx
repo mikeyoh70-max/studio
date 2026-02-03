@@ -1,14 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { db } from '@/lib/firebase';
 import { doc, getDoc, Timestamp } from 'firebase/firestore';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Progress } from '@/components/ui/progress';
-import { CheckCircle2, Clock, ShieldCheck, ArrowLeft, ExternalLink } from 'lucide-react';
+import { CheckCircle2, Clock, ShieldCheck, ArrowLeft, ExternalLink, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -55,6 +55,7 @@ const getStatusConfig = (status: string) => {
 
 export default function TransactionDetailPage() {
   const { id } = useParams();
+  const router = useRouter();
   const [transaction, setTransaction] = useState<Transaction | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -180,15 +181,16 @@ export default function TransactionDetailPage() {
           </CardContent>
         </Card>
 
-        <div className="bg-blue-900/10 border border-blue-500/20 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
-            <h4 className="font-bold">Butuh bantuan transaksi ini?</h4>
-            <p className="text-sm text-muted-foreground">Hubungi admin kami untuk pertanyaan seputar status.</p>
+            <h4 className="font-bold text-lg">Ada kendala atau ingin konfirmasi?</h4>
+            <p className="text-sm text-muted-foreground">Gunakan Room Chat internal untuk berbicara langsung dengan Admin kami.</p>
           </div>
-          <Button asChild className="bg-green-600 hover:bg-green-700">
-             <a href={`https://wa.me/62895323091263?text=Halo%20Admin,%20saya%20ingin%20bertanya%20tentang%20transaksi%20ID:%20${transaction.id}`} target="_blank" rel="noopener noreferrer">
-              Hubungi Admin
-            </a>
+          <Button asChild className="btn-rgb" size="lg">
+             <Link href={`/chat/${transaction.id}`} className="gap-2">
+              <MessageSquare className="h-5 w-5" />
+              Buka Room Chat
+            </Link>
           </Button>
         </div>
       </div>
