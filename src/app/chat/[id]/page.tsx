@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -19,9 +18,8 @@ import {
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Send, ArrowLeft, ShieldCheck, Info, Loader2, Copy, MessageCircle, Link2, User } from 'lucide-react';
+import { Send, ShieldCheck, Info, Loader2, Copy, MessageCircle, User, Share2 } from 'lucide-react';
 import { Navbar } from '@/components/landing/navbar';
 import { Footer } from '@/components/landing/footer';
 import { useToast } from '@/hooks/use-toast';
@@ -124,21 +122,47 @@ export default function ChatPage() {
     }
   };
 
-  const copyLink = () => {
-    if (typeof window === 'undefined') return;
-    navigator.clipboard.writeText(window.location.href);
-    toast({
-      title: 'Link Disalin!',
-      description: 'Bagikan link ini ke lawan transaksi Anda.',
-    });
+  const copyLink = async () => {
+    try {
+      const url = window.location.href;
+      await navigator.clipboard.writeText(url);
+      toast({
+        title: 'Berhasil Salin!',
+        description: 'Link Room Chat sudah siap kamu bagikan.',
+      });
+    } catch (err) {
+      toast({
+        variant: 'destructive',
+        title: 'Gagal Salin',
+        description: 'Silakan salin link secara manual dari address bar.',
+      });
+    }
   };
 
   const shareToWhatsApp = () => {
     if (!transaction) return;
     const url = window.location.href;
-    const text = `Halo, saya sudah membuat Room Rekber Resmi.\n\nBarang: ${transaction.description}\nNominal: Rp ${transaction.amount.toLocaleString('id-ID')}\n\nSilakan klik link di bawah untuk masuk ke Room Chat:\n${url}`;
-    const waUrl = `https://wa.me/${transaction.sellerPhone.replace(/\+/g, '')}?text=${encodeURIComponent(text)}`;
+    const text = `Halo, saya sudah membuat Room Rekber Nusantara Resmi.\n\nBarang: ${transaction.description}\nNominal: Rp ${transaction.amount.toLocaleString('id-ID')}\n\nSilakan klik link di bawah untuk masuk ke Room Chat:\n${url}`;
+    
+    // Tanpa nomor hp di URL agar bisa memilih kontak sendiri di WhatsApp
+    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     window.open(waUrl, '_blank');
+  };
+
+  const nativeShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Room Rekber Nusantara',
+          text: `Ayo masuk ke Room Chat Rekber untuk transaksi: ${transaction?.description}`,
+          url: window.location.href,
+        });
+      } catch (err) {
+        console.log('User cancelled share');
+      }
+    } else {
+      copyLink();
+    }
   };
 
   if (isLoading || authLoading) {
@@ -164,41 +188,43 @@ export default function ChatPage() {
       <main className="flex-1 container mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
         {/* Sidebar Info */}
         <div className="lg:w-80 space-y-4">
-          <Card className="border-border">
+          <Card className="border-border shadow-md">
             <CardHeader className="bg-primary/5 pb-4">
               <CardTitle className="text-sm font-headline flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-primary" /> Verifikasi Transaksi
+                <ShieldCheck className="h-4 w-4 text-primary" /> Detail Link Chat
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-4 space-y-4">
               <div className="space-y-1">
-                <p className="text-[10px] text-muted-foreground uppercase font-bold">Penjual (WhatsApp)</p>
-                <p className="text-sm font-mono">{transaction.sellerPhone}</p>
+                <p className="text-[10px] text-muted-foreground uppercase font-bold">Barang/Jasa</p>
+                <p className="text-sm font-medium">{transaction.description}</p>
               </div>
               <div className="space-y-1">
-                <p className="text-[10px] text-muted-foreground uppercase font-bold">Pembeli (WhatsApp)</p>
-                <p className="text-sm font-mono">{transaction.buyerPhone}</p>
-              </div>
-              <div className="pt-2 border-t">
                 <p className="text-[10px] text-muted-foreground uppercase font-bold">Nominal</p>
                 <p className="text-lg font-bold">Rp {transaction.amount.toLocaleString('id-ID')}</p>
               </div>
-              <Button size="sm" variant="secondary" className="w-full gap-2 text-xs" onClick={copyLink}>
-                <Copy className="h-3 w-3" /> Salin Link Room
-              </Button>
-              <Button size="sm" className="w-full bg-green-600 hover:bg-green-700 text-white gap-2 text-xs" onClick={shareToWhatsApp}>
-                <MessageCircle className="h-3 w-3" /> Undang ke WA
-              </Button>
+              
+              <div className="pt-4 border-t space-y-2">
+                <Button size="sm" variant="outline" className="w-full gap-2 text-xs" onClick={copyLink}>
+                  <Copy className="h-3 w-3" /> Salin Link Room
+                </Button>
+                <Button size="sm" className="w-full bg-green-600 hover:bg-green-700 text-white gap-2 text-xs" onClick={shareToWhatsApp}>
+                  <MessageCircle className="h-3 w-3" /> Undang Lewat WA
+                </Button>
+                <Button size="sm" variant="secondary" className="w-full gap-2 text-xs md:hidden" onClick={nativeShare}>
+                  <Share2 className="h-3 w-3" /> Bagikan Link
+                </Button>
+              </div>
             </CardContent>
           </Card>
 
           <div className="p-4 rounded-lg bg-blue-950/30 border border-blue-500/20">
             <div className="flex items-center gap-2 mb-2 text-blue-400">
               <Info className="h-4 w-4" />
-              <span className="text-xs font-bold uppercase tracking-wider">Tips Aman</span>
+              <span className="text-xs font-bold uppercase tracking-wider">Penting!</span>
             </div>
             <p className="text-[11px] text-blue-200/70 leading-relaxed">
-              Pastikan Anda hanya mentransfer ke rekening yang diberikan oleh Admin di dalam chat ini. Jangan percaya link dari luar sistem.
+              Bagikan link di atas kepada lawan transaksi Anda. Pastikan mereka juga masuk ke room ini untuk diskusi yang aman.
             </p>
           </div>
         </div>
@@ -208,7 +234,7 @@ export default function ChatPage() {
           <CardHeader className="border-b bg-card py-3 flex flex-row items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="bg-primary/10 p-2 rounded-full">
-                <MessageCircle className="h-5 w-5 text-primary" />
+                <ShieldCheck className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <CardTitle className="text-base font-headline">Room Chat Aman</CardTitle>
@@ -227,7 +253,7 @@ export default function ChatPage() {
                   if (isSystem) {
                     return (
                       <div key={msg.id} className="flex justify-center">
-                        <div className="bg-muted/50 border px-3 py-1 rounded-full text-[10px] text-muted-foreground font-medium">
+                        <div className="bg-muted/50 border px-3 py-1 rounded-full text-[10px] text-muted-foreground font-medium text-center max-w-[80%]">
                           {msg.text}
                         </div>
                       </div>
