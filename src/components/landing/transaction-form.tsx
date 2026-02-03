@@ -68,8 +68,9 @@ export function TransactionForm() {
         throw new Error("Koneksi Database Gagal.");
       }
 
+      // Simpan transaksi dengan buyerId agar sesuai dengan security rules & history page
       const docRef = await addDoc(collection(db, 'transactions'), {
-        creatorId: user.uid,
+        buyerId: user.uid,
         creatorName: user.displayName || user.email?.split('@')[0] || 'User',
         sellerName: values.sellerName,
         buyerName: values.buyerName,
@@ -79,6 +80,7 @@ export function TransactionForm() {
         createdAt: serverTimestamp(),
       });
 
+      // Kirim pesan sistem pertama
       await addDoc(collection(db, 'transactions', docRef.id, 'messages'), {
         text: `🛡️ Sistem Keamanan: Room Chat berhasil dibuat. Penjual (${values.sellerName}) dan Pembeli (${values.buyerName}) silakan berdiskusi di sini.`,
         senderId: 'system',
@@ -97,7 +99,7 @@ export function TransactionForm() {
       toast({
         variant: 'destructive',
         title: 'Gagal Membuat Link',
-        description: error.message || 'Terjadi kesalahan sistem.',
+        description: error.message || 'Terjadi kesalahan izin database. Pastikan Rules Firestore sudah benar.',
       });
     } finally {
       setIsLoading(false);
