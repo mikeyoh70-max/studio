@@ -21,7 +21,7 @@ import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Send, ArrowLeft, ShieldCheck, User, Info } from 'lucide-react';
+import { Send, ArrowLeft, ShieldCheck, User, Info, Loader2 } from 'lucide-react';
 import { Navbar } from '@/components/landing/navbar';
 import { Footer } from '@/components/landing/footer';
 
@@ -280,5 +280,3 @@ export default function ChatPage() {
     </div>
   );
 }
-
-import { Loader2 as LoaderIcon } from 'lucide-react';
