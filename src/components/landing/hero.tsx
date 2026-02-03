@@ -50,8 +50,9 @@ export function Hero() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            {/* Tombol dipusatkan dan Cek Biaya dihapus */}
             <Button asChild size="lg" 
-              className="btn-rgb h-14 px-10 text-lg shadow-xl transform transition-transform hover:scale-105"
+              className="btn-rgb h-14 px-12 text-lg shadow-xl transform transition-transform hover:scale-105"
             >
               <a href="#buat-transaksi">
                 Mulai Transaksi Aman

@@ -2,7 +2,6 @@ import { Navbar } from '@/components/landing/navbar';
 import { Hero } from '@/components/landing/hero';
 import { WhyUs } from '@/components/landing/why-us';
 import { TransactionForm } from '@/components/landing/transaction-form';
-import { FeeCalculator } from '@/components/landing/fee-calculator';
 import { Testimonials } from '@/components/landing/testimonials';
 import { Footer } from '@/components/landing/footer';
 import { Faq } from '@/components/landing/faq';
@@ -15,10 +14,9 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <TransactionTracker />
-        {/* Urutan ditukar: Form dulu baru WhyUs */}
+        {/* Urutan: Form dulu baru WhyUs sesuai request */}
         <TransactionForm />
         <WhyUs />
-        <FeeCalculator />
         <Testimonials />
         <Faq />
       </main>

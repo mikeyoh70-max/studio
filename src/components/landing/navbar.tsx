@@ -9,9 +9,8 @@ import { UserNav } from '@/components/auth/user-nav';
 
 const navLinks = [
   { href: '#home', label: 'Home' },
-  { href: '#why-us', label: 'Mengapa Kami' },
   { href: '#buat-transaksi', label: 'Buat Transaksi' },
-  { href: '#cek-fee', label: 'Cek Fee' },
+  { href: '#why-us', label: 'Mengapa Kami' },
   { href: '#faq', label: 'FAQ' },
 ];
 
