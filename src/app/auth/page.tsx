@@ -22,9 +22,7 @@ import {
   DialogTrigger,
   DialogFooter,
   DialogClose,
-  DialogDescription,
 } from "@/components/ui/dialog"
-
 
 const signUpSchema = z.object({
   email: z.string().email({ message: 'Format email tidak valid.' }),
@@ -40,41 +38,41 @@ const resetPasswordSchema = z.object({
   email: z.string().email({ message: 'Format email tidak valid.' }),
 });
 
-
 type SignUpFormValues = z.infer<typeof signUpSchema>;
 type SignInFormValues = z.infer<typeof signInSchema>;
 type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;
 
-
-const getFriendlyErrorMessage = (errorCode?: string): string => {
-  if (!errorCode) return 'Terjadi kesalahan sistem.';
+const getFriendlyErrorMessage = (error: any): string => {
+  if (!error) return 'Terjadi kesalahan sistem.';
   
-  switch (errorCode) {
+  // Jika error adalah string (pesan kustom)
+  if (typeof error === 'string') return error;
+
+  const code = error.code || error.message;
+
+  switch (code) {
     case 'auth/email-already-in-use':
-      return 'Email ini sudah terdaftar.';
+      return 'Email ini sudah terdaftar. Silakan masuk.';
     case 'auth/weak-password':
-      return 'Password terlalu lemah (min. 6 karakter).';
+      return 'Password terlalu lemah (minimal 6 karakter).';
     case 'auth/invalid-email':
-      return 'Format email salah.';
+      return 'Format email salah atau tidak valid.';
     case 'auth/user-not-found':
     case 'auth/wrong-password':
     case 'auth/invalid-credential':
-      return 'Email atau password salah.';
+      return 'Email atau password salah. Periksa kembali.';
     case 'auth/network-request-failed':
-        return 'Koneksi internet bermasalah.';
-    case 'auth/unauthorized-domain':
-        return 'Domain ini belum diizinkan di Firebase Console (Settings > Authorized Domains).';
+      return 'Koneksi internet bermasalah. Coba lagi.';
+    case 'Firebase belum terkonfigurasi.':
+      return 'ERROR: API Key Firebase belum dimasukkan di Settings Vercel.';
+    case 'auth/popup-blocked':
+      return 'Jendela login diblokir browser. Izinkan pop-up atau gunakan browser Chrome.';
     case 'auth/operation-not-allowed':
-        return 'Metode login ini belum diaktifkan di Firebase Console.';
-    case 'auth/popup-closed-by-user':
-        return 'Login dibatalkan karena jendela ditutup.';
-    case 'auth/cancelled-popup-request':
-        return 'Proses login tumpang tindih, silakan coba lagi.';
+      return 'Metode login ini belum diaktifkan di Firebase Console.';
     default:
-      return `Kesalahan: ${errorCode}. Silakan hubungi Admin.`;
+      return error.message || 'Gagal terhubung ke server. Pastikan kuota Firebase masih ada.';
   }
 };
-
 
 export default function AuthPage() {
   const [activeTab, setActiveTab] = useState<'signin' | 'signup'>('signin');
@@ -85,19 +83,17 @@ export default function AuthPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const handleAuthError = (event: any) => {
-      setError(getFriendlyErrorMessage(event.detail?.code));
-      setIsLoading(false);
-    };
-    window.addEventListener('auth-error', handleAuthError);
-    return () => window.removeEventListener('auth-error', handleAuthError);
-  }, []);
-
-  useEffect(() => {
     if (user && !authLoading) {
       router.push('/');
     }
   }, [user, authLoading, router]);
+
+  // Diagnostik: Cek apakah env vars ada
+  useEffect(() => {
+    if (!process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
+      setError("PENTING: Kamu belum memasukkan Environment Variables di Vercel. Login tidak akan berfungsi.");
+    }
+  }, []);
 
   const {
     register: registerSignUp,
@@ -123,15 +119,13 @@ export default function AuthPage() {
     resolver: zodResolver(resetPasswordSchema),
   });
 
-
   const handleSignUp: SubmitHandler<SignUpFormValues> = async (data) => {
     setIsLoading(true);
     setError(null);
     try {
       await signUp(data.email, data.password);
-    } catch (e) {
-      const authError = e as AuthError;
-      setError(getFriendlyErrorMessage(authError.code));
+    } catch (e: any) {
+      setError(getFriendlyErrorMessage(e));
     } finally {
       setIsLoading(false);
     }
@@ -142,9 +136,8 @@ export default function AuthPage() {
     setError(null);
     try {
       await signIn(data.email, data.password);
-    } catch (e) {
-      const authError = e as AuthError;
-      setError(getFriendlyErrorMessage(authError.code));
+    } catch (e: any) {
+      setError(getFriendlyErrorMessage(e));
     } finally {
       setIsLoading(false);
     }
@@ -155,22 +148,20 @@ export default function AuthPage() {
     setError(null);
     try {
       await signInWithGoogle();
-    } catch (e) {
-      const authError = e as any;
-      setError(getFriendlyErrorMessage(authError.code));
+    } catch (e: any) {
+      setError(getFriendlyErrorMessage(e));
       setIsLoading(false);
     }
   };
 
-    const handlePasswordReset: SubmitHandler<ResetPasswordFormValues> = async (data) => {
+  const handlePasswordReset: SubmitHandler<ResetPasswordFormValues> = async (data) => {
     setIsLoading(true);
     setResetStatus(null);
     try {
       await sendPasswordReset(data.email);
       setResetStatus({ message: 'Link reset password terkirim!', isError: false });
-    } catch (e) {
-      const authError = e as AuthError;
-      setResetStatus({ message: getFriendlyErrorMessage(authError.code), isError: true });
+    } catch (e: any) {
+      setResetStatus({ message: getFriendlyErrorMessage(e), isError: true });
     } finally {
       setIsLoading(false);
     }
@@ -200,7 +191,7 @@ export default function AuthPage() {
         {error && (
             <Alert variant="destructive" className="mb-4">
               <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Gagal Masuk</AlertTitle>
+              <AlertTitle>Gagal Akses</AlertTitle>
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
@@ -284,7 +275,7 @@ export default function AuthPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Daftar Akun</CardTitle>
-                <CardDescription>Proses cepat dan data aman bersama kami.</CardDescription>
+                <CardDescription>Isi detail di bawah untuk membuat akun Anda.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Button variant="outline" className="w-full h-12 text-base" onClick={handleGoogleSignIn} disabled={isLoading}>
