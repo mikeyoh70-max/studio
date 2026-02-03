@@ -21,7 +21,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Send, ArrowLeft, ShieldCheck, Info, Loader2, Copy, Share2, MessageCircle } from 'lucide-react';
+import { Send, ArrowLeft, ShieldCheck, Info, Loader2, Copy, Share2, MessageCircle, Link2 } from 'lucide-react';
 import { Navbar } from '@/components/landing/navbar';
 import { Footer } from '@/components/landing/footer';
 import { useToast } from '@/hooks/use-toast';
@@ -128,8 +128,8 @@ export default function ChatPage() {
     const url = window.location.href;
     navigator.clipboard.writeText(url);
     toast({
-      title: 'Link Disalin!',
-      description: 'Bagikan link ini kepada Penjual/Pembeli.',
+      title: 'Link Room Berhasil Dibuat!',
+      description: 'Link telah disalin ke clipboard. Silakan bagikan ke lawan transaksi Anda.',
     });
   };
 
@@ -175,6 +175,32 @@ export default function ChatPage() {
             <ArrowLeft className="mr-2 h-4 w-4" /> Kembali
           </Button>
           
+          <Card className="border-border shadow-md overflow-hidden">
+            <CardHeader className="bg-primary/10 border-b">
+              <CardTitle className="text-lg font-headline flex items-center gap-2">
+                <Link2 className="h-5 w-5 text-primary" /> Link Room Transaksi
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-4 space-y-4">
+              <p className="text-xs text-muted-foreground">
+                Bagikan link di bawah ini kepada Penjual atau Pembeli untuk bergabung ke dalam percakapan aman ini.
+              </p>
+              <div className="flex gap-2">
+                <Input 
+                  readOnly 
+                  value={typeof window !== 'undefined' ? window.location.href : ''} 
+                  className="text-xs bg-muted/50 font-mono"
+                />
+                <Button size="icon" variant="secondary" onClick={copyLink} title="Salin Link">
+                  <Copy className="h-4 w-4" />
+                </Button>
+              </div>
+              <Button className="w-full bg-green-600 hover:bg-green-700 text-white gap-2" onClick={shareToWhatsApp}>
+                <MessageCircle className="h-4 w-4" /> Kirim ke WhatsApp
+              </Button>
+            </CardContent>
+          </Card>
+
           <Card className="border-border shadow-md">
             <CardHeader className="bg-secondary/20 border-b">
               <CardTitle className="text-xl font-headline flex items-center gap-2">
@@ -194,19 +220,10 @@ export default function ChatPage() {
                 <p className="text-xs text-muted-foreground uppercase font-bold tracking-wider">Nominal</p>
                 <p className="text-lg font-bold">Rp {transaction.amount.toLocaleString('id-ID')}</p>
               </div>
-              <div className="pt-4 space-y-3">
+              <div className="pt-4">
                 <Badge variant={transaction.status === 'completed' ? 'success' : 'secondary'} className="w-full justify-center py-1">
                   Status: {transaction.status === 'pending' ? 'Dalam Proses' : transaction.status}
                 </Badge>
-                
-                <div className="grid grid-cols-2 gap-2">
-                  <Button variant="outline" size="sm" onClick={copyLink} className="text-xs gap-1">
-                    <Copy className="h-3 w-3" /> Salin Link
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={shareToWhatsApp} className="text-xs gap-1 text-green-500 hover:text-green-600">
-                    <MessageCircle className="h-3 w-3" /> Undang Penjual
-                  </Button>
-                </div>
               </div>
             </CardContent>
           </Card>
@@ -215,11 +232,11 @@ export default function ChatPage() {
             <p className="flex items-center gap-2 mb-2 font-bold uppercase tracking-widest">
               <ShieldCheck className="h-3 w-3" /> Info Keamanan
             </p>
-            Jangan pernah memberikan data sensitif di luar room chat ini. Pastikan Anda mengundang Penjual menggunakan tombol di atas.
+            Pastikan lawan transaksi Anda masuk melalui link resmi di atas. Jangan pernah memberikan password atau data sensitif lainnya.
           </div>
         </div>
 
-        <Card className="flex-1 flex flex-col h-[70vh] border-border shadow-xl">
+        <Card className="flex-1 flex flex-col h-[75vh] border-border shadow-xl">
           <CardHeader className="border-b bg-card py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -242,7 +259,7 @@ export default function ChatPage() {
                 {messages.length === 0 && (
                    <div className="flex justify-center my-8">
                     <div className="text-center max-w-xs">
-                      <p className="text-sm text-muted-foreground italic">Belum ada pesan. Mulai percakapan atau undang pihak lain untuk bergabung.</p>
+                      <p className="text-sm text-muted-foreground italic">Belum ada pesan. Mulai percakapan atau bagikan link room ini kepada lawan transaksi Anda.</p>
                     </div>
                   </div>
                 )}

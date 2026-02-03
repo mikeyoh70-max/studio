@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -12,7 +13,7 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, MessageSquare } from 'lucide-react';
+import { Loader2, MessageSquare, Link2 } from 'lucide-react';
 import { useAuth } from '@/context/auth-context';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
@@ -79,15 +80,15 @@ export function TransactionForm() {
       });
 
       await addDoc(collection(db, 'transactions', docRef.id, 'messages'), {
-        text: `Halo! Transaksi baru telah dibuat dengan ID: ${docRef.id}. Silakan tunggu Admin bergabung ke dalam chat room ini.`,
+        text: `Halo! Link Room Transaksi telah dibuat dengan ID: ${docRef.id}. Silakan bagikan link room ini kepada lawan transaksi Anda.`,
         senderId: 'system',
         senderName: 'Sistem',
         timestamp: serverTimestamp(),
       });
 
       toast({
-        title: 'Transaksi Berhasil Dibuat',
-        description: 'Membuka Room Chat Anda...',
+        title: 'Link Transaksi Berhasil Dibuat',
+        description: 'Membuka Room Chat Anda sekarang...',
       });
 
       router.push(`/chat/${docRef.id}`);
@@ -111,7 +112,7 @@ export function TransactionForm() {
             Mulai Transaksi Aman
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            Isi formulir di bawah ini untuk membuka Room Chat eksklusif dengan Admin kami.
+            Isi formulir untuk membuat **Link Room Chat** eksklusif dan mulai transaksi Anda.
           </p>
         </div>
         <Card className="max-w-2xl mx-auto mt-12 bg-card border-border shadow-lg">
@@ -208,12 +209,12 @@ export function TransactionForm() {
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Membuka Room Chat...
+                      Membuat Link Room...
                     </>
                   ) : (
                     <span className="flex items-center gap-2">
-                      <MessageSquare className="h-5 w-5" />
-                      Buat & Mulai Chat
+                      <Link2 className="h-5 w-5" />
+                      Buat Link & Mulai Chat
                     </span>
                   )}
                 </Button>
