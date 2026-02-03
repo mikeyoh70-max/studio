@@ -7,6 +7,7 @@ import { FeeCalculator } from '@/components/landing/fee-calculator';
 import { Testimonials } from '@/components/landing/testimonials';
 import { Footer } from '@/components/landing/footer';
 import { Faq } from '@/components/landing/faq';
+import { TransactionTracker } from '@/components/landing/transaction-tracker';
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <TransactionTracker />
         <WhyUs />
         <TransactionForm />
         <AdminVerification />

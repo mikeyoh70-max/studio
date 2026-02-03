@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, ShieldCheck } from 'lucide-react';
+import { Menu, ShieldCheck, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { UserNav } from '@/components/auth/user-nav';
@@ -40,6 +40,9 @@ export function Navbar() {
 
         <div className="flex flex-1 items-center justify-end space-x-4">
           <div className='flex items-center gap-2'>
+             <Button variant="ghost" size="sm" className="hidden lg:flex" asChild>
+                <Link href="/#home"><Search className="mr-2 h-4 w-4" /> Cek Status</Link>
+             </Button>
              <UserNav />
           </div>
           

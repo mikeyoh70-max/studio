@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Eye } from 'lucide-react';
 
 interface Transaction {
   id: string;
@@ -66,7 +67,6 @@ export default function TransactionsPage() {
     const fetchTransactions = async () => {
       if (user && db) {
         try {
-          // Query transactions where buyerId matches the current user's UID
           const q = query(
             collection(db, 'transactions'),
             where('buyerId', '==', user.uid),
@@ -91,7 +91,6 @@ export default function TransactionsPage() {
     }
   }, [user, authLoading]);
 
-  // Loading state while checking auth
   if (authLoading || (!user && !authLoading)) {
     return (
       <div className="container mx-auto px-4 py-12">
@@ -118,7 +117,7 @@ export default function TransactionsPage() {
         <CardHeader>
           <CardTitle>Daftar Transaksi</CardTitle>
           <CardDescription>
-            Berikut adalah semua transaksi yang pernah Anda mulai.
+            Berikut adalah semua transaksi yang pernah Anda mulai. Klik ikon mata untuk detail.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -137,13 +136,14 @@ export default function TransactionsPage() {
                   <TableHead>Status</TableHead>
                   <TableHead>Tanggal</TableHead>
                   <TableHead className="text-right">Nominal</TableHead>
+                  <TableHead className="text-right">Aksi</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {transactions.map((tx) => (
                   <TableRow key={tx.id}>
                     <TableCell className="font-mono text-xs">{tx.id}</TableCell>
-                    <TableCell className="max-w-[300px] truncate">{tx.description}</TableCell>
+                    <TableCell className="max-w-[200px] truncate">{tx.description}</TableCell>
                     <TableCell>
                       <Badge variant={getStatusBadgeVariant(tx.status)} className="capitalize">
                         {tx.status}
@@ -151,6 +151,13 @@ export default function TransactionsPage() {
                     </TableCell>
                     <TableCell>{formatDate(tx.createdAt)}</TableCell>
                     <TableCell className="text-right font-semibold">{formatCurrency(tx.amount)}</TableCell>
+                    <TableCell className="text-right">
+                      <Button variant="ghost" size="icon" asChild title="Lihat Detail">
+                        <Link href={`/transactions/${tx.id}`}>
+                          <Eye className="h-4 w-4" />
+                        </Link>
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
