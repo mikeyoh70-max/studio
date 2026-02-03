@@ -16,7 +16,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <TransactionTracker />
-        {/* Formulir diletakkan di atas sesuai permintaan agar user langsung bisa buat link */}
+        {/* Urutan Section: Form -> Kenapa Kami -> Verifikasi -> Kalkulator -> Dst */}
         <TransactionForm />
         <WhyUs />
         <AdminVerification />

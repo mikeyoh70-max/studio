@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
 
-    // Cek hasil redirect saat halaman dimuat ulang (penting untuk mobile)
+    // Sangat penting untuk menangani hasil redirect setelah user kembali dari Google
     getRedirectResult(auth as Auth).catch((error) => {
       console.error("Redirect Result Error:", error);
     });
@@ -93,11 +93,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const provider = new GoogleAuthProvider();
     
     try {
-      // Coba popup dulu
+      // Coba popup dulu (untuk Desktop)
       return await signInWithPopup(auth as Auth, provider);
     } catch (error: any) {
-      // Jika popup diblokir (biasa di HP), gunakan redirect
-      if (error.code === 'auth/popup-blocked' || error.code === 'auth/cancelled-popup-request') {
+      // Jika popup diblokir (biasa di HP) atau gagal, gunakan redirect
+      console.warn("Popup blocked or failed, switching to redirect method...");
+      if (
+        error.code === 'auth/popup-blocked' || 
+        error.code === 'auth/cancelled-popup-request' ||
+        error.code === 'auth/popup-closed-by-user'
+      ) {
         return await signInWithRedirect(auth as Auth, provider);
       }
       throw error;
