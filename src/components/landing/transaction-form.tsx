@@ -13,18 +13,18 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, MessageSquare, Link2 } from 'lucide-react';
+import { Loader2, Link2, ShieldCheck } from 'lucide-react';
 import { useAuth } from '@/context/auth-context';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const formSchema = z.object({
-  sellerPhone: z.string().min(8, { message: 'Nomor Penjual harus diisi.' }).regex(/^[0-9+]+$/, "Hanya angka dan karakter '+' yang diperbolehkan."),
-  buyerPhone: z.string().min(8, { message: 'Nomor Pembeli harus diisi.' }).regex(/^[0-9+]+$/, "Hanya angka dan karakter '+' yang diperbolehkan."),
-  description: z.string().min(10, { message: 'Deskripsi harus diisi (min. 10 karakter).' }),
-  amount: z.number().min(10000, { message: 'Nominal transaksi minimal Rp 10.000.' }),
+  sellerPhone: z.string().min(8, { message: 'Nomor WhatsApp Penjual wajib diisi.' }).regex(/^[0-9+]+$/, "Gunakan format angka."),
+  buyerPhone: z.string().min(8, { message: 'Nomor WhatsApp Pembeli wajib diisi.' }).regex(/^[0-9+]+$/, "Gunakan format angka."),
+  description: z.string().min(10, { message: 'Berikan deskripsi barang yang jelas (min. 10 karakter).' }),
+  amount: z.number().min(10000, { message: 'Minimal transaksi Rp 10.000.' }),
   terms: z.boolean().refine((val) => val === true, {
-    message: 'Anda harus menyetujui Aturan & Ketentuan yang berlaku.',
+    message: 'Anda harus menyetujui aturan layanan.',
   }),
 });
 
@@ -51,26 +51,20 @@ export function TransactionForm() {
     if (!user) {
       toast({
         variant: 'destructive',
-        title: 'Anda harus login',
-        description: 'Silakan login terlebih dahulu untuk membuat transaksi.',
+        title: 'Login Diperlukan',
+        description: 'Silakan login terlebih dahulu untuk membuat link transaksi.',
       });
       setIsLoading(false);
-      return;
-    }
-
-    if (!db) {
-      toast({
-        variant: 'destructive',
-        title: 'Database Error',
-        description: 'Gagal terhubung ke database.',
-      });
-      setIsLoading(false);
+      router.push('/auth');
       return;
     }
 
     try {
+      if (!db) throw new Error("Firestore not initialized");
+
       const docRef = await addDoc(collection(db, 'transactions'), {
         buyerId: user.uid,
+        buyerName: user.displayName || 'Buyer',
         sellerPhone: values.sellerPhone,
         buyerPhone: values.buyerPhone,
         description: values.description,
@@ -79,25 +73,26 @@ export function TransactionForm() {
         createdAt: serverTimestamp(),
       });
 
+      // Pesan sistem awal
       await addDoc(collection(db, 'transactions', docRef.id, 'messages'), {
-        text: `Halo! Link Room Transaksi telah dibuat dengan ID: ${docRef.id}. Silakan bagikan link room ini kepada lawan transaksi Anda.`,
+        text: `🛡️ Sistem: Room Chat berhasil dibuat. Penjual (${values.sellerPhone}) dan Pembeli (${values.buyerPhone}) silakan berdiskusi di sini.`,
         senderId: 'system',
-        senderName: 'Sistem',
+        senderName: 'Sistem Keamanan',
         timestamp: serverTimestamp(),
       });
 
       toast({
-        title: 'Link Transaksi Berhasil Dibuat',
-        description: 'Membuka Room Chat Anda sekarang...',
+        title: 'Link Room Berhasil Dibuat!',
+        description: 'Mengarahkan Anda ke Room Chat...',
       });
 
       router.push(`/chat/${docRef.id}`);
     } catch (error) {
-      console.error("Error adding document: ", error);
+      console.error("Error:", error);
       toast({
         variant: 'destructive',
-        title: 'Terjadi Kesalahan',
-        description: 'Gagal membuat transaksi. Silakan coba lagi.',
+        title: 'Gagal Membuat Transaksi',
+        description: 'Terjadi kesalahan pada server. Silakan coba lagi.',
       });
     } finally {
       setIsLoading(false);
@@ -105,19 +100,22 @@ export function TransactionForm() {
   };
 
   return (
-    <section id="buat-transaksi" className="py-20 sm:py-28">
+    <section id="buat-transaksi" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl font-headline">
-            Mulai Transaksi Aman
-          </h2>
-          <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            Isi formulir untuk membuat **Link Room Chat** eksklusif dan mulai transaksi Anda.
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <Badge variant="outline" className="mb-4">Eksklusif & Aman</Badge>
+          <h2 className="text-3xl md:text-5xl font-bold font-headline mb-4">Buat Link Transaksi</h2>
+          <p className="text-muted-foreground">
+            Sistem kami akan membuatkan Link Room Chat terenkripsi untuk Anda dan lawan transaksi.
           </p>
         </div>
-        <Card className="max-w-2xl mx-auto mt-12 bg-card border-border shadow-lg">
+
+        <Card className="max-w-2xl mx-auto border-border shadow-2xl bg-card/50 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle className="text-center font-headline text-2xl">Formulir Transaksi</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <ShieldCheck className="h-6 w-6 text-primary" />
+              Detail Transaksi Baru
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <Form {...form}>
@@ -128,9 +126,9 @@ export function TransactionForm() {
                     name="sellerPhone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Nomor WhatsApp Penjual</FormLabel>
+                        <FormLabel>WA Penjual (Identitas)</FormLabel>
                         <FormControl>
-                          <Input placeholder="Masukkan nomor penjual" {...field} />
+                          <Input placeholder="Contoh: 0812..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -141,30 +139,30 @@ export function TransactionForm() {
                     name="buyerPhone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Nomor WhatsApp Pembeli</FormLabel>
+                        <FormLabel>WA Pembeli (Identitas)</FormLabel>
                         <FormControl>
-                          <Input placeholder="Masukkan nomor pembeli" {...field} />
+                          <Input placeholder="Contoh: 0812..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
-                 <FormField
+
+                <FormField
                   control={form.control}
                   name="amount"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Nominal Transaksi (IDR)</FormLabel>
+                      <FormLabel>Nominal Transaksi (Rp)</FormLabel>
                       <FormControl>
-                         <Input
-                          placeholder="Contoh: 150000"
-                          {...field}
+                        <Input
                           type="text"
+                          placeholder="Minimal 10.000"
                           value={field.value > 0 ? field.value.toLocaleString('id-ID') : ''}
                           onChange={(e) => {
-                            const value = e.target.value.replace(/[^0-9]/g, '');
-                            field.onChange(Number(value) || 0);
+                            const val = e.target.value.replace(/[^0-9]/g, '');
+                            field.onChange(Number(val) || 0);
                           }}
                         />
                       </FormControl>
@@ -172,49 +170,50 @@ export function TransactionForm() {
                     </FormItem>
                   )}
                 />
+
                 <FormField
                   control={form.control}
                   name="description"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Deskripsi Transaksi</FormLabel>
+                      <FormLabel>Deskripsi Barang/Jasa</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="Contoh: Jual beli akun game MLBB, level 30, skin legend." {...field} />
+                        <Textarea 
+                          placeholder="Tuliskan detail apa yang ditransaksikan agar Admin mudah memantau." 
+                          className="min-h-[100px]"
+                          {...field} 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+
                 <FormField
                   control={form.control}
                   name="terms"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-                       <FormControl>
-                          <Checkbox
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </FormControl>
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 bg-muted/20">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
                       <div className="space-y-1 leading-none">
-                        <FormLabel>
-                          Saya akan mematuhi Aturan & Ketentuan yang berlaku.
+                        <FormLabel className="text-xs">
+                          Saya setuju bahwa transaksi ini akan menggunakan sistem Rekber Nusantara dan mematuhi kebijakan yang berlaku.
                         </FormLabel>
-                        <FormMessage />
                       </div>
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full btn-rgb" size="lg" disabled={isLoading}>
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Membuat Link Room...
-                    </>
-                  ) : (
+
+                <Button type="submit" className="w-full btn-rgb h-12" disabled={isLoading}>
+                  {isLoading ? <Loader2 className="animate-spin" /> : (
                     <span className="flex items-center gap-2">
                       <Link2 className="h-5 w-5" />
-                      Buat Link & Mulai Chat
+                      Generate Link Room Chat
                     </span>
                   )}
                 </Button>
@@ -226,3 +225,5 @@ export function TransactionForm() {
     </section>
   );
 }
+
+import { Badge } from '@/components/ui/badge';

@@ -21,7 +21,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Send, ArrowLeft, ShieldCheck, Info, Loader2, Copy, Share2, MessageCircle, Link2 } from 'lucide-react';
+import { Send, ArrowLeft, ShieldCheck, Info, Loader2, Copy, MessageCircle, Link2, User } from 'lucide-react';
 import { Navbar } from '@/components/landing/navbar';
 import { Footer } from '@/components/landing/footer';
 import { useToast } from '@/hooks/use-toast';
@@ -42,6 +42,7 @@ interface Transaction {
   buyerId: string;
   sellerPhone: string;
   buyerPhone: string;
+  buyerName?: string;
 }
 
 export default function ChatPage() {
@@ -68,8 +69,7 @@ export default function ChatPage() {
         const docRef = doc(db, 'transactions', id as string);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          const data = docSnap.data();
-          setTransaction({ id: docSnap.id, ...data } as Transaction);
+          setTransaction({ id: docSnap.id, ...docSnap.data() } as Transaction);
         }
       } catch (err) {
         console.error(err);
@@ -116,7 +116,7 @@ export default function ChatPage() {
       await addDoc(collection(db, 'transactions', id as string, 'messages'), {
         text: text,
         senderId: user.uid,
-        senderName: user.displayName || 'User',
+        senderName: user.displayName || user.email?.split('@')[0] || 'User',
         timestamp: serverTimestamp(),
       });
     } catch (err) {
@@ -125,43 +125,35 @@ export default function ChatPage() {
   };
 
   const copyLink = () => {
-    const url = window.location.href;
-    navigator.clipboard.writeText(url);
+    if (typeof window === 'undefined') return;
+    navigator.clipboard.writeText(window.location.href);
     toast({
-      title: 'Link Room Berhasil Dibuat!',
-      description: 'Link telah disalin ke clipboard. Silakan bagikan ke lawan transaksi Anda.',
+      title: 'Link Disalin!',
+      description: 'Bagikan link ini ke lawan transaksi Anda.',
     });
   };
 
   const shareToWhatsApp = () => {
     if (!transaction) return;
     const url = window.location.href;
-    const text = `Halo, saya sudah membuat Room Rekber di Rekber Nusantara.\n\nDeskripsi: ${transaction.description}\nNominal: Rp ${transaction.amount.toLocaleString('id-ID')}\n\nSilakan bergabung ke room chat resmi di sini untuk melanjutkan transaksi:\n${url}`;
+    const text = `Halo, saya sudah membuat Room Rekber Resmi.\n\nBarang: ${transaction.description}\nNominal: Rp ${transaction.amount.toLocaleString('id-ID')}\n\nSilakan klik link di bawah untuk masuk ke Room Chat:\n${url}`;
     const waUrl = `https://wa.me/${transaction.sellerPhone.replace(/\+/g, '')}?text=${encodeURIComponent(text)}`;
     window.open(waUrl, '_blank');
   };
 
   if (isLoading || authLoading) {
     return (
-      <div className="flex flex-col min-h-screen bg-background">
-        <Navbar />
-        <div className="flex-1 container mx-auto p-4 flex items-center justify-center">
-          <Loader2 className="animate-spin h-8 w-8 text-primary" />
-        </div>
+      <div className="flex flex-col min-h-screen bg-background justify-center items-center">
+        <Loader2 className="animate-spin h-12 w-12 text-primary" />
       </div>
     );
   }
 
   if (!transaction) {
     return (
-      <div className="flex flex-col min-h-screen bg-background">
-        <Navbar />
-        <div className="flex-1 container mx-auto p-4 flex flex-col items-center justify-center space-y-4">
-          <h2 className="text-2xl font-bold">Room Chat Tidak Ditemukan</h2>
-          <Button onClick={() => router.push('/transactions')} variant="outline">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Kembali ke Riwayat
-          </Button>
-        </div>
+      <div className="flex flex-col min-h-screen items-center justify-center space-y-4">
+        <h2 className="text-xl font-bold">Room tidak ditemukan.</h2>
+        <Button onClick={() => router.push('/')}>Kembali ke Beranda</Button>
       </div>
     );
   }
@@ -169,108 +161,73 @@ export default function ChatPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Navbar />
-      <main className="flex-1 container mx-auto px-4 py-8 flex flex-col lg:flex-row gap-6">
-        <div className="lg:w-1/3 space-y-6">
-          <Button variant="ghost" onClick={() => router.push('/transactions')} className="mb-4">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Kembali
-          </Button>
-          
-          <Card className="border-border shadow-md overflow-hidden">
-            <CardHeader className="bg-primary/10 border-b">
-              <CardTitle className="text-lg font-headline flex items-center gap-2">
-                <Link2 className="h-5 w-5 text-primary" /> Link Room Transaksi
+      <main className="flex-1 container mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
+        {/* Sidebar Info */}
+        <div className="lg:w-80 space-y-4">
+          <Card className="border-border">
+            <CardHeader className="bg-primary/5 pb-4">
+              <CardTitle className="text-sm font-headline flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4 text-primary" /> Verifikasi Transaksi
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-4 space-y-4">
-              <p className="text-xs text-muted-foreground">
-                Bagikan link di bawah ini kepada Penjual atau Pembeli untuk bergabung ke dalam percakapan aman ini.
-              </p>
-              <div className="flex gap-2">
-                <Input 
-                  readOnly 
-                  value={typeof window !== 'undefined' ? window.location.href : ''} 
-                  className="text-xs bg-muted/50 font-mono"
-                />
-                <Button size="icon" variant="secondary" onClick={copyLink} title="Salin Link">
-                  <Copy className="h-4 w-4" />
-                </Button>
+            <CardContent className="pt-4 space-y-4">
+              <div className="space-y-1">
+                <p className="text-[10px] text-muted-foreground uppercase font-bold">Penjual (WhatsApp)</p>
+                <p className="text-sm font-mono">{transaction.sellerPhone}</p>
               </div>
-              <Button className="w-full bg-green-600 hover:bg-green-700 text-white gap-2" onClick={shareToWhatsApp}>
-                <MessageCircle className="h-4 w-4" /> Kirim ke WhatsApp
+              <div className="space-y-1">
+                <p className="text-[10px] text-muted-foreground uppercase font-bold">Pembeli (WhatsApp)</p>
+                <p className="text-sm font-mono">{transaction.buyerPhone}</p>
+              </div>
+              <div className="pt-2 border-t">
+                <p className="text-[10px] text-muted-foreground uppercase font-bold">Nominal</p>
+                <p className="text-lg font-bold">Rp {transaction.amount.toLocaleString('id-ID')}</p>
+              </div>
+              <Button size="sm" variant="secondary" className="w-full gap-2 text-xs" onClick={copyLink}>
+                <Copy className="h-3 w-3" /> Salin Link Room
+              </Button>
+              <Button size="sm" className="w-full bg-green-600 hover:bg-green-700 text-white gap-2 text-xs" onClick={shareToWhatsApp}>
+                <MessageCircle className="h-3 w-3" /> Undang ke WA
               </Button>
             </CardContent>
           </Card>
 
-          <Card className="border-border shadow-md">
-            <CardHeader className="bg-secondary/20 border-b">
-              <CardTitle className="text-xl font-headline flex items-center gap-2">
-                <Info className="h-5 w-5 text-primary" /> Detail Transaksi
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-6 space-y-4">
-              <div>
-                <p className="text-xs text-muted-foreground uppercase font-bold tracking-wider">ID Transaksi</p>
-                <p className="font-mono text-sm break-all">{transaction.id}</p>
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground uppercase font-bold tracking-wider">Deskripsi</p>
-                <p className="text-sm">{transaction.description}</p>
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground uppercase font-bold tracking-wider">Nominal</p>
-                <p className="text-lg font-bold">Rp {transaction.amount.toLocaleString('id-ID')}</p>
-              </div>
-              <div className="pt-4">
-                <Badge variant={transaction.status === 'completed' ? 'success' : 'secondary'} className="w-full justify-center py-1">
-                  Status: {transaction.status === 'pending' ? 'Dalam Proses' : transaction.status}
-                </Badge>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <div className="p-4 rounded-lg bg-blue-900/10 border border-blue-500/20 text-xs text-blue-200">
-            <p className="flex items-center gap-2 mb-2 font-bold uppercase tracking-widest">
-              <ShieldCheck className="h-3 w-3" /> Info Keamanan
+          <div className="p-4 rounded-lg bg-blue-950/30 border border-blue-500/20">
+            <div className="flex items-center gap-2 mb-2 text-blue-400">
+              <Info className="h-4 w-4" />
+              <span className="text-xs font-bold uppercase tracking-wider">Tips Aman</span>
+            </div>
+            <p className="text-[11px] text-blue-200/70 leading-relaxed">
+              Pastikan Anda hanya mentransfer ke rekening yang diberikan oleh Admin di dalam chat ini. Jangan percaya link dari luar sistem.
             </p>
-            Pastikan lawan transaksi Anda masuk melalui link resmi di atas. Jangan pernah memberikan password atau data sensitif lainnya.
           </div>
         </div>
 
-        <Card className="flex-1 flex flex-col h-[75vh] border-border shadow-xl">
-          <CardHeader className="border-b bg-card py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="bg-primary/20 p-2 rounded-full">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <CardTitle className="text-lg font-headline">Room Chat Rekber</CardTitle>
-                  <p className="text-xs text-green-500 flex items-center gap-1">
-                    <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></span> Terkoneksi Aman
-                  </p>
-                </div>
+        {/* Chat Area */}
+        <Card className="flex-1 flex flex-col h-[70vh] lg:h-[80vh] border-border shadow-2xl overflow-hidden">
+          <CardHeader className="border-b bg-card py-3 flex flex-row items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="bg-primary/10 p-2 rounded-full">
+                <MessageCircle className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <CardTitle className="text-base font-headline">Room Chat Aman</CardTitle>
+                <p className="text-[10px] text-green-500 font-medium">Aktif & Terenkripsi</p>
               </div>
             </div>
           </CardHeader>
-          
-          <CardContent className="flex-1 overflow-hidden p-0 relative">
-            <ScrollArea className="h-full p-4">
+
+          <CardContent className="flex-1 p-0 bg-muted/5 relative overflow-hidden">
+            <ScrollArea className="h-full px-4 py-4">
               <div className="space-y-4">
-                {messages.length === 0 && (
-                   <div className="flex justify-center my-8">
-                    <div className="text-center max-w-xs">
-                      <p className="text-sm text-muted-foreground italic">Belum ada pesan. Mulai percakapan atau bagikan link room ini kepada lawan transaksi Anda.</p>
-                    </div>
-                  </div>
-                )}
                 {messages.map((msg) => {
                   const isMe = msg.senderId === user?.uid;
                   const isSystem = msg.senderId === 'system';
 
                   if (isSystem) {
                     return (
-                      <div key={msg.id} className="flex justify-center my-4">
-                        <div className="bg-muted px-4 py-2 rounded-full text-[10px] text-muted-foreground font-semibold uppercase tracking-widest border border-border max-w-[90%] text-center">
+                      <div key={msg.id} className="flex justify-center">
+                        <div className="bg-muted/50 border px-3 py-1 rounded-full text-[10px] text-muted-foreground font-medium">
                           {msg.text}
                         </div>
                       </div>
@@ -278,24 +235,17 @@ export default function ChatPage() {
                   }
 
                   return (
-                    <div
-                      key={msg.id}
-                      className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}
-                    >
-                      <div className={`flex flex-col max-w-[80%] ${isMe ? 'items-end' : 'items-start'}`}>
-                        <div className="flex items-center gap-1 mb-1 px-1">
-                          <span className="text-[10px] text-muted-foreground font-bold">{msg.senderName}</span>
-                        </div>
-                        <div
-                          className={`px-4 py-2 rounded-2xl text-sm shadow-sm ${
-                            isMe
-                              ? 'bg-primary text-primary-foreground rounded-tr-none'
-                              : 'bg-secondary text-secondary-foreground rounded-tl-none border border-border'
-                          }`}
-                        >
+                    <div key={msg.id} className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}>
+                      <div className={`flex flex-col max-w-[85%] ${isMe ? 'items-end' : 'items-start'}`}>
+                        <span className="text-[10px] text-muted-foreground mb-1 px-1 flex items-center gap-1">
+                          {!isMe && <User className="h-2 w-2" />} {msg.senderName}
+                        </span>
+                        <div className={`px-4 py-2 rounded-2xl text-sm ${
+                          isMe ? 'bg-primary text-primary-foreground rounded-tr-none' : 'bg-card border border-border rounded-tl-none'
+                        }`}>
                           {msg.text}
                         </div>
-                        <span className="text-[9px] text-muted-foreground mt-1 px-1">
+                        <span className="text-[8px] text-muted-foreground mt-1 px-1">
                           {msg.timestamp ? new Date(msg.timestamp.seconds * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : ''}
                         </span>
                       </div>
@@ -307,13 +257,13 @@ export default function ChatPage() {
             </ScrollArea>
           </CardContent>
 
-          <CardFooter className="border-t p-4 bg-muted/30">
+          <CardFooter className="p-4 bg-background border-t">
             <form onSubmit={handleSendMessage} className="flex w-full gap-2">
               <Input
-                placeholder="Ketik pesan di sini..."
+                placeholder="Tulis pesan..."
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
-                className="flex-1 bg-background border-border"
+                className="bg-muted/30"
               />
               <Button type="submit" size="icon" className="btn-rgb" disabled={!newMessage.trim()}>
                 <Send className="h-4 w-4" />
