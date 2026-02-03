@@ -19,14 +19,10 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Badge } from '@/components/ui/badge';
 
 const formSchema = z.object({
-  sellerName: z.string()
-    .min(2, { message: 'Nama Penjual minimal 2 karakter.' }),
-  buyerName: z.string()
-    .min(2, { message: 'Nama Pembeli minimal 2 karakter.' }),
-  description: z.string()
-    .min(10, { message: 'Deskripsi minimal 10 karakter.' }),
-  amount: z.number()
-    .min(10000, { message: 'Minimal transaksi Rp 10.000.' }),
+  sellerName: z.string().min(2, { message: 'Nama Penjual minimal 2 karakter.' }),
+  buyerName: z.string().min(2, { message: 'Nama Pembeli minimal 2 karakter.' }),
+  description: z.string().min(10, { message: 'Deskripsi minimal 10 karakter.' }),
+  amount: z.number().min(10000, { message: 'Minimal transaksi Rp 10.000.' }),
   terms: z.boolean().refine((val) => val === true, {
     message: 'Anda harus menyetujui aturan layanan.',
   }),
@@ -64,11 +60,8 @@ export function TransactionForm() {
     }
 
     try {
-      if (!db) {
-        throw new Error("Koneksi Database Gagal.");
-      }
+      if (!db) throw new Error("Koneksi Database Gagal.");
 
-      // Simpan transaksi dengan buyerId agar sesuai dengan security rules & history page
       const docRef = await addDoc(collection(db, 'transactions'), {
         buyerId: user.uid,
         creatorName: user.displayName || user.email?.split('@')[0] || 'User',
@@ -80,9 +73,8 @@ export function TransactionForm() {
         createdAt: serverTimestamp(),
       });
 
-      // Kirim pesan sistem pertama
       await addDoc(collection(db, 'transactions', docRef.id, 'messages'), {
-        text: `🛡️ Sistem Keamanan: Room Chat berhasil dibuat. Penjual (${values.sellerName}) dan Pembeli (${values.buyerName}) silakan berdiskusi di sini.`,
+        text: `🛡️ Sistem Keamanan: Room Chat berhasil dibuat untuk ${values.description}. Silakan Penjual (${values.sellerName}) dan Pembeli (${values.buyerName}) berdiskusi di sini.`,
         senderId: 'system',
         senderName: 'Sistem',
         timestamp: serverTimestamp(),
@@ -90,16 +82,16 @@ export function TransactionForm() {
 
       toast({
         title: 'Berhasil!',
-        description: 'Link Transaksi telah dibuat.',
+        description: 'Link Room Chat Transaksi telah dibuat.',
       });
 
       router.push(`/chat/${docRef.id}`);
     } catch (error: any) {
-      console.error("Error creating transaction:", error);
+      console.error("Error:", error);
       toast({
         variant: 'destructive',
         title: 'Gagal Membuat Link',
-        description: error.message || 'Terjadi kesalahan izin database. Pastikan Rules Firestore sudah benar.',
+        description: 'Terjadi kesalahan. Pastikan koneksi stabil dan Rules Firestore sudah di-Publish.',
       });
     } finally {
       setIsLoading(false);
@@ -113,7 +105,7 @@ export function TransactionForm() {
           <Badge variant="outline" className="mb-4">Eksklusif & Aman</Badge>
           <h2 className="text-3xl md:text-5xl font-bold font-headline mb-4">Buat Link Transaksi</h2>
           <p className="text-muted-foreground">
-            Sistem kami akan membuatkan Link Room Chat untuk Anda dan lawan transaksi.
+            Sistem kami akan membuatkan Link Room Chat privat untuk Anda dan lawan transaksi.
           </p>
         </div>
 
@@ -135,7 +127,7 @@ export function TransactionForm() {
                       <FormItem>
                         <FormLabel>Nama Penjual</FormLabel>
                         <FormControl>
-                          <Input placeholder="Nama Penjual" {...field} />
+                          <Input placeholder="Contoh: Toko Aman" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -148,7 +140,7 @@ export function TransactionForm() {
                       <FormItem>
                         <FormLabel>Nama Pembeli</FormLabel>
                         <FormControl>
-                          <Input placeholder="Nama Pembeli" {...field} />
+                          <Input placeholder="Contoh: Budi Jaka" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

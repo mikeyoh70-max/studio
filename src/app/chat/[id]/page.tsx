@@ -132,7 +132,7 @@ export default function ChatPage() {
       toast({
         variant: 'destructive',
         title: 'Gagal Salin',
-        description: 'Silakan salin link secara manual.',
+        description: 'Browser Anda memblokir fitur copy otomatis.',
       });
     }
   };
@@ -143,22 +143,6 @@ export default function ChatPage() {
     const text = `Halo, saya sudah membuat Room Rekber Nusantara Resmi.\n\nBarang: ${transaction.description}\nNominal: Rp ${transaction.amount.toLocaleString('id-ID')}\n\nSilakan klik link di bawah untuk masuk ke Room Chat:\n${url}`;
     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     window.open(waUrl, '_blank');
-  };
-
-  const nativeShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Room Rekber Nusantara',
-          text: `Ayo masuk ke Room Chat Rekber: ${transaction?.description}`,
-          url: window.location.href,
-        });
-      } catch (err) {
-        console.log('User cancelled share');
-      }
-    } else {
-      copyLink();
-    }
   };
 
   if (isLoading || authLoading) {
@@ -216,9 +200,6 @@ export default function ChatPage() {
                 <Button size="sm" className="w-full bg-green-600 hover:bg-green-700 text-white gap-2 text-xs" onClick={shareToWhatsApp}>
                   <MessageCircle className="h-3 w-3" /> Undang Lewat WA
                 </Button>
-                <Button size="sm" variant="secondary" className="w-full gap-2 text-xs md:hidden" onClick={nativeShare}>
-                  <Share2 className="h-3 w-3" /> Bagikan Link
-                </Button>
               </div>
             </CardContent>
           </Card>
@@ -229,7 +210,7 @@ export default function ChatPage() {
               <span className="text-xs font-bold uppercase tracking-wider">Penting!</span>
             </div>
             <p className="text-[11px] text-blue-200/70 leading-relaxed">
-              Bagikan link di atas kepada lawan transaksi Anda. Pastikan mereka juga masuk ke room ini untuk diskusi yang aman.
+              Kirimkan link di atas kepada lawan transaksi Anda. Pastikan mereka juga Login agar bisa mengobrol di Room Chat yang aman ini.
             </p>
           </div>
         </div>
@@ -275,9 +256,6 @@ export default function ChatPage() {
                         }`}>
                           {msg.text}
                         </div>
-                        <span className="text-[8px] text-muted-foreground mt-1 px-1">
-                          {msg.timestamp ? new Date(msg.timestamp.seconds * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : ''}
-                        </span>
                       </div>
                     </div>
                   );
