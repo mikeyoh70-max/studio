@@ -17,6 +17,7 @@ export function TransactionTracker() {
     if (!txId.trim()) return;
     
     setIsLoading(true);
+    // User diarahkan ke halaman detail transaksi berdasarkan ID yang diinput
     router.push(`/transactions/${txId.trim()}`);
   };
 
@@ -29,7 +30,7 @@ export function TransactionTracker() {
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
-                  placeholder="Masukkan ID Transaksi Anda (Contoh: ab12cd34...)"
+                  placeholder="Masukkan ID Transaksi (Contoh: ab12cd34...)"
                   className="pl-10 h-12 md:h-14 text-lg bg-background/50"
                   value={txId}
                   onChange={(e) => setTxId(e.target.value)}
@@ -40,7 +41,7 @@ export function TransactionTracker() {
               </Button>
             </form>
             <p className="text-center mt-4 text-sm text-muted-foreground">
-              Pantau progres transaksi Anda secara transparan dan real-time.
+              Masukkan ID transaksi Anda untuk memantau progres secara real-time tanpa harus login.
             </p>
           </CardContent>
         </Card>
