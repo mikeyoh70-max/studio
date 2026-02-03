@@ -15,8 +15,9 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <TransactionTracker />
-        <WhyUs />
+        {/* Urutan ditukar: Form dulu baru WhyUs */}
         <TransactionForm />
+        <WhyUs />
         <FeeCalculator />
         <Testimonials />
         <Faq />

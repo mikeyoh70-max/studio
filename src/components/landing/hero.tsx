@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
 
-
 const imageCaptions = [
   "Transaksi Akun Game",
   "Jasa & Produk Digital",
