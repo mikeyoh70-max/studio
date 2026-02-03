@@ -18,16 +18,11 @@ import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Badge } from '@/components/ui/badge';
 
-// Regex yang lebih santai untuk nomor telepon (boleh pakai spasi, plus, atau dash)
-const phoneRegex = /^[0-9+\s-]+$/;
-
 const formSchema = z.object({
-  sellerPhone: z.string()
-    .min(8, { message: 'Nomor WhatsApp Penjual minimal 8 karakter.' })
-    .regex(phoneRegex, "Gunakan format angka yang valid."),
-  buyerPhone: z.string()
-    .min(8, { message: 'Nomor WhatsApp Pembeli minimal 8 karakter.' })
-    .regex(phoneRegex, "Gunakan format angka yang valid."),
+  sellerName: z.string()
+    .min(2, { message: 'Nama Penjual minimal 2 karakter.' }),
+  buyerName: z.string()
+    .min(2, { message: 'Nama Pembeli minimal 2 karakter.' }),
   description: z.string()
     .min(10, { message: 'Deskripsi minimal 10 karakter.' }),
   amount: z.number()
@@ -46,8 +41,8 @@ export function TransactionForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      sellerPhone: '',
-      buyerPhone: '',
+      sellerName: '',
+      buyerName: '',
       description: '',
       amount: 0,
       terms: false,
@@ -70,32 +65,30 @@ export function TransactionForm() {
 
     try {
       if (!db) {
-        throw new Error("Koneksi Database Gagal. Pastikan Firebase API Key sudah diatur.");
+        throw new Error("Koneksi Database Gagal.");
       }
 
-      // 1. Simpan Transaksi Utama
       const docRef = await addDoc(collection(db, 'transactions'), {
-        buyerId: user.uid,
-        buyerName: user.displayName || user.email?.split('@')[0] || 'Buyer',
-        sellerPhone: values.sellerPhone.replace(/[\s-]/g, ''), // Normalisasi nomor
-        buyerPhone: values.buyerPhone.replace(/[\s-]/g, ''),
+        creatorId: user.uid,
+        creatorName: user.displayName || user.email?.split('@')[0] || 'User',
+        sellerName: values.sellerName,
+        buyerName: values.buyerName,
         description: values.description,
         amount: values.amount,
         status: 'pending',
         createdAt: serverTimestamp(),
       });
 
-      // 2. Berikan pesan sistem awal di Room Chat
       await addDoc(collection(db, 'transactions', docRef.id, 'messages'), {
-        text: `🛡️ Sistem Keamanan: Room Chat berhasil dibuat untuk ID: ${docRef.id}. Penjual (${values.sellerPhone}) dan Pembeli (${values.buyerPhone}) silakan berdiskusi secara transparan di sini.`,
+        text: `🛡️ Sistem Keamanan: Room Chat berhasil dibuat. Penjual (${values.sellerName}) dan Pembeli (${values.buyerName}) silakan berdiskusi di sini.`,
         senderId: 'system',
-        senderName: 'Sistem Keamanan',
+        senderName: 'Sistem',
         timestamp: serverTimestamp(),
       });
 
       toast({
         title: 'Berhasil!',
-        description: 'Link Transaksi telah dibuat. Mengalihkan ke Room Chat...',
+        description: 'Link Transaksi telah dibuat.',
       });
 
       router.push(`/chat/${docRef.id}`);
@@ -104,7 +97,7 @@ export function TransactionForm() {
       toast({
         variant: 'destructive',
         title: 'Gagal Membuat Link',
-        description: error.message || 'Terjadi kesalahan sistem. Coba lagi nanti.',
+        description: error.message || 'Terjadi kesalahan sistem.',
       });
     } finally {
       setIsLoading(false);
@@ -118,7 +111,7 @@ export function TransactionForm() {
           <Badge variant="outline" className="mb-4">Eksklusif & Aman</Badge>
           <h2 className="text-3xl md:text-5xl font-bold font-headline mb-4">Buat Link Transaksi</h2>
           <p className="text-muted-foreground">
-            Sistem kami akan membuatkan Link Room Chat terenkripsi untuk Anda dan lawan transaksi.
+            Sistem kami akan membuatkan Link Room Chat untuk Anda dan lawan transaksi.
           </p>
         </div>
 
@@ -135,12 +128,12 @@ export function TransactionForm() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
-                    name="sellerPhone"
+                    name="sellerName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>WA Penjual</FormLabel>
+                        <FormLabel>Nama Penjual</FormLabel>
                         <FormControl>
-                          <Input placeholder="0812..." {...field} />
+                          <Input placeholder="Nama Penjual" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -148,12 +141,12 @@ export function TransactionForm() {
                   />
                   <FormField
                     control={form.control}
-                    name="buyerPhone"
+                    name="buyerName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>WA Pembeli</FormLabel>
+                        <FormLabel>Nama Pembeli</FormLabel>
                         <FormControl>
-                          <Input placeholder="0895..." {...field} />
+                          <Input placeholder="Nama Pembeli" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

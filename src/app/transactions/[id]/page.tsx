@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Progress } from '@/components/ui/progress';
-import { CheckCircle2, Clock, ShieldCheck, ArrowLeft, ExternalLink, MessageSquare } from 'lucide-react';
+import { CheckCircle2, Clock, ShieldCheck, ArrowLeft, MessageSquare, UserCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -18,8 +18,8 @@ interface Transaction {
   amount: number;
   status: 'pending' | 'completed' | 'cancelled';
   createdAt: Timestamp;
-  sellerPhone: string;
-  buyerPhone: string;
+  sellerName: string;
+  buyerName: string;
 }
 
 const formatCurrency = (value: number) => {
@@ -55,7 +55,6 @@ const getStatusConfig = (status: string) => {
 
 export default function TransactionDetailPage() {
   const { id } = useParams();
-  const router = useRouter();
   const [transaction, setTransaction] = useState<Transaction | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -163,16 +162,16 @@ export default function TransactionDetailPage() {
                 </div>
                 <div className="space-y-4">
                   <h4 className="font-bold text-primary flex items-center gap-2">
-                    <ExternalLink className="h-4 w-4" /> Informasi Kontak
+                    <UserCircle className="h-4 w-4" /> Pihak Terlibat
                   </h4>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <p className="text-sm text-muted-foreground">Pembeli:</p>
-                      <p className="font-mono text-xs">{transaction.buyerPhone}</p>
+                      <p className="font-semibold text-sm">{transaction.buyerName}</p>
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Penjual:</p>
-                      <p className="font-mono text-xs">{transaction.sellerPhone}</p>
+                      <p className="font-semibold text-sm">{transaction.sellerName}</p>
                     </div>
                   </div>
                 </div>
@@ -184,7 +183,7 @@ export default function TransactionDetailPage() {
         <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <h4 className="font-bold text-lg">Ada kendala atau ingin konfirmasi?</h4>
-            <p className="text-sm text-muted-foreground">Gunakan Room Chat internal untuk berbicara langsung dengan Admin kami.</p>
+            <p className="text-sm text-muted-foreground">Gunakan Room Chat internal untuk berbicara langsung dengan pihak terkait.</p>
           </div>
           <Button asChild className="btn-rgb" size="lg">
              <Link href={`/chat/${transaction.id}`} className="gap-2">

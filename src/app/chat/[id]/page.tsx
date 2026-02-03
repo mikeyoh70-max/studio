@@ -37,10 +37,8 @@ interface Transaction {
   description: string;
   amount: number;
   status: string;
-  buyerId: string;
-  sellerPhone: string;
-  buyerPhone: string;
-  buyerName?: string;
+  buyerName: string;
+  sellerName: string;
 }
 
 export default function ChatPage() {
@@ -134,7 +132,7 @@ export default function ChatPage() {
       toast({
         variant: 'destructive',
         title: 'Gagal Salin',
-        description: 'Silakan salin link secara manual dari address bar.',
+        description: 'Silakan salin link secara manual.',
       });
     }
   };
@@ -143,8 +141,6 @@ export default function ChatPage() {
     if (!transaction) return;
     const url = window.location.href;
     const text = `Halo, saya sudah membuat Room Rekber Nusantara Resmi.\n\nBarang: ${transaction.description}\nNominal: Rp ${transaction.amount.toLocaleString('id-ID')}\n\nSilakan klik link di bawah untuk masuk ke Room Chat:\n${url}`;
-    
-    // Tanpa nomor hp di URL agar bisa memilih kontak sendiri di WhatsApp
     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     window.open(waUrl, '_blank');
   };
@@ -154,7 +150,7 @@ export default function ChatPage() {
       try {
         await navigator.share({
           title: 'Room Rekber Nusantara',
-          text: `Ayo masuk ke Room Chat Rekber untuk transaksi: ${transaction?.description}`,
+          text: `Ayo masuk ke Room Chat Rekber: ${transaction?.description}`,
           url: window.location.href,
         });
       } catch (err) {
@@ -186,12 +182,11 @@ export default function ChatPage() {
     <div className="flex flex-col min-h-screen bg-background">
       <Navbar />
       <main className="flex-1 container mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
-        {/* Sidebar Info */}
         <div className="lg:w-80 space-y-4">
           <Card className="border-border shadow-md">
             <CardHeader className="bg-primary/5 pb-4">
               <CardTitle className="text-sm font-headline flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-primary" /> Detail Link Chat
+                <ShieldCheck className="h-4 w-4 text-primary" /> Detail Transaksi
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-4 space-y-4">
@@ -202,6 +197,16 @@ export default function ChatPage() {
               <div className="space-y-1">
                 <p className="text-[10px] text-muted-foreground uppercase font-bold">Nominal</p>
                 <p className="text-lg font-bold">Rp {transaction.amount.toLocaleString('id-ID')}</p>
+              </div>
+              <div className="grid grid-cols-2 gap-2 pt-2">
+                <div className="space-y-1">
+                  <p className="text-[10px] text-muted-foreground uppercase font-bold">Penjual</p>
+                  <p className="text-xs font-medium">{transaction.sellerName}</p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-[10px] text-muted-foreground uppercase font-bold">Pembeli</p>
+                  <p className="text-xs font-medium">{transaction.buyerName}</p>
+                </div>
               </div>
               
               <div className="pt-4 border-t space-y-2">
@@ -229,7 +234,6 @@ export default function ChatPage() {
           </div>
         </div>
 
-        {/* Chat Area */}
         <Card className="flex-1 flex flex-col h-[70vh] lg:h-[80vh] border-border shadow-2xl overflow-hidden">
           <CardHeader className="border-b bg-card py-3 flex flex-row items-center justify-between">
             <div className="flex items-center gap-3">
