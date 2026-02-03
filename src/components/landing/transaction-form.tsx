@@ -62,6 +62,7 @@ export function TransactionForm() {
     try {
       if (!db) throw new Error("Koneksi Database Gagal.");
 
+      // Menggunakan buyerId agar sesuai dengan Firestore Rules & Halaman Riwayat
       const docRef = await addDoc(collection(db, 'transactions'), {
         buyerId: user.uid,
         creatorName: user.displayName || user.email?.split('@')[0] || 'User',
@@ -91,7 +92,7 @@ export function TransactionForm() {
       toast({
         variant: 'destructive',
         title: 'Gagal Membuat Link',
-        description: 'Terjadi kesalahan. Pastikan koneksi stabil dan Rules Firestore sudah di-Publish.',
+        description: 'Terjadi kesalahan pada server atau Rules Firestore belum diaktifkan.',
       });
     } finally {
       setIsLoading(false);
@@ -127,7 +128,7 @@ export function TransactionForm() {
                       <FormItem>
                         <FormLabel>Nama Penjual</FormLabel>
                         <FormControl>
-                          <Input placeholder="Contoh: Toko Aman" {...field} />
+                          <Input placeholder="Nama Penjual" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -140,7 +141,7 @@ export function TransactionForm() {
                       <FormItem>
                         <FormLabel>Nama Pembeli</FormLabel>
                         <FormControl>
-                          <Input placeholder="Contoh: Budi Jaka" {...field} />
+                          <Input placeholder="Nama Pembeli" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -178,7 +179,7 @@ export function TransactionForm() {
                       <FormLabel>Deskripsi Barang/Jasa</FormLabel>
                       <FormControl>
                         <Textarea 
-                          placeholder="Contoh: Jual akun ML Mythic skin 200+ aman." 
+                          placeholder="Contoh: Jual akun game level 50 aman." 
                           className="min-h-[100px]"
                           {...field} 
                         />

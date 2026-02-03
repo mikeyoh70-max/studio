@@ -7,6 +7,7 @@ import { Footer } from '@/components/landing/footer';
 import { Faq } from '@/components/landing/faq';
 import { TransactionTracker } from '@/components/landing/transaction-tracker';
 import { FeeCalculator } from '@/components/landing/fee-calculator';
+import { AdminVerification } from '@/components/landing/admin-verification';
 
 export default function Home() {
   return (
@@ -15,10 +16,9 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <TransactionTracker />
-        {/* Urutan: Form dulu baru WhyUs sesuai request */}
         <TransactionForm />
         <WhyUs />
-        {/* Mengembalikan fitur kalkulator yang sempat hilang */}
+        <AdminVerification />
         <FeeCalculator />
         <Testimonials />
         <Faq />

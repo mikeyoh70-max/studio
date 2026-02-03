@@ -210,7 +210,7 @@ export default function ChatPage() {
               <span className="text-xs font-bold uppercase tracking-wider">Penting!</span>
             </div>
             <p className="text-[11px] text-blue-200/70 leading-relaxed">
-              Kirimkan link di atas kepada lawan transaksi Anda. Pastikan mereka juga Login agar bisa mengobrol di Room Chat yang aman ini.
+              Kirimkan link di atas kepada lawan transaksi Anda agar mereka bisa masuk ke Room Chat privat yang aman ini.
             </p>
           </div>
         </div>
