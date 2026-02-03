@@ -49,6 +49,7 @@ export function Hero() {
             Jasa Rekening Bersama terpercaya untuk semua kebutuhan transaksi digital Anda. Cepat, aman, dan biaya transparan.
           </p>
           
+          {/* Tombol dipusatkan dan tombol cek fee dihapus */}
           <div className="flex items-center justify-center w-full mb-16">
             <Button asChild size="lg" 
               className="btn-rgb h-14 px-12 text-lg shadow-xl transform transition-transform hover:scale-105"
