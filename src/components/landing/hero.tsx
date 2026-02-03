@@ -50,7 +50,7 @@ export function Hero() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            {/* Tombol dipusatkan dan Cek Biaya dihapus */}
+            {/* Tombol dipusatkan dan Cek Biaya tetap disembunyikan dari Hero */}
             <Button asChild size="lg" 
               className="btn-rgb h-14 px-12 text-lg shadow-xl transform transition-transform hover:scale-105"
             >
