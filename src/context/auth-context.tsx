@@ -14,6 +14,8 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   sendPasswordResetEmail,
   Auth,
   User,
@@ -50,15 +52,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Check if Firebase is configured
   const isFirebaseConfigured = !!auth;
 
   useEffect(() => {
     if (!isFirebaseConfigured) {
-      console.warn('Firebase is not configured. Auth features are disabled.');
       setLoading(false);
       return;
     }
+
+    // Cek hasil redirect saat halaman dimuat ulang (penting untuk mobile)
+    getRedirectResult(auth as Auth).catch((error) => {
+      console.error("Redirect Result Error:", error);
+    });
+
     const unsubscribe = onAuthStateChanged(auth as Auth, (user) => {
       setUser(user);
       setLoading(false);
@@ -82,10 +88,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return signOut(auth as Auth);
   };
 
-  const signInWithGoogle = () => {
+  const signInWithGoogle = async () => {
     if (!isFirebaseConfigured) throw new Error("Firebase is not configured.");
     const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth as Auth, provider);
+    
+    try {
+      // Coba popup dulu
+      return await signInWithPopup(auth as Auth, provider);
+    } catch (error: any) {
+      // Jika popup diblokir (biasa di HP), gunakan redirect
+      if (error.code === 'auth/popup-blocked' || error.code === 'auth/cancelled-popup-request') {
+        return await signInWithRedirect(auth as Auth, provider);
+      }
+      throw error;
+    }
   };
 
   const sendPasswordReset = (email: string) => {
