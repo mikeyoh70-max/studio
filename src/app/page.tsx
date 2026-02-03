@@ -2,7 +2,6 @@ import { Navbar } from '@/components/landing/navbar';
 import { Hero } from '@/components/landing/hero';
 import { WhyUs } from '@/components/landing/why-us';
 import { TransactionForm } from '@/components/landing/transaction-form';
-import { AdminVerification } from '@/components/landing/admin-verification';
 import { FeeCalculator } from '@/components/landing/fee-calculator';
 import { Testimonials } from '@/components/landing/testimonials';
 import { Footer } from '@/components/landing/footer';
@@ -18,7 +17,6 @@ export default function Home() {
         <TransactionTracker />
         <WhyUs />
         <TransactionForm />
-        <AdminVerification />
         <FeeCalculator />
         <Testimonials />
         <Faq />
