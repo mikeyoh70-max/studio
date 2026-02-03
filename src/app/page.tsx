@@ -15,8 +15,8 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <TransactionTracker />
-        <TransactionForm />
         <WhyUs />
+        <TransactionForm />
         <FeeCalculator />
         <Testimonials />
         <Faq />
