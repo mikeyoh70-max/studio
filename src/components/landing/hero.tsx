@@ -31,8 +31,8 @@ export function Hero() {
       </div>
       <div className="container mx-auto px-4 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="text-center lg:text-left">
-            <div className="flex justify-center lg:justify-start mb-4">
+          <div className="text-center">
+            <div className="flex justify-center mb-4">
               <div className="relative inline-flex items-center gap-x-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-medium text-primary/80 ring-1 ring-inset ring-border">
                 <span className="flex h-2.5 w-2.5">
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-500"></span>
@@ -45,20 +45,15 @@ export function Hero() {
               <span className="block text-sky-400">Hati Tenang.</span>
               <span className="block text-teal-400">Rekber Nusantara.</span>
             </h1>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto lg:mx-0">
+            <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
               Jasa Rekening Bersama terpercaya untuk semua kebutuhan transaksi digital Anda. Cepat, aman, dan biaya transparan.
             </p>
-            <div className="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
+            <div className="mt-10 flex items-center justify-center gap-x-6">
               <Button asChild size="lg" 
                 className="btn-rgb shadow-lg transform transition-transform hover:scale-105"
               >
                 <a href="#buat-transaksi">
                   Mulai Transaksi Aman
-                </a>
-              </Button>
-               <Button asChild size="lg" variant="outline">
-                <a href="#cek-fee">
-                  Cek Biaya Jasa
                 </a>
               </Button>
             </div>
