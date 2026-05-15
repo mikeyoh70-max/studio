@@ -56,13 +56,13 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-20 sm:py-28 bg-[#0f172a]">
+    <section id="testimonials" className="py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl font-headline">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl font-headline">
             Apa Kata Mereka?
           </h2>
-          <p className="mt-6 text-lg leading-8 text-slate-400">
+          <p className="mt-6 text-lg leading-8 text-slate-600">
             Dengarkan pengalaman langsung dari para pengguna yang telah bertransaksi dengan aman menggunakan jasa kami.
           </p>
         </div>
@@ -85,24 +85,24 @@ export function Testimonials() {
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                   <div className="p-4 h-full">
-                    <Card className="bg-[#161e31] border-white/5 shadow-xl flex flex-col h-full hover:border-sky-500/30 transition-all">
+                    <Card className="bg-slate-50 border-none shadow-lg flex flex-col h-full hover:shadow-xl transition-all">
                       <CardContent className="p-8 flex flex-col flex-grow">
                         <div className="flex mb-6">
                           {[...Array(testimonial.rating)].map((_, i) => (
                             <Star key={i} className="h-5 w-5 text-yellow-500 fill-yellow-500" />
                           ))}
                         </div>
-                        <blockquote className="text-slate-300 italic flex-grow text-lg leading-relaxed">
+                        <blockquote className="text-slate-700 italic flex-grow text-lg leading-relaxed">
                           "{testimonial.quote}"
                         </blockquote>
-                        <div className="mt-8 flex items-center gap-4 border-t border-white/10 pt-6">
-                          <Avatar className="h-12 w-12 border-2 border-white/10 shadow-sm">
+                        <div className="mt-8 flex items-center gap-4 border-t border-slate-200 pt-6">
+                          <Avatar className="h-12 w-12 border-2 border-white shadow-sm">
                             <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                             <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                           </Avatar>
                           <div>
-                            <p className="font-bold text-white">{testimonial.name}</p>
-                            <p className="text-sm text-slate-400 font-medium">{testimonial.title}</p>
+                            <p className="font-bold text-slate-900">{testimonial.name}</p>
+                            <p className="text-sm text-slate-500 font-medium">{testimonial.title}</p>
                           </div>
                         </div>
                       </CardContent>

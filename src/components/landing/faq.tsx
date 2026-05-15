@@ -31,24 +31,24 @@ const faqs = [
 
 export function Faq() {
   return (
-    <section id="faq" className="py-20 sm:py-28 bg-[#0f172a]">
+    <section id="faq" className="py-24 bg-slate-50">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl font-headline">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl font-headline">
             Pertanyaan Umum
           </h2>
-          <p className="mt-6 text-lg leading-8 text-slate-400">
+          <p className="mt-6 text-lg leading-8 text-slate-600">
             Punya pertanyaan? Kami punya jawaban. Berikut adalah beberapa pertanyaan yang paling sering diajukan.
           </p>
         </div>
         <div className="mt-16 max-w-4xl mx-auto">
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="bg-[#161e31] border-white/5 rounded-lg px-6">
-                <AccordionTrigger className="text-left font-semibold text-lg text-white hover:no-underline hover:text-sky-400">
+              <AccordionItem key={index} value={`item-${index}`} className="bg-white border-slate-200 rounded-lg px-6 shadow-sm">
+                <AccordionTrigger className="text-left font-semibold text-lg text-slate-900 hover:no-underline hover:text-primary">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-slate-400 text-base">
+                <AccordionContent className="text-slate-600 text-base">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

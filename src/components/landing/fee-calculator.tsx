@@ -47,7 +47,7 @@ export function FeeCalculator() {
   };
 
   return (
-    <section id="cek-fee" className="py-20 sm:py-28 bg-[#0a0f1e]">
+    <section id="cek-fee" className="py-24 bg-[#0a0f1e] text-white">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="lg:sticky top-24">
