@@ -42,61 +42,61 @@ const PaymentTextLogos = () => (
 
 export function Footer() {
   return (
-    <footer className="bg-card border-t border-border">
+    <footer className="bg-[#0a0f1e] border-t border-white/5">
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center space-x-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
-            <span className="text-xl font-bold font-headline">Rekber Nusantara</span>
+            <ShieldCheck className="h-7 w-7 text-sky-400" />
+            <span className="text-xl font-bold font-headline text-white">Rekber Nusantara</span>
           </div>
           <div className="flex space-x-2">
-            <Button variant="ghost" size="icon" asChild>
+            <Button variant="ghost" size="icon" asChild className="text-slate-400 hover:text-white">
               <Link href="#" aria-label="Twitter"><Twitter className="h-5 w-5" /></Link>
             </Button>
-            <Button variant="ghost" size="icon" asChild>
+            <Button variant="ghost" size="icon" asChild className="text-slate-400 hover:text-white">
               <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                 <MessageCircle className="h-5 w-5" />
               </a>
             </Button>
-            <Button variant="ghost" size="icon" asChild>
+            <Button variant="ghost" size="icon" asChild className="text-slate-400 hover:text-white">
               <Link href="#" aria-label="Instagram"><Instagram className="h-5 w-5" /></Link>
             </Button>
-            <Button variant="ghost" size="icon" asChild>
+            <Button variant="ghost" size="icon" asChild className="text-slate-400 hover:text-white">
               <Link href="#" aria-label="Facebook"><Facebook className="h-5 w-5" /></Link>
             </Button>
           </div>
         </div>
         
-        <div className="mt-12 pt-10 pb-6 border-t border-border text-center bg-white/5 rounded-xl">
-          <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-[0.2em] mb-8 font-headline text-slate-500">Metode Pembayaran Terverifikasi</h3>
+        <div className="mt-12 pt-10 pb-6 border-t border-white/5 text-center bg-white/5 rounded-xl">
+          <h3 className="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-8 font-headline">Metode Pembayaran Terverifikasi</h3>
           <PaymentTextLogos />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 pt-8 border-t border-border">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 pt-8 border-t border-white/5">
           <div className="col-span-1">
-            <h3 className="font-bold text-foreground mb-4">PERUSAHAAN</h3>
+            <h3 className="font-bold text-white mb-4">PERUSAHAAN</h3>
             <ul className="space-y-3">
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Tentang Kami</Link></li>
-              <li><Link href="#why-us" className="text-muted-foreground hover:text-primary transition-colors">Mengapa Kami</Link></li>
-              <li><Link href="#testimonials" className="text-muted-foreground hover:text-primary transition-colors">Testimoni</Link></li>
+              <li><Link href="#" className="text-slate-400 hover:text-sky-400 transition-colors">Tentang Kami</Link></li>
+              <li><Link href="#why-us" className="text-slate-400 hover:text-sky-400 transition-colors">Mengapa Kami</Link></li>
+              <li><Link href="#testimonials" className="text-slate-400 hover:text-sky-400 transition-colors">Testimoni</Link></li>
             </ul>
           </div>
           <div className="col-span-1">
-            <h3 className="font-bold text-foreground mb-4">LEGALITAS</h3>
+            <h3 className="font-bold text-white mb-4">LEGALITAS</h3>
             <ul className="space-y-3">
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Syarat & Ketentuan</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Kebijakan Privasi</Link></li>
+              <li><Link href="#" className="text-slate-400 hover:text-sky-400 transition-colors">Syarat & Ketentuan</Link></li>
+              <li><Link href="#" className="text-slate-400 hover:text-sky-400 transition-colors">Kebijakan Privasi</Link></li>
               <li>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="text-muted-foreground hover:text-primary transition-colors text-sm text-left">Kebijakan Refund</button>
+                    <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left">Kebijakan Refund</button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px]">
+                  <DialogContent className="sm:max-w-[425px] bg-[#0f172a] text-white border-white/10">
                     <DialogHeader>
-                      <DialogTitle className="font-headline text-2xl">Kebijakan Pengembalian</DialogTitle>
+                      <DialogTitle className="font-headline text-2xl text-white">Kebijakan Pengembalian</DialogTitle>
                     </DialogHeader>
                     <div className="py-4">
-                      <ul className="space-y-3 list-disc list-inside text-muted-foreground">
+                      <ul className="space-y-3 list-disc list-inside text-slate-400">
                         <li>Refund dapat diajukan jika Penjual tidak mengirim barang lebih dari 24 jam.</li>
                         <li>Refund berlaku jika barang tidak sesuai deskripsi (Wajib menyertakan Video Unboxing/Bukti).</li>
                         <li>Dana akan dikembalikan utuh ke Pembeli jika transaksi dibatalkan sebelum proses serah terima.</li>
@@ -105,7 +105,7 @@ export function Footer() {
                     </div>
                     <DialogFooter>
                       <DialogClose asChild>
-                        <Button type="button">Saya Mengerti</Button>
+                        <Button type="button" className="bg-sky-500 hover:bg-sky-600 text-white">Saya Mengerti</Button>
                       </DialogClose>
                     </DialogFooter>
                   </DialogContent>
@@ -114,24 +114,24 @@ export function Footer() {
             </ul>
           </div>
           <div className="col-span-2">
-            <h3 className="font-bold text-foreground mb-4">PUSAT BANTUAN</h3>
+            <h3 className="font-bold text-white mb-4">PUSAT BANTUAN</h3>
             <div className="space-y-4">
-              <p className="text-sm text-muted-foreground">Butuh bantuan atau ingin melaporkan kendala transaksi? Hubungi tim support kami.</p>
+              <p className="text-sm text-slate-400">Butuh bantuan atau ingin melaporkan kendala transaksi? Hubungi tim support kami.</p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="outline" className="flex-1 justify-start gap-3 h-12" asChild>
+                <Button variant="outline" className="flex-1 justify-start gap-3 h-12 bg-white/5 border-white/10 text-white hover:bg-white/10" asChild>
                   <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                     <Phone className="h-4 w-4 text-green-500" />
                     <div className="text-left">
-                      <p className="text-[10px] uppercase font-bold text-slate-400 leading-none">WhatsApp</p>
+                      <p className="text-[10px] uppercase font-bold text-slate-500 leading-none">WhatsApp</p>
                       <p className="text-sm">{WHATSAPP_NUMBER}</p>
                     </div>
                   </a>
                 </Button>
-                <Button variant="outline" className="flex-1 justify-start gap-3 h-12" asChild>
+                <Button variant="outline" className="flex-1 justify-start gap-3 h-12 bg-white/5 border-white/10 text-white hover:bg-white/10" asChild>
                   <a href={`mailto:${EMAIL_SUPPORT}`}>
-                    <Mail className="h-4 w-4 text-blue-500" />
+                    <Mail className="h-4 w-4 text-sky-400" />
                     <div className="text-left">
-                      <p className="text-[10px] uppercase font-bold text-slate-400 leading-none">Email</p>
+                      <p className="text-[10px] uppercase font-bold text-slate-500 leading-none">Email</p>
                       <p className="text-sm">Support CS</p>
                     </div>
                   </a>
@@ -141,7 +141,7 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground flex flex-col md:flex-row justify-between gap-4">
+        <div className="mt-12 pt-8 border-t border-white/5 text-center text-sm text-slate-500 flex flex-col md:flex-row justify-between gap-4">
           <p>&copy; {new Date().getFullYear()} Rekber Nusantara. All rights reserved.</p>
           <p className="max-w-2xl mx-auto md:mx-0">
             Layanan mediasi independen terpercaya sejak 2024.
