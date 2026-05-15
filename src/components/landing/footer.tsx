@@ -2,9 +2,8 @@
 'use client';
 
 import Link from 'next/link';
-import { Twitter, Instagram, Facebook, ShieldCheck, Youtube, MessageCircle, Phone, Mail } from 'lucide-react';
+import { Twitter, Instagram, Facebook, ShieldCheck, MessageCircle, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
 import {
   Dialog,
   DialogContent,
@@ -16,36 +15,30 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog"
 
-const paymentLogos = [
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png", alt: "BCA" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/2560px-Logo_QRIS.svg.png", alt: "QRIS" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png", alt: "Dana" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/2560px-Logo_ovo_purple.svg.png", alt: "OVO" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/SeaBank_logo.svg/2560px-SeaBank_logo.svg.png", alt: "SeaBank" },
+const paymentBrands = [
+  { name: "BCA", color: "text-[#0066AE]" },
+  { name: "QRIS", color: "text-[#ED1C24]" },
+  { name: "DANA", color: "text-[#118EEA]" },
+  { name: "OVO", color: "text-[#4C2A86]" },
+  { name: "SeaBank", color: "text-[#FF5100]" },
 ];
 
 const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara%20,%20Saya%20ingin%20Memulai%20Transaksi%20Sekarang';
 const WHATSAPP_NUMBER = '+62 895-3230-91263';
 const EMAIL_SUPPORT = 'rekbernusantara777@gmail.com';
 
-
-const PaymentLogos = () => (
-  <div className="flex flex-wrap justify-center items-center gap-4">
-    {paymentLogos.map((logo) => (
-      <div key={logo.alt} className="flex items-center justify-center h-12">
-        <Image
-          src={logo.src}
-          alt={logo.alt}
-          width={100}
-          height={32}
-          className="bg-white p-1.5 rounded-md h-8 w-auto object-contain"
-          unoptimized
-        />
-      </div>
+const PaymentTextLogos = () => (
+  <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+    {paymentBrands.map((brand) => (
+      <span 
+        key={brand.name} 
+        className={`text-2xl md:text-3xl font-black tracking-tighter ${brand.color} drop-shadow-sm`}
+      >
+        {brand.name}
+      </span>
     ))}
   </div>
 );
-
 
 export function Footer() {
   return (
@@ -74,9 +67,9 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="mt-12 pt-8 border-t border-border text-center">
-          <h3 className="text-lg font-semibold text-foreground mb-4 font-headline">Kami Menerima Pembayaran</h3>
-          <PaymentLogos />
+        <div className="mt-12 pt-10 pb-6 border-t border-border text-center bg-white/5 rounded-xl">
+          <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-[0.2em] mb-8 font-headline">Metode Pembayaran Terverifikasi</h3>
+          <PaymentTextLogos />
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 pt-8 border-t border-border">
