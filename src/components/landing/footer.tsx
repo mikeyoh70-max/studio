@@ -132,7 +132,7 @@ export function Footer() {
                     <Mail className="h-4 w-4 text-sky-400" />
                     <div className="text-left">
                       <p className="text-[10px] uppercase font-bold text-slate-500 leading-none">Email</p>
-                      <p className="text-sm">Support CS</p>
+                      <p className="text-xs sm:text-sm lowercase">{EMAIL_SUPPORT}</p>
                     </div>
                   </a>
                 </Button>
