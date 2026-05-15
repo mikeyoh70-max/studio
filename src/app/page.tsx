@@ -13,7 +13,8 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <WhyUs />
+        
+        {/* Step by Step Section */}
         <section className="py-20 bg-slate-50 border-y border-slate-100">
            <div className="container mx-auto px-4">
               <div className="text-center max-w-3xl mx-auto mb-16">
@@ -21,14 +22,26 @@ export default function Home() {
                   Hanya 3 Langkah Mudah
                 </h2>
                 <p className="mt-6 text-lg leading-8 text-slate-600">
-                  Proses transaksi di Rekber Nusantara didesain sangat simpel dan cepat.
+                  Proses transaksi di Rekber Nusantara didesain sangat simpel dan cepat agar Anda tidak perlu menunggu lama.
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 {[
-                  { step: "01", title: "Klik Mulai Transaksi", desc: "Klik tombol di website ini untuk terhubung langsung ke WhatsApp Admin." },
-                  { step: "02", title: "Dipandu Admin Resmi", desc: "Admin akan membuatkan grup transaksi dan memandu proses serah terima." },
-                  { step: "03", title: "Transaksi Selesai", desc: "Dana diteruskan ke penjual setelah pembeli mengkonfirmasi pesanan diterima." }
+                  { 
+                    step: "01", 
+                    title: "Klik Mulai Transaksi", 
+                    desc: "Klik tombol di website ini untuk terhubung langsung ke WhatsApp Admin Resmi kami." 
+                  },
+                  { 
+                    step: "02", 
+                    title: "Dipandu Admin", 
+                    desc: "Admin akan membuatkan grup transaksi dan memandu proses serah terima barang/jasa." 
+                  },
+                  { 
+                    step: "03", 
+                    title: "Transaksi Selesai", 
+                    desc: "Dana diteruskan ke penjual setelah pembeli mengkonfirmasi pesanan diterima dengan aman." 
+                  }
                 ].map((item, i) => (
                   <div key={i} className="relative text-center group">
                     <div className="text-8xl font-black text-primary/5 absolute -top-10 left-1/2 -translate-x-1/2 select-none group-hover:text-primary/10 transition-colors">
@@ -41,6 +54,8 @@ export default function Home() {
               </div>
            </div>
         </section>
+
+        <WhyUs />
         <FeeCalculator />
         <Testimonials />
         <Faq />

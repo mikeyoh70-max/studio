@@ -13,44 +13,44 @@ import Autoplay from "embla-carousel-autoplay"
 
 const testimonials = [
   {
-    name: 'Ahmad "The Invincible" Riyadi',
+    name: 'Rizky "The Invincible" Pratama',
     avatar: 'https://picsum.photos/seed/101/40/40',
-    title: 'Top Up Diamond Tercepat',
+    title: 'Pembeli Akun Game',
     rating: 5,
     quote:
-      'Prosesnya cepet banget, gak sampe 5 menit diamond udah masuk. Adminnya juga ramah dan fast response. Puas banget sama layanan Rekber Nusantara!',
+      'Prosesnya sat-set banget! Gak sampe 10 menit akun udah aman di tangan. Adminnya juga fast response biarpun tengah malem. Rekomended buat yang mau beli akun!',
   },
   {
-    name: 'Siti "The Shadow" Nurhaliza',
+    name: 'Siti Nur Aisyah',
     avatar: 'https://picsum.photos/seed/102/40/40',
-    title: 'Transaksi Akun Aman',
+    title: 'Penjual Jasa Freelance',
     rating: 5,
     quote:
-      'Awalnya ragu transaksi akun gede, tapi Rekber Nusantara bikin semuanya aman terkendali. Fitur verifikasi adminnya bikin tenang. Recommended!',
+      'Sering pake Rekber Nusantara buat transaksi jasa desain saya. Sangat membantu biar klien juga merasa aman dan saya tenang nunggu dana cair.',
   },
   {
-    name: 'Budi "The Legend" Santoso',
+    name: 'Budi Santoso',
     avatar: 'https://picsum.photos/seed/103/40/40',
-    title: 'Jasa Joki Terpercaya',
+    title: 'Top Up Game Player',
     rating: 5,
     quote:
-      'Pakai jasa joki di sini hasilnya memuaskan, rank naik drastis. Yang paling penting, akun 100% aman. Gak nyesel pilih Rekber Nusantara.',
+      'Awalnya ragu transaksi nominal gede, tapi berkat admin yang netral dan sistem verifikasinya, semuanya lancar. Fee-nya juga paling masuk akal dibanding yang lain.',
   },
    {
-    name: 'Rina "The Strategist" Wati',
+    name: 'Andi Wijaya',
     avatar: 'https://picsum.photos/seed/104/40/40',
-    title: 'Layanan Mediasi Andal',
+    title: 'Pemain Pro MLBB',
     rating: 5,
     quote:
-      'Sempat ada sedikit masalah dengan penjual, tapi tim Rekber Nusantara jadi penengah yang adil dan solutif. Transaksi jadi aman dan kedua pihak puas.',
+      'Layanan mediasi terbaik. Sempat ada salah paham sama seller, tapi admin jadi penengah yang adil banget. Dana balik aman. Makasih Rekber Nusantara!',
   },
   {
-    name: 'Eko "The Flash" Prasetyo',
+    name: 'Rina Kartika',
     avatar: 'https://picsum.photos/seed/105/40/40',
-    title: 'Sangat Direkomendasikan!',
+    title: 'Digital Marketer',
     rating: 5,
     quote:
-      'Ini rekber terbaik yang pernah saya coba. Fee-nya transparan, prosesnya jelas, dan yang pasti terpercaya. Pasti akan langganan di sini.',
+      'Gak perlu ribet daftar akun ini itu. Tinggal klik WA langsung dilayani. Simple, transparan, dan yang paling penting amanah.',
   },
 ];
 
@@ -60,10 +60,10 @@ export function Testimonials() {
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl font-headline">
-            Apa Kata Pelanggan Kami?
+            Apa Kata Mereka?
           </h2>
           <p className="mt-6 text-lg leading-8 text-slate-600">
-            Lihat bagaimana kami membantu para Pengguna bertransaksi dengan aman dan tanpa Khawatir.
+            Dengarkan pengalaman langsung dari para pengguna yang telah bertransaksi dengan aman menggunakan jasa kami.
           </p>
         </div>
         <div className="mt-16">
