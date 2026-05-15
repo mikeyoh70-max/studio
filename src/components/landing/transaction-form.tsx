@@ -16,7 +16,6 @@ import { Loader2, Link2, ShieldCheck } from 'lucide-react';
 import { useAuth } from '@/context/auth-context';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { Badge } from '@/components/ui/badge';
 
 const formSchema = z.object({
   sellerName: z.string().min(2, { message: 'Nama Penjual minimal 2 karakter.' }),
@@ -62,7 +61,6 @@ export function TransactionForm() {
     try {
       if (!db) throw new Error("Koneksi Database Gagal.");
 
-      // Menggunakan buyerId agar sesuai dengan Firestore Rules & Halaman Riwayat
       const docRef = await addDoc(collection(db, 'transactions'), {
         buyerId: user.uid,
         creatorName: user.displayName || user.email?.split('@')[0] || 'User',
@@ -102,14 +100,6 @@ export function TransactionForm() {
   return (
     <section id="buat-transaksi" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <Badge variant="outline" className="mb-4">Eksklusif & Aman</Badge>
-          <h2 className="text-3xl md:text-5xl font-bold font-headline mb-4">Buat Link Transaksi</h2>
-          <p className="text-muted-foreground">
-            Sistem kami akan membuatkan Link Room Chat privat untuk Anda dan lawan transaksi.
-          </p>
-        </div>
-
         <Card className="max-w-2xl mx-auto border-border shadow-2xl bg-card/50 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
