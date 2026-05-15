@@ -85,7 +85,7 @@ export function Hero() {
                           priority={image.id === 'hero-1'}
                         />
                       </div>
-                      <p className="mt-4 text-center text-sky-400 font-bold text-xl font-headline">{imageCaptions[index]}</p>
+                      <p className="mt-4 text-center text-white font-bold text-xl font-headline">{imageCaptions[index]}</p>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
