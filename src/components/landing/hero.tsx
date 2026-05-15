@@ -16,6 +16,8 @@ const imageCaptions = [
   "Top Up & Voucher"
 ];
 
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara%20,%20Saya%20ingin%20Memulai%20Transaksi%20Sekarang';
+
 export function Hero() {
   const heroImages = PlaceHolderImages.filter(p => p.id.startsWith('hero-'));
 
@@ -49,12 +51,11 @@ export function Hero() {
             Jasa Rekening Bersama terpercaya untuk semua kebutuhan transaksi digital Anda. Cepat, aman, dan biaya transparan.
           </p>
           
-          {/* Tombol dipusatkan dan tombol cek fee dihapus */}
           <div className="flex items-center justify-center w-full mb-16">
             <Button asChild size="lg" 
               className="btn-rgb h-14 px-12 text-lg shadow-xl transform transition-transform hover:scale-105"
             >
-              <a href="#buat-transaksi">
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                 Mulai Transaksi Aman
               </a>
             </Button>
