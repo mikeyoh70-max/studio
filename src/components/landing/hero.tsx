@@ -57,7 +57,7 @@ export function Hero() {
               className="btn-rgb h-14 px-12 text-lg shadow-xl transform transition-transform hover:scale-105"
             >
               <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                Mulai Transaksi Aman
+                Mulai Transaksi Sekarang
               </a>
             </Button>
           </div>
