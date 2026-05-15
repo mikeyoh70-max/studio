@@ -53,7 +53,7 @@ export function Hero() {
           
           <div className="flex items-center justify-center w-full mb-16">
             <Button asChild size="lg" 
-              className="btn-rgb h-14 px-12 text-lg shadow-xl transform transition-transform hover:scale-105"
+              className="btn-rgb h-14 px-12 text-xl shadow-xl transform transition-transform hover:scale-105"
             >
               <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                 Mulai Transaksi Sekarang
