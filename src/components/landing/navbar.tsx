@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -5,11 +6,11 @@ import Link from 'next/link';
 import { Menu, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { UserNav } from '@/components/auth/user-nav';
 
 const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#why-us', label: 'Mengapa Kami' },
+  { href: '#cek-fee', label: 'Kalkulator Fee' },
   { href: '#faq', label: 'FAQ' },
 ];
 
@@ -36,11 +37,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          <div className='flex items-center gap-2'>
-             <UserNav />
-          </div>
-          
+        <div className="flex flex-1 items-center justify-end">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" className="md:hidden">

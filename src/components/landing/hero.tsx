@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -48,7 +49,7 @@ export function Hero() {
           </h1>
           
           <p className="text-lg sm:text-xl leading-8 text-muted-foreground max-w-2xl mb-10">
-            Jasa Rekening Bersama terpercaya untuk semua kebutuhan transaksi digital Anda. Cepat, aman, dan biaya transparan.
+            Jasa Rekening Bersama terpercaya untuk semua kebutuhan transaksi digital Anda. Cepat, aman, dan biaya transparan langsung via WhatsApp.
           </p>
           
           <div className="flex items-center justify-center w-full mb-16">
