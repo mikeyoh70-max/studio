@@ -6,7 +6,6 @@ import { Testimonials } from '@/components/landing/testimonials';
 import { Footer } from '@/components/landing/footer';
 import { Faq } from '@/components/landing/faq';
 import { FeeCalculator } from '@/components/landing/fee-calculator';
-import { AdminVerification } from '@/components/landing/admin-verification';
 
 export default function Home() {
   return (
@@ -14,10 +13,9 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        {/* Urutan Section: Form -> Kenapa Kami -> Verifikasi -> Kalkulator -> Dst */}
+        {/* Urutan Section: Form -> Kenapa Kami -> Kalkulator -> Dst */}
         <TransactionForm />
         <WhyUs />
-        <AdminVerification />
         <FeeCalculator />
         <Testimonials />
         <Faq />
