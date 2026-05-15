@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -64,7 +63,7 @@ export function FeeCalculator() {
             </p>
             <Card className="mt-10 shadow-lg bg-card border-border">
               <CardHeader>
-                <CardTitle>Hitung Fee Rekber</CardTitle>
+                <CardTitle>Hitung Fee/Biaya Rekber</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -80,7 +79,7 @@ export function FeeCalculator() {
                     />
                   </div>
                   <div className="p-6 rounded-lg bg-primary text-primary-foreground">
-                    <p className="text-sm">Estimasi Fee Rekber</p>
+                    <p className="text-sm">Estimasi Fee/Biaya Rekber</p>
                     <p className="text-4xl font-bold tracking-tight">
                       {formatCurrency(calculatedFee)}
                     </p>
@@ -100,7 +99,7 @@ export function FeeCalculator() {
                   <TableHeader>
                     <TableRow>
                       <TableHead>Nominal Transaksi</TableHead>
-                      <TableHead className="text-right">Fee</TableHead>
+                      <TableHead className="text-right">Fee/Biaya</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
