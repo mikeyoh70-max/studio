@@ -8,35 +8,28 @@
   }
   
   :root {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 15%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 221 62% 45%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 210 40% 98%;
-    --accent-foreground: 222 47% 11%;
-    --destructive: 0 63% 31%;
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222 47% 11.2%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --destructive-icon: 0 84% 60%;
     --success: 142 76% 36%;
     --success-foreground: 210 40% 98%;
-    --success-icon: 142 76% 46%;
-    --border: 217 33% 20%;
-    --input: 217 33% 20%;
-    --ring: 217 33% 20%;
-    --radius: 0.5rem;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
   }
 
   .dark {
@@ -56,10 +49,6 @@
     --accent-foreground: 222 47% 11%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
-    --destructive-icon: 0 84% 60%;
-    --success: 142 76% 36%;
-    --success-foreground: 210 40% 98%;
-    --success-icon: 142 76% 46%;
     --border: 217 33% 20%;
     --input: 217 33% 20%;
     --ring: 217 33% 20%;
@@ -80,7 +69,7 @@
     position: relative;
     z-index: 1;
     overflow: hidden;
-    @apply text-background font-bold;
+    @apply text-white font-bold;
   }
   
   .btn-rgb::before {
@@ -99,13 +88,7 @@
 }
 
 @keyframes gradient-animation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
