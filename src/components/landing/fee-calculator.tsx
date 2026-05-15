@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -31,11 +30,15 @@ export function FeeCalculator() {
     if (amount >= 100000 && amount <= 250000) {
       return 8000;
     }
-    // Tier 3: 250.001 - 1.000.000
-    if (amount > 250000 && amount <= 1000000) {
-      return 20000;
+    // Tier 3: 250.001 - 500.000 (Baru)
+    if (amount > 250000 && amount <= 500000) {
+      return 15000;
     }
-    // Tier 4: Di atas 1.000.000
+    // Tier 4: 500.001 - 1.000.000 (Baru)
+    if (amount > 500000 && amount <= 1000000) {
+      return 30000;
+    }
+    // Tier 5: Di atas 1.000.000
     if (amount > 1000000) {
       return amount * 0.01;
     }
@@ -108,9 +111,13 @@ export function FeeCalculator() {
                       <TableCell>Rp 100.000 - Rp 250.000</TableCell>
                       <TableCell className="text-right"><Badge variant="secondary">Rp 8.000</Badge></TableCell>
                     </TableRow>
-                     <TableRow>
-                      <TableCell>Rp 250.001 - Rp 1.000.000</TableCell>
-                      <TableCell className="text-right"><Badge variant="secondary">Rp 20.000</Badge></TableCell>
+                    <TableRow>
+                      <TableCell>Rp 250.001 - Rp 500.000</TableCell>
+                      <TableCell className="text-right"><Badge variant="secondary">Rp 15.000</Badge></TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Rp 500.001 - Rp 1.000.000</TableCell>
+                      <TableCell className="text-right"><Badge variant="secondary">Rp 30.000</Badge></TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell>&gt; Rp 1.000.000</TableCell>
