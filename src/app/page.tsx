@@ -1,4 +1,3 @@
-
 import { Navbar } from '@/components/landing/navbar';
 import { Hero } from '@/components/landing/hero';
 import { WhyUs } from '@/components/landing/why-us';
@@ -15,7 +14,7 @@ export default function Home() {
         <Hero />
         
         {/* Step by Step Section - White Background */}
-        <section className="py-24 bg-white">
+        <section className="py-20 sm:py-24 bg-white">
            <div className="container mx-auto px-4">
               <div className="text-center max-w-3xl mx-auto mb-16">
                 <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl font-headline">
@@ -25,7 +24,7 @@ export default function Home() {
                   Proses transaksi di Rekber Nusantara didesain sangat simpel dan cepat agar Anda tidak perlu menunggu lama.
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16">
                 {[
                   { 
                     step: "01", 
@@ -44,7 +43,7 @@ export default function Home() {
                   }
                 ].map((item, i) => (
                   <div key={i} className="relative text-center group">
-                    <div className="text-8xl font-black text-primary/5 absolute -top-10 left-1/2 -translate-x-1/2 select-none group-hover:text-primary/10 transition-colors">
+                    <div className="text-7xl sm:text-8xl font-black text-primary/5 absolute -top-8 sm:-top-10 left-1/2 -translate-x-1/2 select-none group-hover:text-primary/10 transition-colors">
                       {item.step}
                     </div>
                     <h3 className="text-xl font-bold mb-3 relative z-10 text-slate-900">{item.title}</h3>
