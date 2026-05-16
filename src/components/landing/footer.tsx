@@ -83,8 +83,59 @@ export function Footer() {
           <div className="col-span-1">
             <h3 className="font-bold text-white mb-4">LEGALITAS</h3>
             <ul className="space-y-3">
-              <li><Link href="#" className="text-slate-400 hover:text-sky-400 transition-colors">Syarat & Ketentuan</Link></li>
-              <li><Link href="#" className="text-slate-400 hover:text-sky-400 transition-colors">Kebijakan Privasi</Link></li>
+              <li>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left">Syarat & Ketentuan</button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[500px] bg-[#0f172a] text-white border-white/10 max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle className="font-headline text-2xl text-white">Syarat & Ketentuan</DialogTitle>
+                    </DialogHeader>
+                    <div className="py-4 space-y-4 text-slate-400 text-sm leading-relaxed">
+                      <p>Dengan menggunakan layanan Rekber Nusantara, Anda setuju untuk mematuhi aturan berikut:</p>
+                      <ul className="space-y-2 list-decimal list-inside">
+                        <li>Rekber Nusantara bertindak sebagai mediator (pihak ketiga) untuk mengamankan dana transaksi.</li>
+                        <li>Transaksi hanya dianggap sah jika dilakukan melalui <strong>Admin Resmi</strong> yang nomornya terverifikasi di website ini.</li>
+                        <li>Pembeli wajib mentransfer dana sesuai nominal dan kode unik yang diberikan Admin.</li>
+                        <li>Penjual dilarang mengirimkan data/barang sebelum Admin mengonfirmasi dana masuk.</li>
+                        <li>Rekber Nusantara tidak bertanggung jawab atas isi produk digital, kami hanya menjamin keamanan perpindahan dana.</li>
+                        <li>Transaksi produk ilegal (hacking, narkoba, dll) dilarang keras dan akan dilaporkan.</li>
+                      </ul>
+                    </div>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button type="button" className="bg-sky-500 hover:bg-sky-600 text-white">Saya Setuju</Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </li>
+              <li>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left">Kebijakan Privasi</button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px] bg-[#0f172a] text-white border-white/10">
+                    <DialogHeader>
+                      <DialogTitle className="font-headline text-2xl text-white">Kebijakan Privasi</DialogTitle>
+                    </DialogHeader>
+                    <div className="py-4 space-y-4 text-slate-400 text-sm">
+                      <p>Kami sangat menjaga kerahasiaan data Anda:</p>
+                      <ul className="space-y-2 list-disc list-inside">
+                        <li>Data nomor WhatsApp dan bukti transfer hanya digunakan untuk kepentingan verifikasi transaksi.</li>
+                        <li>Kami tidak akan menyebarkan data pribadi Anda kepada pihak manapun tanpa izin.</li>
+                        <li>Riwayat transaksi disimpan secara aman dalam sistem internal kami untuk keperluan rekonsiliasi.</li>
+                      </ul>
+                    </div>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button type="button" className="bg-sky-500 hover:bg-sky-600 text-white">Tutup</Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </li>
               <li>
                 <Dialog>
                   <DialogTrigger asChild>
@@ -95,7 +146,7 @@ export function Footer() {
                       <DialogTitle className="font-headline text-2xl text-white">Kebijakan Pengembalian</DialogTitle>
                     </DialogHeader>
                     <div className="py-4">
-                      <ul className="space-y-3 list-disc list-inside text-slate-400">
+                      <ul className="space-y-3 list-disc list-inside text-slate-400 text-sm">
                         <li>Refund dapat diajukan jika Penjual tidak mengirim barang lebih dari 24 jam.</li>
                         <li>Refund berlaku jika barang tidak sesuai deskripsi (Wajib menyertakan Video Unboxing/Bukti).</li>
                         <li>Dana akan dikembalikan utuh ke Pembeli jika transaksi dibatalkan sebelum proses serah terima.</li>
