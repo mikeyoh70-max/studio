@@ -21,8 +21,7 @@ export function RecentTransactions() {
     const interval = setInterval(() => {
       setVisibleItems((prev) => {
         const nextIndex = (mockTransactions.findIndex(t => t.id === prev[0].id) + 1) % mockTransactions.length;
-        const newList = [...prev.slice(1), mockTransactions[nextIndex]];
-        return newList;
+        return [...prev.slice(1), mockTransactions[nextIndex]];
       });
     }, 4000);
 
@@ -41,7 +40,7 @@ export function RecentTransactions() {
               Pantau transaksi yang baru saja diselesaikan dengan aman.
             </p>
           </div>
-          <div className="flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full font-bold text-sm animate-pulse">
+          <div className="flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full font-bold text-xs animate-pulse">
             <div className="h-2 w-2 bg-green-500 rounded-full"></div>
             LIVE MONITORING
           </div>
