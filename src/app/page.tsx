@@ -86,10 +86,12 @@ export default function Home() {
                     <div className={`w-9 h-9 ${item.color} text-white rounded-lg flex items-center justify-center mb-3 shadow-sm transform group-hover:scale-105 transition-transform duration-300`}>
                       {item.icon}
                     </div>
-                    {/* Step Number - Clarified with higher contrast slate color and slightly larger size */}
-                    <div className="absolute top-3 right-5 text-3xl font-black text-slate-200 group-hover:text-primary/20 transition-colors pointer-events-none select-none">
+                    
+                    {/* Step Number - Clear Blue Color */}
+                    <div className="absolute top-3 right-5 text-4xl font-black text-primary/10 group-hover:text-primary/30 transition-colors pointer-events-none select-none">
                       {(i + 1).toString().padStart(2, '0')}
                     </div>
+
                     <h3 className="text-base font-bold mb-1.5 text-slate-900">{item.title}</h3>
                     <p className="text-slate-500 leading-relaxed text-[11px]">{item.desc}</p>
                     
