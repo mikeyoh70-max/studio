@@ -5,6 +5,7 @@ import { Testimonials } from '@/components/landing/testimonials';
 import { Footer } from '@/components/landing/footer';
 import { Faq } from '@/components/landing/faq';
 import { FeeCalculator } from '@/components/landing/fee-calculator';
+import { FloatingWhatsApp } from '@/components/landing/floating-whatsapp';
 
 export default function Home() {
   return (
@@ -60,6 +61,7 @@ export default function Home() {
         <Faq />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }
