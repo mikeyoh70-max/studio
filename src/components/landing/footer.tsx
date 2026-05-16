@@ -75,7 +75,34 @@ export function Footer() {
           <div className="col-span-1">
             <h3 className="font-bold text-white mb-4">PERUSAHAAN</h3>
             <ul className="space-y-3">
-              <li><Link href="#" className="text-slate-400 hover:text-sky-400 transition-colors">Tentang Kami</Link></li>
+              <li>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left">Tentang Kami</button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[500px] bg-[#0f172a] text-white border-white/10">
+                    <DialogHeader>
+                      <DialogTitle className="font-headline text-2xl text-white">Tentang Rekber Nusantara</DialogTitle>
+                    </DialogHeader>
+                    <div className="py-4 space-y-4 text-slate-400 text-sm leading-relaxed">
+                      <p>
+                        Rekber Nusantara adalah platform jasa Rekening Bersama (Rekber) independen yang didirikan pada tahun 2024. Kami hadir untuk menjawab tantangan keamanan dalam transaksi produk dan jasa digital di Indonesia.
+                      </p>
+                      <p>
+                        Misi utama kami adalah menjadi penengah yang adil, netral, dan aman bagi penjual maupun pembeli. Dengan sistem verifikasi admin yang ketat, kami berkomitmen untuk memberantas praktik penipuan di dunia digital.
+                      </p>
+                      <p>
+                        Hingga saat ini, kami telah memfasilitasi ribuan transaksi mulai dari akun game, item digital, hingga jasa freelance dengan tingkat kepuasan pelanggan yang tinggi.
+                      </p>
+                    </div>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button type="button" className="bg-sky-500 hover:bg-sky-600 text-white">Tutup</Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </li>
               <li><Link href="#why-us" className="text-slate-400 hover:text-sky-400 transition-colors">Mengapa Kami</Link></li>
               <li><Link href="#testimonials" className="text-slate-400 hover:text-sky-400 transition-colors">Testimoni</Link></li>
             </ul>
