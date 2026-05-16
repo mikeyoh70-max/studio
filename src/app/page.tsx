@@ -14,12 +14,7 @@ import {
   PackageCheck, 
   CheckCircle2, 
   ArrowRight,
-  TrendingUp,
-  User,
-  Store,
-  ArrowUpRight,
-  ArrowDownRight,
-  ArrowLeftRight
+  TrendingUp
 } from 'lucide-react';
 
 export default function Home() {
@@ -68,93 +63,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         
-        {/* Triangular Flow Diagram */}
-        <section className="py-24 bg-slate-50 border-b border-slate-100 overflow-hidden">
-          <div className="container mx-auto px-4">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl font-headline">
-                Sistem Segitiga Keamanan
-              </h2>
-              <p className="mt-4 text-slate-600">
-                Bagaimana Rekber Nusantara melindungi transaksi Anda secara transparan.
-              </p>
-            </div>
-
-            <div className="relative max-w-4xl mx-auto">
-              {/* The Triangle UI */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center relative z-10">
-                
-                {/* Buyer Node */}
-                <div className="flex flex-col items-center text-center group">
-                  <div className="w-24 h-24 bg-white rounded-full shadow-xl border-4 border-blue-500 flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
-                    <User className="h-10 w-10 text-blue-500" />
-                  </div>
-                  <h3 className="font-bold text-lg">Pembeli</h3>
-                  <p className="text-xs text-slate-500 mt-2 bg-blue-50 px-3 py-1 rounded-full font-bold">Transfer Dana Aman</p>
-                </div>
-
-                {/* Admin Node (Center/Top on Mobile) */}
-                <div className="flex flex-col items-center text-center group md:-mt-32">
-                  <div className="w-32 h-32 bg-primary text-white rounded-full shadow-[0_0_30px_rgba(59,130,246,0.5)] flex flex-col items-center justify-center mb-4 border-8 border-white transition-transform group-hover:scale-110">
-                    <ShieldCheck className="h-12 w-12" />
-                    <span className="text-[10px] font-black uppercase tracking-tighter mt-1">Mediator</span>
-                  </div>
-                  <h3 className="font-bold text-xl text-primary">Rekber Nusantara</h3>
-                  <p className="text-xs text-slate-500 mt-2 bg-primary/10 px-3 py-1 rounded-full font-bold">Pemegang Dana & Penengah</p>
-                </div>
-
-                {/* Seller Node */}
-                <div className="flex flex-col items-center text-center group">
-                  <div className="w-24 h-24 bg-white rounded-full shadow-xl border-4 border-orange-500 flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
-                    <Store className="h-10 w-10 text-orange-500" />
-                  </div>
-                  <h3 className="font-bold text-lg">Penjual</h3>
-                  <p className="text-xs text-slate-500 mt-2 bg-orange-50 px-3 py-1 rounded-full font-bold">Kirim Barang/Data</p>
-                </div>
-
-              </div>
-
-              {/* Connecting Lines (Desktop Only for visual clarity) */}
-              <div className="hidden md:block absolute inset-0 -z-0">
-                {/* Line: Buyer to Admin */}
-                <div className="absolute top-[15%] left-[20%] w-[25%] border-t-2 border-dashed border-blue-300 rotate-[-35deg] flex items-center justify-center">
-                  <div className="bg-white px-2 py-0.5 rounded border border-blue-100 text-[10px] font-bold text-blue-500 animate-pulse">1. Kirim Dana</div>
-                </div>
-                
-                {/* Line: Admin to Seller */}
-                <div className="absolute top-[15%] right-[20%] w-[25%] border-t-2 border-dashed border-orange-300 rotate-[35deg] flex items-center justify-center">
-                  <div className="bg-white px-2 py-0.5 rounded border border-orange-100 text-[10px] font-bold text-orange-500 animate-pulse">2. Cairkan Dana</div>
-                </div>
-
-                {/* Line: Seller to Buyer (Bottom) */}
-                <div className="absolute bottom-[20%] left-[25%] w-[50%] border-t-2 border-dashed border-slate-300 flex items-center justify-center">
-                  <div className="bg-white px-2 py-0.5 rounded border border-slate-100 text-[10px] font-bold text-slate-500">3. Kirim Barang/Data</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-              <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100 text-center">
-                <div className="text-primary font-black text-xl">100%</div>
-                <div className="text-[10px] uppercase font-bold text-slate-400">Anti Scam</div>
-              </div>
-              <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100 text-center">
-                <div className="text-primary font-black text-xl">5-10m</div>
-                <div className="text-[10px] uppercase font-bold text-slate-400">Proses Cepat</div>
-              </div>
-              <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100 text-center">
-                <div className="text-primary font-black text-xl">24/7</div>
-                <div className="text-[10px] uppercase font-bold text-slate-400">Support Chat</div>
-              </div>
-              <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100 text-center">
-                <div className="text-primary font-black text-xl">Cheap</div>
-                <div className="text-[10px] uppercase font-bold text-slate-400">Biaya Murah</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Visual Transaction Flow Section (Grid Style) */}
+        {/* Transaction Flow Section */}
         <section className="py-24 bg-white overflow-hidden border-b border-slate-100">
            <div className="container mx-auto px-4">
               <div className="text-center max-w-3xl mx-auto mb-20">
@@ -163,10 +72,10 @@ export default function Home() {
                   Keamanan 100% Terjamin
                 </div>
                 <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl font-headline">
-                  Detail Alur Kerja
+                  Cara Kerja Rekber
                 </h2>
                 <p className="mt-6 text-lg leading-8 text-slate-600">
-                  Berikut adalah proses 6 langkah transparan di Rekber Nusantara untuk menjamin keamanan dana Anda.
+                  Proses 6 langkah transparan di Rekber Nusantara untuk menjamin keamanan dana Anda.
                 </p>
               </div>
 
