@@ -86,7 +86,8 @@ export default function Home() {
                     <div className={`w-9 h-9 ${item.color} text-white rounded-lg flex items-center justify-center mb-3 shadow-sm transform group-hover:scale-105 transition-transform duration-300`}>
                       {item.icon}
                     </div>
-                    <div className="absolute top-3 right-5 text-2xl font-black text-slate-50 group-hover:text-primary/5 transition-colors pointer-events-none">
+                    {/* Step Number - Clarified with higher contrast slate color and slightly larger size */}
+                    <div className="absolute top-3 right-5 text-3xl font-black text-slate-200 group-hover:text-primary/20 transition-colors pointer-events-none select-none">
                       {(i + 1).toString().padStart(2, '0')}
                     </div>
                     <h3 className="text-base font-bold mb-1.5 text-slate-900">{item.title}</h3>
@@ -94,7 +95,7 @@ export default function Home() {
                     
                     {/* Animated Arrow for desktop (Horizontal) */}
                     {i !== steps.length - 1 && (
-                      <div className="hidden lg:block absolute -right-2 top-1/2 -translate-y-1/2 z-20 text-slate-100">
+                      <div className="hidden lg:block absolute -right-2 top-1/2 -translate-y-1/2 z-20 text-slate-200">
                         {(i + 1) % 3 !== 0 && <ArrowRight className="h-4 w-4" />}
                       </div>
                     )}
