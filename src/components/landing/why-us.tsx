@@ -1,4 +1,3 @@
-
 import { ShieldCheck, Clock, Scale } from 'lucide-react';
 import { Card, CardTitle } from '@/components/ui/card';
 

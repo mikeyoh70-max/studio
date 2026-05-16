@@ -87,8 +87,8 @@ export default function Home() {
                       {item.icon}
                     </div>
                     
-                    {/* Step Number - Clear Blue Color */}
-                    <div className="absolute top-3 right-5 text-4xl font-black text-primary/10 group-hover:text-primary/30 transition-colors pointer-events-none select-none">
+                    {/* Step Number - Solid Blue Color */}
+                    <div className="absolute top-3 right-5 text-4xl font-black text-primary/20 group-hover:text-primary transition-colors pointer-events-none select-none">
                       {(i + 1).toString().padStart(2, '0')}
                     </div>
 
