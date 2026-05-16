@@ -130,7 +130,7 @@ export function Footer() {
                   <a href={`mailto:${EMAIL_SUPPORT}`}>
                     <Mail className="h-4 w-4 text-sky-400" />
                     <div className="text-left">
-                      <p className="text-[10px] uppercase font-bold text-slate-500 leading-none">Email</p>
+                      <p className="text-[10px] uppercase font-bold text-slate-500 leading-none">Support CS</p>
                       <p className="text-xs sm:text-sm lowercase">{EMAIL_SUPPORT}</p>
                     </div>
                   </a>
