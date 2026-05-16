@@ -79,7 +79,7 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Steps Grid - Slimmer Version */}
+              {/* Steps Grid - Ramping & Jelas */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative max-w-5xl mx-auto">
                 {steps.map((item, i) => (
                   <div key={i} className="relative group p-5 rounded-xl border border-slate-100 bg-white hover:border-primary/30 hover:shadow-lg transition-all duration-300">
@@ -87,8 +87,8 @@ export default function Home() {
                       {item.icon}
                     </div>
                     
-                    {/* Step Number - Clear Blue Color */}
-                    <div className="absolute top-3 right-5 text-4xl font-black text-primary transition-colors pointer-events-none select-none opacity-40 group-hover:opacity-100">
+                    {/* Nomor Langkah - Biru Jelas */}
+                    <div className="absolute top-3 right-5 text-4xl font-black text-primary pointer-events-none select-none opacity-20 group-hover:opacity-100 transition-opacity">
                       {(i + 1).toString().padStart(2, '0')}
                     </div>
 
