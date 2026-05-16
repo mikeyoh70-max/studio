@@ -80,16 +80,16 @@ export function Footer() {
                   <DialogTrigger asChild>
                     <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left">Tentang Kami</button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[500px] bg-[#0f172a] text-white border-white/10">
+                  <DialogContent className="sm:max-w-[500px] bg-white text-slate-900 border-slate-200">
                     <DialogHeader>
-                      <DialogTitle className="font-headline text-2xl text-white">Tentang Rekber Nusantara</DialogTitle>
+                      <DialogTitle className="font-headline text-2xl text-slate-900">Tentang Rekber Nusantara</DialogTitle>
                     </DialogHeader>
-                    <div className="py-4 space-y-4 text-slate-400 text-sm leading-relaxed">
+                    <div className="py-4 space-y-4 text-slate-600 text-sm leading-relaxed">
                       <p>
                         Rekber Nusantara adalah platform jasa Rekening Bersama (Rekber) independen yang didirikan pada tahun 2024. Kami hadir untuk menjawab tantangan keamanan dalam transaksi produk dan jasa digital di Indonesia.
                       </p>
                       <p>
-                        Misi utama kami adalah menjadi penengah yang adil, netral, dan aman bagi penjual maupun pembeli. Dengan sistem verifikasi admin yang ketat, kami berkomitmen untuk memberantas praktik penipuan di dunia digital.
+                        Misi utama kami adalah menjadi penengah yang adil, netral, and aman bagi penjual maupun pembeli. Dengan sistem verifikasi admin yang ketat, kami berkomitmen untuk memberantas praktik penipuan di dunia digital.
                       </p>
                       <p>
                         Hingga saat ini, kami telah memfasilitasi ribuan transaksi mulai dari akun game, item digital, hingga jasa freelance dengan tingkat kepuasan pelanggan yang tinggi.
@@ -115,11 +115,11 @@ export function Footer() {
                   <DialogTrigger asChild>
                     <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left">Syarat & Ketentuan</button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[500px] bg-[#0f172a] text-white border-white/10 max-h-[80vh] overflow-y-auto">
+                  <DialogContent className="sm:max-w-[500px] bg-white text-slate-900 border-slate-200 max-h-[80vh] overflow-y-auto">
                     <DialogHeader>
-                      <DialogTitle className="font-headline text-2xl text-white">Syarat & Ketentuan</DialogTitle>
+                      <DialogTitle className="font-headline text-2xl text-slate-900">Syarat & Ketentuan</DialogTitle>
                     </DialogHeader>
-                    <div className="py-4 space-y-4 text-slate-400 text-sm leading-relaxed">
+                    <div className="py-4 space-y-4 text-slate-600 text-sm leading-relaxed">
                       <p>Dengan menggunakan layanan Rekber Nusantara, Anda setuju untuk mematuhi aturan berikut:</p>
                       <ul className="space-y-2 list-decimal list-inside">
                         <li>Rekber Nusantara bertindak sebagai mediator (pihak ketiga) untuk mengamankan dana transaksi.</li>
@@ -143,11 +143,11 @@ export function Footer() {
                   <DialogTrigger asChild>
                     <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left">Kebijakan Privasi</button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px] bg-[#0f172a] text-white border-white/10">
+                  <DialogContent className="sm:max-w-[425px] bg-white text-slate-900 border-slate-200">
                     <DialogHeader>
-                      <DialogTitle className="font-headline text-2xl text-white">Kebijakan Privasi</DialogTitle>
+                      <DialogTitle className="font-headline text-2xl text-slate-900">Kebijakan Privasi</DialogTitle>
                     </DialogHeader>
-                    <div className="py-4 space-y-4 text-slate-400 text-sm">
+                    <div className="py-4 space-y-4 text-slate-600 text-sm">
                       <p>Kami sangat menjaga kerahasiaan data Anda:</p>
                       <ul className="space-y-2 list-disc list-inside">
                         <li>Data nomor WhatsApp dan bukti transfer hanya digunakan untuk kepentingan verifikasi transaksi.</li>
@@ -168,12 +168,12 @@ export function Footer() {
                   <DialogTrigger asChild>
                     <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left">Kebijakan Refund</button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px] bg-[#0f172a] text-white border-white/10">
+                  <DialogContent className="sm:max-w-[425px] bg-white text-slate-900 border-slate-200">
                     <DialogHeader>
-                      <DialogTitle className="font-headline text-2xl text-white">Kebijakan Pengembalian</DialogTitle>
+                      <DialogTitle className="font-headline text-2xl text-slate-900">Kebijakan Pengembalian</DialogTitle>
                     </DialogHeader>
                     <div className="py-4">
-                      <ul className="space-y-3 list-disc list-inside text-slate-400 text-sm">
+                      <ul className="space-y-3 list-disc list-inside text-slate-600 text-sm">
                         <li>Refund dapat diajukan jika Penjual tidak mengirim barang lebih dari 24 jam.</li>
                         <li>Refund berlaku jika barang tidak sesuai deskripsi (Wajib menyertakan Video Unboxing/Bukti).</li>
                         <li>Dana akan dikembalikan utuh ke Pembeli jika transaksi dibatalkan sebelum proses serah terima.</li>
