@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -24,7 +23,7 @@ export function FeeCalculator() {
       return 0;
     }
     if (amount < 100000) {
-      return 5000;
+      return 4000;
     }
     if (amount >= 100000 && amount <= 250000) {
       return 8000;
@@ -101,7 +100,7 @@ export function FeeCalculator() {
                   <TableBody>
                     <TableRow className="border-white/5 hover:bg-white/5">
                       <TableCell className="text-slate-300 px-6">Rp 1 - Rp 99.999</TableCell>
-                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-sky-400 border-sky-400/30 bg-sky-400/10">Rp 5.000</Badge></TableCell>
+                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-sky-400 border-sky-400/30 bg-sky-400/10">Rp 4.000</Badge></TableCell>
                     </TableRow>
                     <TableRow className="border-white/5 hover:bg-white/5">
                       <TableCell className="text-slate-300 px-6">Rp 100.000 - Rp 250.000</TableCell>
