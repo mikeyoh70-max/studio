@@ -27,7 +27,7 @@ export default function Home() {
     {
       icon: <Wallet className="h-10 w-10" />,
       title: "Transfer Dana",
-      desc: "Pembeli mentransfer dana ke rekening resmi Admin.",
+      desc: "Pembeli mentransfer dana ke Rekening Bersama.",
       color: "text-orange-500",
       bgColor: "bg-orange-50"
     },
