@@ -8,19 +8,18 @@ import { FeeCalculator } from '@/components/landing/fee-calculator';
 import { FloatingWhatsApp } from '@/components/landing/floating-whatsapp';
 import { RecentTransactions } from '@/components/landing/recent-transactions';
 import { 
-  ShieldCheck, 
   Wallet, 
   PackageCheck, 
-  Users,
-  CheckCircle2
+  CheckCircle2,
+  Send
 } from 'lucide-react';
 
 export default function Home() {
   const steps = [
     {
-      icon: <Users className="h-10 w-10" />,
-      title: "Hubungi Admin",
-      desc: "Penjual & Pembeli sepakat lalu hubungi admin.",
+      icon: <Send className="h-10 w-10" />,
+      title: "Mulai Transaksi",
+      desc: "Klik tombol 'Mulai Transaksi Sekarang' untuk terhubung dengan Admin Resmi kami.",
       color: "text-blue-500",
       bgColor: "bg-blue-50"
     },
@@ -53,7 +52,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         
-        {/* Section Cara Kerja (Redesigned based on Screenshot) */}
+        {/* Section Cara Kerja */}
         <section className="py-24 bg-white">
            <div className="container mx-auto px-4">
               <div className="text-center max-w-3xl mx-auto mb-20">
