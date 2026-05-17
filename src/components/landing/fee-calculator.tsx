@@ -75,7 +75,7 @@ export function FeeCalculator() {
                   </div>
                   <div className="p-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-white/5">
                     <p className="text-sm text-slate-400">Estimasi Fee/Biaya Rekber</p>
-                    <p className="text-4xl font-bold tracking-tight text-sky-400">
+                    <p className="text-4xl font-bold tracking-tight text-white">
                       {formatCurrency(calculatedFee)}
                     </p>
                   </div>
@@ -100,23 +100,23 @@ export function FeeCalculator() {
                   <TableBody>
                     <TableRow className="border-white/5 hover:bg-white/5">
                       <TableCell className="text-slate-300 px-6">Rp 1 - Rp 99.999</TableCell>
-                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-sky-400 border-sky-400/30 bg-sky-400/10">Rp 4.000</Badge></TableCell>
+                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-white border-sky-400/30 bg-sky-400/10">Rp 4.000</Badge></TableCell>
                     </TableRow>
                     <TableRow className="border-white/5 hover:bg-white/5">
                       <TableCell className="text-slate-300 px-6">Rp 100.000 - Rp 250.000</TableCell>
-                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-sky-400 border-sky-400/30 bg-sky-400/10">Rp 8.000</Badge></TableCell>
+                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-white border-sky-400/30 bg-sky-400/10">Rp 8.000</Badge></TableCell>
                     </TableRow>
                     <TableRow className="border-white/5 hover:bg-white/5">
                       <TableCell className="text-slate-300 px-6">Rp 250.001 - Rp 500.000</TableCell>
-                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-sky-400 border-sky-400/30 bg-sky-400/10">Rp 13.000</Badge></TableCell>
+                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-white border-sky-400/30 bg-sky-400/10">Rp 13.000</Badge></TableCell>
                     </TableRow>
                     <TableRow className="border-white/5 hover:bg-white/5">
                       <TableCell className="text-slate-300 px-6">Rp 500.001 - Rp 1.000.000</TableCell>
-                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-sky-400 border-sky-400/30 bg-sky-400/10">Rp 20.000</Badge></TableCell>
+                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-white border-sky-400/30 bg-sky-400/10">Rp 20.000</Badge></TableCell>
                     </TableRow>
                     <TableRow className="border-none hover:bg-white/5">
                       <TableCell className="text-slate-300 px-6">&gt; Rp 1.000.000</TableCell>
-                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-sky-400 border-sky-400/30 bg-sky-400/10 font-bold text-lg">2.5%</Badge></TableCell>
+                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-white border-sky-400/30 bg-sky-400/10 font-bold text-lg">2.5%</Badge></TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
