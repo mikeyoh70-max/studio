@@ -20,7 +20,7 @@ export default function Home() {
     {
       icon: <Users className="h-10 w-10" />,
       title: "Hubungi Admin",
-      desc: "Penjual & Pembeli sepakat lalu chat admin via WhatsApp.",
+      desc: "Penjual & Pembeli sepakat lalu hubungi admin.",
       color: "text-blue-500",
       bgColor: "bg-blue-50"
     },
