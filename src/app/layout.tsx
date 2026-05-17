@@ -6,6 +6,11 @@ import Script from 'next/script';
 export const metadata: Metadata = {
   title: 'Rekber Nusantara - Jasa Rekening Bersama Terpercaya',
   description: 'Jasa Rekening Bersama (Rekber) terpercaya untuk transaksi game online, akun, dan produk digital Anda. Aman, cepat, dan biaya transparan.',
+  openGraph: {
+    title: 'Rekber Nusantara - Jasa Rekening Bersama Terpercaya',
+    description: 'Aman, cepat, dan transparan untuk transaksi produk digital Anda.',
+    images: ['https://i.ibb.co.cc/Vv8t05kP/Rekber-Nusantara.png'],
+  },
 };
 
 export default function RootLayout({

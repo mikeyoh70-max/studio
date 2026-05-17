@@ -8,13 +8,13 @@ import { FeeCalculator } from '@/components/landing/fee-calculator';
 import { FloatingWhatsApp } from '@/components/landing/floating-whatsapp';
 import { RecentTransactions } from '@/components/landing/recent-transactions';
 import { 
-  Users, 
   ShieldCheck, 
   Wallet, 
   PackageCheck, 
-  CheckCircle2, 
   ArrowRight,
-  TrendingUp
+  TrendingUp,
+  Users,
+  CheckCircle2
 } from 'lucide-react';
 
 export default function Home() {
@@ -87,8 +87,8 @@ export default function Home() {
                       {item.icon}
                     </div>
                     
-                    {/* Nomor Langkah - Biru Solid Terang */}
-                    <div className="absolute top-3 right-4 text-4xl font-black text-primary group-hover:scale-110 transition-all duration-300 pointer-events-none select-none opacity-20 group-hover:opacity-100">
+                    {/* Nomor Langkah - Biru Solid */}
+                    <div className="absolute top-3 right-4 text-4xl font-black text-primary transition-all duration-300 pointer-events-none select-none opacity-20 group-hover:opacity-100">
                       {(i + 1).toString().padStart(2, '0')}
                     </div>
 
