@@ -63,7 +63,6 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         
-        {/* Transaction Flow Section */}
         <section className="py-20 bg-white overflow-hidden border-b border-slate-100">
            <div className="container mx-auto px-4">
               <div className="text-center max-w-2xl mx-auto mb-12">
@@ -79,7 +78,6 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Steps Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative max-w-5xl mx-auto">
                 {steps.map((item, i) => (
                   <div key={i} className="relative group p-4 rounded-xl border border-slate-100 bg-white hover:border-primary/30 hover:shadow-lg transition-all duration-300">
@@ -87,7 +85,6 @@ export default function Home() {
                       {item.icon}
                     </div>
                     
-                    {/* Nomor Langkah - Biru Solid */}
                     <div className="absolute top-3 right-4 text-4xl font-black text-primary transition-all duration-300 pointer-events-none select-none opacity-20 group-hover:opacity-100">
                       {(i + 1).toString().padStart(2, '0')}
                     </div>
@@ -95,7 +92,6 @@ export default function Home() {
                     <h3 className="text-sm font-bold mb-1 text-slate-900">{item.title}</h3>
                     <p className="text-slate-500 leading-relaxed text-[10px]">{item.desc}</p>
                     
-                    {/* Animated Arrow for desktop */}
                     {i !== steps.length - 1 && (
                       <div className="hidden lg:block absolute -right-2 top-1/2 -translate-y-1/2 z-20 text-slate-200">
                         {(i + 1) % 3 !== 0 && <ArrowRight className="h-3 w-3" />}
