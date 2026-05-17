@@ -65,7 +65,7 @@ export function RecentTransactions() {
                       </span>
                     </div>
                     <h3 className="font-bold text-slate-900 mb-1 truncate text-sm">{tx.item}</h3>
-                    <p className="text-lg font-black text-primary font-headline">{tx.price}</p>
+                    <p className="text-lg font-black text-success font-headline">{tx.price}</p>
                     <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
                       <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Verified System</span>
                       <CheckCircle2 className="h-3 w-3 text-primary/40" />
