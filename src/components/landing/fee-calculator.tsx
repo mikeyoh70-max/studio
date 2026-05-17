@@ -74,10 +74,30 @@ export function FeeCalculator() {
                     />
                   </div>
                   <div className="p-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-white/5">
-                    <p className="text-sm text-slate-400">Estimasi Fee/Biaya Rekber</p>
-                    <p className="text-4xl font-bold tracking-tight text-white">
-                      {formatCurrency(calculatedFee)}
-                    </p>
+                    <p className="text-sm text-slate-400">Total Biaya yang Harus Dibayar</p>
+                    
+                    {/* Display breakdown as requested */}
+                    <div className="mt-3 flex items-baseline gap-2 flex-wrap">
+                      <span className="text-4xl font-bold tracking-tight text-white">
+                        {formatCurrency(amount)}
+                      </span>
+                      <span className="text-xl font-medium text-slate-400 italic">
+                        (+ {formatCurrency(calculatedFee)})
+                      </span>
+                    </div>
+
+                    {/* Final sum display */}
+                    <div className="mt-6 pt-4 border-t border-white/10 flex justify-between items-end">
+                      <div>
+                        <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Total Akhir</p>
+                        <p className="text-3xl font-black text-sky-400">
+                          {formatCurrency(amount + calculatedFee)}
+                        </p>
+                      </div>
+                      <Badge variant="outline" className="text-white border-sky-400/30 bg-sky-400/10 mb-1 px-3">
+                        Sistem Terverifikasi
+                      </Badge>
+                    </div>
                   </div>
                 </div>
               </CardContent>
