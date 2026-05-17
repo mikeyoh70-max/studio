@@ -11,7 +11,6 @@ import {
   DialogTrigger,
   DialogFooter,
   DialogClose,
-  DialogDescription,
 } from "@/components/ui/dialog"
 
 const paymentBrands = [
@@ -22,7 +21,7 @@ const paymentBrands = [
   { name: "SeaBank", color: "text-[#FF5100]" },
 ];
 
-const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara%20,%20Saya%20ingin%20Memulai%20Transaksi%20Sekarang';
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Go%20,%20Saya%20ingin%20Memulai%20Transaksi%20Sekarang';
 const WHATSAPP_NUMBER = '+62 895-3230-91263';
 const EMAIL_SUPPORT = 'rekbernusantara777@gmail.com';
 
@@ -46,7 +45,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center space-x-2">
             <ShieldCheck className="h-7 w-7 text-sky-400" />
-            <span className="text-xl font-bold font-headline text-white">Rekber Nusantara</span>
+            <span className="text-xl font-bold font-headline text-white">Rekber Go</span>
           </div>
           <div className="flex space-x-2">
             <Button variant="ghost" size="icon" asChild className="text-slate-400 hover:text-white">
@@ -82,17 +81,14 @@ export function Footer() {
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[500px] bg-white text-slate-900 border-slate-200">
                     <DialogHeader>
-                      <DialogTitle className="font-headline text-2xl text-slate-900">Tentang Rekber Nusantara</DialogTitle>
+                      <DialogTitle className="font-headline text-2xl text-slate-900">Tentang Rekber Go</DialogTitle>
                     </DialogHeader>
                     <div className="py-4 space-y-4 text-slate-600 text-sm leading-relaxed">
                       <p>
-                        Rekber Nusantara adalah platform jasa Rekening Bersama (Rekber) independen yang didirikan pada tahun 2024. Kami hadir untuk menjawab tantangan keamanan dalam transaksi produk dan jasa digital di Indonesia.
+                        Rekber Go adalah platform jasa Rekening Bersama (Rekber) independen yang didirikan pada tahun 2024. Kami hadir untuk menjawab tantangan keamanan dalam transaksi produk dan jasa digital di Indonesia.
                       </p>
                       <p>
                         Misi utama kami adalah menjadi penengah yang adil, netral, and aman bagi penjual maupun pembeli. Dengan sistem verifikasi admin yang ketat, kami berkomitmen untuk memberantas praktik penipuan di dunia digital.
-                      </p>
-                      <p>
-                        Hingga saat ini, kami telah memfasilitasi ribuan transaksi mulai dari akun game, item digital, hingga jasa freelance dengan tingkat kepuasan pelanggan yang tinggi.
                       </p>
                     </div>
                     <DialogFooter>
@@ -120,14 +116,12 @@ export function Footer() {
                       <DialogTitle className="font-headline text-2xl text-slate-900">Syarat & Ketentuan</DialogTitle>
                     </DialogHeader>
                     <div className="py-4 space-y-4 text-slate-600 text-sm leading-relaxed">
-                      <p>Dengan menggunakan layanan Rekber Nusantara, Anda setuju untuk mematuhi aturan berikut:</p>
+                      <p>Dengan menggunakan layanan Rekber Go, Anda setuju untuk mematuhi aturan berikut:</p>
                       <ul className="space-y-2 list-decimal list-inside">
-                        <li>Rekber Nusantara bertindak sebagai mediator (pihak ketiga) untuk mengamankan dana transaksi.</li>
+                        <li>Rekber Go bertindak sebagai mediator (pihak ketiga) untuk mengamankan dana transaksi.</li>
                         <li>Transaksi hanya dianggap sah jika dilakukan melalui <strong>Admin Resmi</strong> yang nomornya terverifikasi di website ini.</li>
                         <li>Pembeli wajib mentransfer dana sesuai nominal dan kode unik yang diberikan Admin.</li>
                         <li>Penjual dilarang mengirimkan data/barang sebelum Admin mengonfirmasi dana masuk.</li>
-                        <li>Rekber Nusantara tidak bertanggung jawab atas isi produk digital, kami hanya menjamin keamanan perpindahan dana.</li>
-                        <li>Transaksi produk ilegal (hacking, narkoba, dll) dilarang keras dan akan dilaporkan.</li>
                       </ul>
                     </div>
                     <DialogFooter>
@@ -152,7 +146,6 @@ export function Footer() {
                       <ul className="space-y-2 list-disc list-inside">
                         <li>Data nomor WhatsApp dan bukti transfer hanya digunakan untuk kepentingan verifikasi transaksi.</li>
                         <li>Kami tidak akan menyebarkan data pribadi Anda kepada pihak manapun tanpa izin.</li>
-                        <li>Riwayat transaksi disimpan secara aman dalam sistem internal kami untuk keperluan rekonsiliasi.</li>
                       </ul>
                     </div>
                     <DialogFooter>
@@ -175,8 +168,7 @@ export function Footer() {
                     <div className="py-4">
                       <ul className="space-y-3 list-disc list-inside text-slate-600 text-sm">
                         <li>Refund dapat diajukan jika Penjual tidak mengirim barang lebih dari 24 jam.</li>
-                        <li>Refund berlaku jika barang tidak sesuai deskripsi (Wajib menyertakan Video Unboxing/Bukti).</li>
-                        <li>Dana akan dikembalikan utuh ke Pembeli jika transaksi dibatalkan sebelum proses serah terima.</li>
+                        <li>Refund berlaku jika barang tidak sesuai deskripsi.</li>
                         <li>Biaya Admin & Fee Transfer Bank tidak dapat dikembalikan jika proses refund dilakukan.</li>
                       </ul>
                     </div>
@@ -219,7 +211,7 @@ export function Footer() {
         </div>
         
         <div className="mt-12 pt-8 border-t border-white/5 text-center text-sm text-slate-500 flex flex-col md:flex-row justify-between gap-4">
-          <p>&copy; {new Date().getFullYear()} Rekber Nusantara. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Rekber Go. All rights reserved.</p>
           <p className="max-w-2xl mx-auto md:mx-0">
             Layanan mediasi independen terpercaya sejak 2024.
           </p>

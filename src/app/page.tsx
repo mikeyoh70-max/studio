@@ -22,7 +22,7 @@ export default function Home() {
     {
       icon: <Users className="h-4 w-4" />,
       title: "Kesepakatan",
-      desc: "Penjual & Pembeli sepakat menggunakan jasa Rekber Nusantara.",
+      desc: "Penjual & Pembeli sepakat menggunakan jasa Rekber Go.",
       color: "bg-blue-500"
     },
     {
@@ -75,30 +75,30 @@ export default function Home() {
                   Cara Kerja Rekber
                 </h2>
                 <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                  Proses 6 langkah transparan di Rekber Nusantara untuk menjamin keamanan dana Anda.
+                  Proses 6 langkah transparan di Rekber Go untuk menjamin keamanan dana Anda.
                 </p>
               </div>
 
               {/* Steps Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative max-w-5xl mx-auto">
                 {steps.map((item, i) => (
-                  <div key={i} className="relative group p-5 rounded-xl border border-slate-100 bg-white hover:border-primary/30 hover:shadow-lg transition-all duration-300">
-                    <div className={`w-9 h-9 ${item.color} text-white rounded-lg flex items-center justify-center mb-3 shadow-sm transform group-hover:scale-105 transition-transform duration-300`}>
+                  <div key={i} className="relative group p-4 rounded-xl border border-slate-100 bg-white hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+                    <div className={`w-8 h-8 ${item.color} text-white rounded-lg flex items-center justify-center mb-3 shadow-sm transform group-hover:scale-105 transition-transform duration-300`}>
                       {item.icon}
                     </div>
                     
-                    {/* Nomor Langkah - Biru Jelas */}
-                    <div className="absolute top-3 right-5 text-4xl font-black text-primary pointer-events-none select-none opacity-20 group-hover:opacity-100 transition-opacity">
+                    {/* Nomor Langkah - Biru Jelas & Ramping */}
+                    <div className="absolute top-3 right-4 text-3xl font-black text-primary pointer-events-none select-none opacity-20 group-hover:opacity-100 transition-opacity">
                       {(i + 1).toString().padStart(2, '0')}
                     </div>
 
-                    <h3 className="text-base font-bold mb-1.5 text-slate-900">{item.title}</h3>
-                    <p className="text-slate-500 leading-relaxed text-[11px]">{item.desc}</p>
+                    <h3 className="text-sm font-bold mb-1 text-slate-900">{item.title}</h3>
+                    <p className="text-slate-500 leading-relaxed text-[10px]">{item.desc}</p>
                     
                     {/* Animated Arrow for desktop */}
                     {i !== steps.length - 1 && (
                       <div className="hidden lg:block absolute -right-2 top-1/2 -translate-y-1/2 z-20 text-slate-200">
-                        {(i + 1) % 3 !== 0 && <ArrowRight className="h-4 w-4" />}
+                        {(i + 1) % 3 !== 0 && <ArrowRight className="h-3 w-3" />}
                       </div>
                     )}
                   </div>

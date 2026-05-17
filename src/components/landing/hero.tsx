@@ -16,7 +16,7 @@ const imageCaptions = [
   "Top Up & Voucher"
 ];
 
-const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara%20,%20Saya%20ingin%20Memulai%20Transaksi%20Sekarang';
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Go%20,%20Saya%20ingin%20Memulai%20Transaksi%20Sekarang';
 
 export function Hero() {
   const heroImages = PlaceHolderImages.filter(p => p.id.startsWith('hero-'));
@@ -44,7 +44,7 @@ export function Hero() {
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl font-headline mb-6 leading-[1.1]">
             <span className="text-white">Transaksi Aman,</span>
             <span className="block text-sky-400">Hati Tenang.</span>
-            <span className="block text-teal-400">Rekber Nusantara.</span>
+            <span className="block text-teal-400">Rekber Go.</span>
           </h1>
           
           <p className="text-base sm:text-xl leading-relaxed text-slate-300 max-w-2xl mb-10">

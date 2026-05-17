@@ -1,4 +1,4 @@
-# Rekber Nusantara - Website Resmi
+# Rekber Go - Website Resmi
 
 Website ini adalah platform landing page untuk jasa Rekening Bersama (Rekber) terpercaya di Indonesia.
 
@@ -13,5 +13,5 @@ Website ini adalah platform landing page untuk jasa Rekening Bersama (Rekber) te
 ## Cara Update
 Setiap perubahan yang di-push ke branch utama di GitHub akan otomatis di-deploy melalui Firebase App Hosting.
 1. `git add .`
-2. `git commit -m "Update desain dan fitur terbaru"`
+2. `git commit -m "Update nama brand menjadi Rekber Go"`
 3. `git push origin main`

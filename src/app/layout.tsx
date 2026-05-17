@@ -4,7 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'Rekber Nusantara - Jasa Rekening Bersama Terpercaya',
+  title: 'Rekber Go - Jasa Rekening Bersama Terpercaya',
   description: 'Jasa Rekening Bersama (Rekber) terpercaya untuk transaksi game online, akun, dan produk digital Anda. Aman, cepat, dan biaya transparan.',
 };
 

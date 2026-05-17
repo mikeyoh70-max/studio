@@ -72,13 +72,6 @@ export function TransactionForm() {
         createdAt: serverTimestamp(),
       });
 
-      await addDoc(collection(db, 'transactions', docRef.id, 'messages'), {
-        text: `🛡️ Sistem Keamanan: Room Chat berhasil dibuat untuk ${values.description}. Silakan Penjual (${values.sellerName}) dan Pembeli (${values.buyerName}) berdiskusi di sini.`,
-        senderId: 'system',
-        senderName: 'Sistem',
-        timestamp: serverTimestamp(),
-      });
-
       toast({
         title: 'Berhasil!',
         description: 'Link Room Chat Transaksi telah dibuat.',
@@ -90,7 +83,7 @@ export function TransactionForm() {
       toast({
         variant: 'destructive',
         title: 'Gagal Membuat Link',
-        description: 'Terjadi kesalahan pada server atau Rules Firestore belum diaktifkan.',
+        description: 'Terjadi kesalahan pada server.',
       });
     } finally {
       setIsLoading(false);
@@ -192,7 +185,7 @@ export function TransactionForm() {
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel className="text-xs cursor-pointer">
-                          Saya setuju untuk menggunakan sistem Rekber Nusantara dan mematuhi kebijakan keamanan yang berlaku.
+                          Saya setuju untuk menggunakan sistem Rekber Go dan mematuhi kebijakan keamanan yang berlaku.
                         </FormLabel>
                         <FormMessage />
                       </div>
