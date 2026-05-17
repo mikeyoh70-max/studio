@@ -59,7 +59,7 @@ export function WhyUs() {
                         <span className="text-xl font-bold text-slate-700 group-hover:text-slate-900 transition-colors">Toko Hijau</span>
                         <span className="text-5xl font-black text-slate-200 group-hover:text-slate-300 transition-colors tracking-tighter">10%</span>
                       </div>
-                      <p className="text-xs text-slate-400 italic">*Mulai dari 4% hingga 10%! 🤯</p>
+                      <p className="text-xs text-slate-400 italic">adminnya *Mulai dari 4% hingga 10%! 🤯</p>
                       <div className="mt-4 h-px w-full bg-slate-50 relative overflow-hidden">
                          <div className="absolute inset-0 bg-slate-100 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
                       </div>
@@ -71,7 +71,7 @@ export function WhyUs() {
                         <span className="text-xl font-bold text-slate-700 group-hover:text-slate-900 transition-colors">Si Orange</span>
                         <span className="text-5xl font-black text-slate-200 group-hover:text-slate-300 transition-colors tracking-tighter">15%</span>
                       </div>
-                      <p className="text-xs text-slate-400 italic">*Mulai dari 4% - 11% bahkan sampai 15% 🫠</p>
+                      <p className="text-xs text-slate-400 italic">adminnya *Mulai dari 4% - 11% bahkan sampai 15% 🫠</p>
                       <div className="mt-4 h-px w-full bg-slate-50 relative overflow-hidden">
                          <div className="absolute inset-0 bg-slate-100 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
                       </div>
