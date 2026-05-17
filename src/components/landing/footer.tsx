@@ -44,8 +44,10 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center space-x-2">
-            <ShieldCheck className="h-7 w-7 text-sky-400" />
-            <span className="text-xl font-bold font-headline text-white">Rekber Nusantara</span>
+            <div className="bg-sky-400 p-1.5 rounded-lg">
+              <ShieldCheck className="h-6 w-6 text-[#0a0f1e]" />
+            </div>
+            <span className="text-xl font-bold font-headline text-white tracking-tight">Rekber Nusantara</span>
           </div>
           <div className="flex space-x-2">
             <Button variant="ghost" size="icon" asChild className="text-slate-400 hover:text-white">
@@ -72,7 +74,7 @@ export function Footer() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 pt-8 border-t border-white/5">
           <div className="col-span-1">
-            <h3 className="font-bold text-white mb-4">PERUSAHAAN</h3>
+            <h3 className="font-bold text-white mb-4 text-sm tracking-widest">PERUSAHAAN</h3>
             <ul className="space-y-3">
               <li>
                 <Dialog>
@@ -99,12 +101,12 @@ export function Footer() {
                   </DialogContent>
                 </Dialog>
               </li>
-              <li><Link href="#why-us" className="text-slate-400 hover:text-sky-400 transition-colors">Mengapa Kami</Link></li>
-              <li><Link href="#testimonials" className="text-slate-400 hover:text-sky-400 transition-colors">Testimoni</Link></li>
+              <li><Link href="#why-us" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Mengapa Kami</Link></li>
+              <li><Link href="#testimonials" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Testimoni</Link></li>
             </ul>
           </div>
           <div className="col-span-1">
-            <h3 className="font-bold text-white mb-4">LEGALITAS</h3>
+            <h3 className="font-bold text-white mb-4 text-sm tracking-widest">LEGALITAS</h3>
             <ul className="space-y-3">
               <li>
                 <Dialog>
@@ -183,9 +185,9 @@ export function Footer() {
             </ul>
           </div>
           <div className="col-span-2">
-            <h3 className="font-bold text-white mb-4">PUSAT BANTUAN</h3>
+            <h3 className="font-bold text-white mb-4 text-sm tracking-widest">PUSAT BANTUAN</h3>
             <div className="space-y-4">
-              <p className="text-sm text-slate-400">Butuh bantuan atau ingin melaporkan kendala transaksi? Hubungi tim support kami.</p>
+              <p className="text-sm text-slate-400 leading-relaxed">Butuh bantuan atau ingin melaporkan kendala transaksi? Hubungi tim support kami.</p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button variant="outline" className="flex-1 justify-start gap-3 h-12 bg-white/5 border-white/10 text-white hover:bg-white/10" asChild>
                   <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">

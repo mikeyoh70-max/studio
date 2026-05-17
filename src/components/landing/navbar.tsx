@@ -27,9 +27,13 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center space-x-2">
-          <ShieldCheck className="h-6 w-6 text-primary" />
-          <span className="font-bold inline-block font-headline text-slate-900 text-base sm:text-lg">Rekber Nusantara</span>
+        <Link href="/" className="flex items-center space-x-2 group">
+          <div className="bg-primary p-1.5 rounded-lg shadow-sm group-hover:scale-110 transition-transform">
+            <ShieldCheck className="h-5 w-5 text-white" />
+          </div>
+          <span className="font-bold inline-block font-headline text-slate-900 text-base sm:text-lg tracking-tight">
+            Rekber <span className="text-primary">Nusantara</span>
+          </span>
         </Link>
         
         <nav className="hidden md:flex md:items-center md:gap-6 text-sm font-medium">
