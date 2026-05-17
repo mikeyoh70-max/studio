@@ -9,7 +9,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Rekber Nusantara - Jasa Rekening Bersama Terpercaya',
     description: 'Aman, cepat, dan transparan untuk transaksi produk digital Anda.',
-    images: ['https://i.ibb.co.cc/Vv8t05kP/Rekber-Nusantara.png'],
   },
 };
 

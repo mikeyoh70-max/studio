@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Menu, ShieldCheck, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -22,22 +21,15 @@ const navLinks = [
   { href: '#faq', label: 'FAQ' },
 ];
 
-const LOGO_URL = 'https://i.ibb.co.cc/Vv8t05kP/Rekber-Nusantara.png';
-
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center space-x-3 group">
-          <div className="relative h-9 w-9 overflow-hidden rounded-lg group-hover:scale-105 transition-transform duration-300">
-            <Image 
-              src={LOGO_URL} 
-              alt="Logo Rekber Nusantara" 
-              fill 
-              className="object-contain"
-            />
+        <Link href="/" className="flex items-center space-x-2 group">
+          <div className="flex items-center justify-center w-9 h-9 bg-primary rounded-lg group-hover:scale-105 transition-transform duration-300">
+            <ShieldCheck className="h-6 w-6 text-white" />
           </div>
           <span className="font-bold inline-block font-headline text-slate-900 text-base sm:text-lg tracking-tight">
             Rekber <span className="text-primary">Nusantara</span>
@@ -113,9 +105,7 @@ export function Navbar() {
             <SheetContent side="left" className="w-[280px] bg-white border-r-slate-200">
               <div className="flex flex-col h-full pt-10">
                 <Link href="/" className="flex items-center space-x-3 mb-10" onClick={() => setIsMobileMenuOpen(false)}>
-                  <div className="relative h-8 w-8">
-                    <Image src={LOGO_URL} alt="Logo" fill className="object-contain" />
-                  </div>
+                  <ShieldCheck className="h-8 w-8 text-primary" />
                   <span className="font-bold font-headline text-slate-900">Rekber Nusantara</span>
                 </Link>
                 <nav className="flex flex-col gap-6 text-lg font-medium">

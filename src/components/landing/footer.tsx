@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { Twitter, Instagram, Facebook, ShieldCheck, MessageCircle, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -13,8 +12,6 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog"
-
-const LOGO_URL = 'https://i.ibb.co.cc/Vv8t05kP/Rekber-Nusantara.png';
 
 const paymentBrands = [
   { name: "BCA", color: "text-[#0066AE]" },
@@ -47,9 +44,7 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <Link href="/" className="flex items-center space-x-3">
-            <div className="relative h-10 w-10">
-              <Image src={LOGO_URL} alt="Logo" fill className="object-contain" />
-            </div>
+            <ShieldCheck className="h-8 w-8 text-sky-400" />
             <span className="text-xl font-bold font-headline text-white tracking-tight">Rekber Nusantara</span>
           </Link>
           <div className="flex space-x-2">
