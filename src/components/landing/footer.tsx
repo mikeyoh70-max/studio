@@ -21,7 +21,7 @@ const paymentBrands = [
   { name: "SeaBank", color: "text-[#FF5100]" },
 ];
 
-const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Go%20,%20Saya%20ingin%20Memulai%20Transaksi%20Sekarang';
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Go,%20Saya%20ingin%20bertransaksi.%0A%0A*Format%20Transaksi*%0AProduk:%20%0ANominal:%20%0APenjual:%20%0APembeli:%20';
 const WHATSAPP_NUMBER = '+62 895-3230-91263';
 const EMAIL_SUPPORT = 'rekbernusantara777@gmail.com';
 

@@ -9,6 +9,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
+import { ShieldCheck, Users, Clock } from 'lucide-react';
 
 const imageCaptions = [
   "Transaksi Akun Game",
@@ -16,7 +17,13 @@ const imageCaptions = [
   "Top Up & Voucher"
 ];
 
-const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Go%20,%20Saya%20ingin%20Memulai%20Transaksi%20Sekarang';
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Go,%20Saya%20ingin%20bertransaksi.%0A%0A*Format%20Transaksi*%0AProduk:%20%0ANominal:%20%0APenjual:%20%0APembeli:%20';
+
+const stats = [
+  { icon: <ShieldCheck className="h-4 w-4 text-teal-400" />, label: "1,500+ Transaksi Sukses" },
+  { icon: <Users className="h-4 w-4 text-sky-400" />, label: "800+ Pelanggan Puas" },
+  { icon: <Clock className="h-4 w-4 text-orange-400" />, label: "24/7 Admin Aktif" },
+];
 
 export function Hero() {
   const heroImages = PlaceHolderImages.filter(p => p.id.startsWith('hero-'));
@@ -51,7 +58,7 @@ export function Hero() {
             Jasa Rekening Bersama terpercaya untuk semua kebutuhan transaksi digital Anda. Cepat, aman, dan biaya transparan langsung via WhatsApp.
           </p>
           
-          <div className="flex items-center justify-center w-full mb-16">
+          <div className="flex flex-col items-center justify-center w-full mb-16 gap-8">
             <Button asChild size="lg" 
               className="btn-rgb h-12 px-8 sm:px-10 text-base sm:text-lg shadow-xl transform transition-transform hover:scale-105"
             >
@@ -59,6 +66,16 @@ export function Hero() {
                 Mulai Transaksi Sekarang
               </a>
             </Button>
+
+            {/* Live Stats */}
+            <div className="flex flex-wrap justify-center gap-4 md:gap-8 bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-2xl">
+              {stats.map((stat, i) => (
+                <div key={i} className="flex items-center gap-2 px-3 py-1">
+                  {stat.icon}
+                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-200">{stat.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="w-full max-w-2xl mx-auto px-4 sm:px-0">
