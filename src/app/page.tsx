@@ -19,7 +19,7 @@ export default function Home() {
     {
       icon: <Send className="h-10 w-10" />,
       title: "Mulai Transaksi",
-      desc: "Klik tombol 'Mulai Transaksi Sekarang' untuk terhubung dengan Admin Resmi kami.",
+      desc: "Penjual Dan pembeli Sepakat untuk melakukan Transaksi bersama Admin ( Klik tombol Mulai transaksi ) untuk membuat Grub bersama",
       color: "text-blue-500",
       bgColor: "bg-blue-50"
     },
