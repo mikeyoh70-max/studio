@@ -17,7 +17,7 @@ const imageCaptions = [
   "Top Up & Voucher"
 ];
 
-const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Go,%20Saya%20ingin%20bertransaksi.%0A%0A*Format%20Transaksi*%0AProduk:%20%0ANominal:%20%0APenjual:%20%0APembeli:%20';
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara,%20Saya%20ingin%20bertransaksi.%0A%0A*Format%20Transaksi*%0AProduk:%20%0ANominal:%20%0APenjual:%20%0APembeli:%20';
 
 const stats = [
   { icon: <ShieldCheck className="h-4 w-4 text-teal-400" />, label: "1,500+ Transaksi Sukses" },
@@ -51,7 +51,7 @@ export function Hero() {
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl font-headline mb-6 leading-[1.1]">
             <span className="text-white">Transaksi Aman,</span>
             <span className="block text-sky-400">Hati Tenang.</span>
-            <span className="block text-teal-400">Rekber Go.</span>
+            <span className="block text-teal-400">Rekber Nusantara.</span>
           </h1>
           
           <p className="text-base sm:text-xl leading-relaxed text-slate-300 max-w-2xl mb-10">

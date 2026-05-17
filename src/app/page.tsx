@@ -22,7 +22,7 @@ export default function Home() {
     {
       icon: <Users className="h-4 w-4" />,
       title: "Kesepakatan",
-      desc: "Penjual & Pembeli sepakat menggunakan jasa Rekber Go.",
+      desc: "Penjual & Pembeli sepakat menggunakan jasa Rekber Nusantara.",
       color: "bg-blue-500"
     },
     {
@@ -75,7 +75,7 @@ export default function Home() {
                   Cara Kerja Rekber
                 </h2>
                 <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                  Proses 6 langkah transparan di Rekber Go untuk menjamin keamanan dana Anda.
+                  Proses 6 langkah transparan di Rekber Nusantara untuk menjamin keamanan dana Anda.
                 </p>
               </div>
 

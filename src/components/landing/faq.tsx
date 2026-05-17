@@ -11,11 +11,11 @@ const faqs = [
     answer: "Rekening Bersama (Rekber) adalah layanan pihak ketiga yang menengahi transaksi antara penjual dan pembeli. Dana dari pembeli akan ditahan oleh Rekber dan baru akan diteruskan ke penjual setelah pembeli mengkonfirmasi bahwa barang atau jasa telah diterima sesuai kesepakatan."
   },
   {
-    question: "Bagaimana cara kerja Rekber Go?",
+    question: "Bagaimana cara kerja Rekber Nusantara?",
     answer: "1. Penjual dan pembeli sepakat menggunakan jasa kami. 2. Pembeli mentransfer dana ke rekening kami. 3. Kami mengkonfirmasi dana telah diterima kepada kedua belah pihak. 4. Penjual mengirimkan barang/jasa kepada pembeli. 5. Pembeli mengkonfirmasi penerimaan. 6. Kami mentransfer dana ke penjual setelah dipotong biaya jasa."
   },
   {
-    question: "Berapa biaya jasa Rekber Go?",
+    question: "Berapa biaya jasa Rekber Nusantara?",
     answer: "Biaya jasa kami sangat kompetitif dan transparan, dihitung berdasarkan persentase dari nilai transaksi. Anda dapat menggunakan fitur kalkulator biaya di halaman ini untuk mendapatkan estimasi."
   },
   {

@@ -40,7 +40,7 @@ export async function verifyAdmin(
   if (isVerified) {
     return {
       status: 'VERIFIED',
-      message: 'Nomor terverifikasi sebagai Admin Resmi Rekber Go.',
+      message: 'Nomor terverifikasi sebagai Admin Resmi Rekber Nusantara.',
       number: phoneNumber,
     };
   } else {
