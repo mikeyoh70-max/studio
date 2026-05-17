@@ -67,7 +67,7 @@ export function Hero() {
               </a>
             </Button>
 
-            {/* Live Stats */}
+            {/* Live Stats Section */}
             <div className="flex flex-wrap justify-center gap-4 md:gap-8 bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-2xl">
               {stats.map((stat, i) => (
                 <div key={i} className="flex items-center gap-2 px-3 py-1">

@@ -87,7 +87,7 @@ export default function Home() {
                       {item.icon}
                     </div>
                     
-                    {/* Nomor Langkah - Biru Solid Terang */}
+                    {/* Nomor Langkah - Biru Terang Jelas */}
                     <div className="absolute top-3 right-4 text-3xl font-black text-primary pointer-events-none select-none opacity-40 group-hover:opacity-100 transition-opacity">
                       {(i + 1).toString().padStart(2, '0')}
                     </div>
