@@ -80,16 +80,6 @@ export function WhyUs() {
                 </div>
               </div>
             </div>
-
-            {/* Floating Button Kanan Bawah */}
-            <div className="absolute -bottom-6 right-8 md:right-16">
-              <Button asChild size="lg" className="bg-[#1a1a1a] hover:bg-black text-white rounded-2xl px-8 h-14 shadow-2xl border-4 border-white">
-                <Link href="#cek-fee" className="gap-3">
-                  Cek Detail Biaya
-                  <ExternalLink className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
           </div>
         </div>
       </div>
