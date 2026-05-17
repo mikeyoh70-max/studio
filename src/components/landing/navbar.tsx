@@ -28,7 +28,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center space-x-2 group">
-          <div className="flex items-center justify-center w-9 h-9 bg-primary rounded-lg group-hover:scale-105 transition-transform duration-300">
+          <div className="flex items-center justify-center w-9 h-9 bg-primary rounded-lg group-hover:scale-105 transition-transform duration-300 shadow-md">
             <ShieldCheck className="h-6 w-6 text-white" />
           </div>
           <span className="font-bold inline-block font-headline text-slate-900 text-base sm:text-lg tracking-tight">
@@ -41,7 +41,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-slate-600 transition-colors hover:text-primary"
+              className="text-slate-600 transition-colors hover:text-primary font-semibold"
             >
               {link.label}
             </Link>
@@ -58,7 +58,7 @@ export function Navbar() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px] bg-white text-slate-900 border-slate-200">
               <DialogHeader>
-                <DialogTitle className="text-xl sm:text-2xl font-headline flex items-center gap-2">
+                <DialogTitle className="text-xl sm:text-2xl font-headline flex items-center gap-2 text-slate-900">
                   <ShieldCheck className="h-6 w-6 text-primary" />
                   Info Transaksi
                 </DialogTitle>
@@ -68,14 +68,14 @@ export function Navbar() {
               </DialogHeader>
               <div className="space-y-6 py-4">
                 <div className="space-y-2">
-                  <h4 className="font-bold">Apa itu Rekber?</h4>
+                  <h4 className="font-bold text-slate-900">Apa itu Rekber?</h4>
                   <p className="text-sm text-slate-600 leading-relaxed">
                     Rekening Bersama (Rekber) adalah layanan pihak ketiga untuk mengamankan transaksi antara penjual dan pembeli agar terhindar dari penipuan.
                   </p>
                 </div>
                 
                 <div className="space-y-3">
-                  <h4 className="font-bold">Bagaimana Caranya?</h4>
+                  <h4 className="font-bold text-slate-900">Bagaimana Caranya?</h4>
                   <div className="space-y-4">
                     <div className="flex gap-3">
                       <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">1</div>

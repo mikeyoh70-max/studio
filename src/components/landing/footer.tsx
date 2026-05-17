@@ -72,7 +72,7 @@ export function Footer() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 pt-8 border-t border-white/5">
           <div className="col-span-1">
-            <h3 className="font-bold text-white mb-4 text-sm tracking-widest">PERUSAHAAN</h3>
+            <h3 className="font-bold text-white mb-4 text-sm tracking-widest uppercase">Perusahaan</h3>
             <ul className="space-y-3">
               <li>
                 <Dialog>
@@ -104,7 +104,7 @@ export function Footer() {
             </ul>
           </div>
           <div className="col-span-1">
-            <h3 className="font-bold text-white mb-4 text-sm tracking-widest">LEGALITAS</h3>
+            <h3 className="font-bold text-white mb-4 text-sm tracking-widest uppercase">Legalitas</h3>
             <ul className="space-y-3">
               <li>
                 <Dialog>
@@ -183,7 +183,7 @@ export function Footer() {
             </ul>
           </div>
           <div className="col-span-2">
-            <h3 className="font-bold text-white mb-4 text-sm tracking-widest">PUSAT BANTUAN</h3>
+            <h3 className="font-bold text-white mb-4 text-sm tracking-widest uppercase">Pusat Bantuan</h3>
             <div className="space-y-4">
               <p className="text-sm text-slate-400 leading-relaxed">Butuh bantuan atau ingin melaporkan kendala transaksi? Hubungi tim support kami.</p>
               <div className="flex flex-col sm:flex-row gap-4">

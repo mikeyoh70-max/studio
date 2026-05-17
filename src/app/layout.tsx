@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Rekber Nusantara - Jasa Rekening Bersama Terpercaya',
     description: 'Aman, cepat, dan transparan untuk transaksi produk digital Anda.',
+    type: 'website',
   },
 };
 
