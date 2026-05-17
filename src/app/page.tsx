@@ -11,7 +11,8 @@ import {
   Wallet, 
   PackageCheck, 
   CheckCircle2,
-  Send
+  Send,
+  ShieldCheck
 } from 'lucide-react';
 
 export default function Home() {
@@ -39,10 +40,17 @@ export default function Home() {
     },
     {
       icon: <CheckCircle2 className="h-10 w-10" />,
-      title: "Selesai",
-      desc: "Dana dicairkan ke Penjual setelah konfirmasi selesai.",
+      title: "Konfirmasi",
+      desc: "Pembeli memberikan konfirmasi kepada admin jika barang sudah aman.",
       color: "text-green-600",
       bgColor: "bg-green-50"
+    },
+    {
+      icon: <ShieldCheck className="h-10 w-10" />,
+      title: "Transaksi Selesai",
+      desc: "Dana dicairkan ke Penjual dan transaksi resmi ditutup oleh Admin.",
+      color: "text-teal-600",
+      bgColor: "bg-teal-50"
     }
   ];
 
@@ -60,11 +68,11 @@ export default function Home() {
                   Cara Kerja Rekber Nusantara
                 </h2>
                 <p className="text-lg text-slate-500 font-medium">
-                  Proses sederhana dalam 4 langkah untuk transaksi yang aman
+                  Proses sederhana dalam 5 langkah untuk transaksi yang aman
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 max-w-7xl mx-auto">
                 {steps.map((item, i) => (
                   <div key={i} className="flex flex-col items-center text-center group">
                     {/* Icon Container */}
