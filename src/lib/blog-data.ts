@@ -35,5 +35,23 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Tips Aman Bertransaksi Online: Jaga kerahasiaan data pribadi Anda dan gunakan jasa rekber terpercaya...",
     date: "22 Apr 2026",
     imageId: "blog-3"
+  },
+  {
+    id: 4,
+    slug: "apa-itu-rekber-dan-fungsinya",
+    category: "Edukasi",
+    title: "Apa Itu Rekber dan Fungsinya dalam Bisnis Online?",
+    excerpt: "Sistem Rekber itu Bagaimana? Sistem kerja rekber cukup sederhana namun sangat efektif melindungi kedua belah pihak...",
+    date: "23 Apr 2026",
+    imageId: "blog-4"
+  },
+  {
+    id: 5,
+    slug: "mengenal-lebih-dekat-rekening-bersama",
+    category: "Pengetahuan",
+    title: "Mengenal Lebih Dekat Rekening Bersama: Kelebihan & Manfaat",
+    excerpt: "Apa itu Rekening Bersama? Rekening bersama adalah rekening bank yang dimiliki atau diawasi oleh pihak ketiga yang netral...",
+    date: "23 Apr 2026",
+    imageId: "blog-5"
   }
 ];

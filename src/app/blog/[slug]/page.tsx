@@ -4,7 +4,7 @@ import { blogPosts } from '@/lib/blog-data';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Calendar, ArrowLeft, ShieldCheck, Share2, Info, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { Calendar, ArrowLeft, ShieldCheck, Share2, Info, AlertTriangle, CheckCircle2, Zap, Lock, Users } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -91,6 +91,61 @@ const postContents: Record<string, string> = {
           <p class="text-slate-600 leading-relaxed">Admin Rekber Nusantara bertindak sebagai mediator yang paham alur teknis pergantian data akun. Kami memastikan penjual sudah benar-benar melepaskan aksesnya sebelum dana diteruskan. Jangan ambil risiko bertransaksi sendirian!</p>
         </div>
       </div>
+    </div>
+  `,
+  "apa-itu-rekber-dan-fungsinya": `
+    <div class="space-y-6">
+      <p class="text-lg leading-relaxed">Bagi Anda yang sering bergelut di dunia jual beli online, istilah "Escrow" atau "Rekber" pasti sudah tidak asing lagi. Namun, tahukah Anda bagaimana mekanisme kerjanya secara mendalam?</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+          <Zap className="h-8 w-8 text-primary mb-4" />
+          <h4 class="font-bold text-slate-900 mb-2">Penyelesaian Cepat</h4>
+          <p class="text-sm text-slate-600">Mekanisme Rekber memastikan sengketa diselesaikan dalam waktu kurang dari 24 jam dengan bukti otentik.</p>
+        </div>
+        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+          <Lock className="h-8 w-8 text-green-500 mb-4" />
+          <h4 class="font-bold text-slate-900 mb-2">Keamanan Dana</h4>
+          <p class="text-sm text-slate-600">Dana hanya dilepas jika syarat transaksi terpenuhi 100% oleh kedua belah pihak.</p>
+        </div>
+      </div>
+
+      <h3 class="text-2xl font-black mt-8">Fungsi Utama Rekber dalam Bisnis Online</h3>
+      <p>Rekber berfungsi sebagai jembatan kepercayaan. Bayangkan Anda ingin membeli item game senilai jutaan rupiah dari seseorang di pulau lain. Siapa yang harus kirim duluan? Di sinilah Rekber Nusantara hadir. Kami menampung dana pembeli, memberikan sinyal aman kepada penjual untuk kirim barang, dan baru meneruskan dana setelah pembeli puas.</p>
+
+      <h3 class="text-2xl font-black mt-8">Membangun Ekosistem yang Sehat</h3>
+      <p>Dengan adanya Rekber, ekosistem jual beli digital di Indonesia menjadi lebih sehat. Penjual jujur akan mendapatkan reputasi baik, dan pembeli tidak perlu was-was uangnya dibawa lari. Ini adalah standar keamanan baru di era ekonomi digital.</p>
+    </div>
+  `,
+  "mengenal-lebih-dekat-rekening-bersama": `
+    <div class="space-y-6">
+      <p class="text-lg leading-relaxed">Rekening Bersama (Rekber) bukan sekadar layanan transfer uang. Ini adalah sistem pengamanan transaksi yang melibatkan mediasi profesional untuk meminimalisir risiko kerugian material.</p>
+
+      <div class="bg-indigo-900 text-white p-8 rounded-[40px] my-10">
+        <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
+          <Users className="h-6 w-6" /> Mengapa Memilih Rekber Nusantara?
+        </h4>
+        <ul class="space-y-4 text-indigo-100">
+          <li class="flex gap-3">
+            <span class="font-bold text-white">01.</span>
+            <span>Admin profesional yang paham teknis produk digital (Game, Software, Jasa).</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold text-white">02.</span>
+            <span>Transparansi biaya tanpa ada biaya tersembunyi di akhir transaksi.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold text-white">03.</span>
+            <span>Sistem verifikasi nomor admin untuk mencegah 'Admin Palsu'.</span>
+          </li>
+        </ul>
+      </div>
+
+      <h3 class="text-2xl font-black mt-8">Kelebihan Menggunakan Rekber</h3>
+      <p>Salah satu kelebihan utama adalah **Mediasi Sengketa**. Jika barang yang diterima pembeli tidak sesuai dengan deskripsi awal, Admin Rekber Nusantara akan bertindak sebagai hakim yang netral. Kami akan meminta bukti dari kedua belah pihak dan mengambil keputusan yang paling adil, termasuk opsi pengembalian dana (refund) jika diperlukan.</p>
+
+      <h3 class="text-2xl font-black mt-8">Kesimpulan</h3>
+      <p>Menggunakan jasa Rekber adalah investasi keamanan. Biaya jasa (fee) yang Anda bayarkan jauh lebih kecil dibandingkan risiko kehilangan seluruh modal transaksi Anda akibat penipuan. Jadilah pembeli dan penjual yang cerdas dengan selalu mengutamakan keamanan.</p>
     </div>
   `
 };
