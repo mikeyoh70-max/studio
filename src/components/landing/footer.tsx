@@ -21,7 +21,7 @@ const paymentBrands = [
   { name: "SeaBank", color: "text-[#FF5100]" },
 ];
 
-const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara,%20Saya%20ingin%20bertransaksi.%0A%0A*Format%20Transaksi*%0AProduk:%20%0ANominal:%20%0APenjual:%20%0APembeli:%20';
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara,%20Saya%20ingin%20bertransaksi.';
 const WHATSAPP_NUMBER = '+62 895-3230-91263';
 const EMAIL_SUPPORT = 'rekbernusantara777@gmail.com';
 
@@ -100,7 +100,7 @@ export function Footer() {
                 </Dialog>
               </li>
               <li><Link href="#why-us" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Mengapa Kami</Link></li>
-              <li><Link href="#testimonials" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Testimoni</Link></li>
+              <li><Link href="/blog" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Blog Edukasi</Link></li>
             </ul>
           </div>
           <div className="col-span-1">

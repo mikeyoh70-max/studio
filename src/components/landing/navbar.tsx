@@ -15,10 +15,11 @@ import {
 } from "@/components/ui/dialog";
 
 const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#why-us', label: 'Mengapa Kami' },
-  { href: '#cek-fee', label: 'Kalkulator Fee' },
-  { href: '#faq', label: 'FAQ' },
+  { href: '/#home', label: 'Home' },
+  { href: '/#why-us', label: 'Mengapa Kami' },
+  { href: '/#cek-fee', label: 'Kalkulator Fee' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/#faq', label: 'FAQ' },
 ];
 
 export function Navbar() {

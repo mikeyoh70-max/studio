@@ -1,0 +1,28 @@
+{
+  "entities": {
+    "BlogPost": {
+      "title": "Blog Post",
+      "description": "Sebuah artikel edukasi untuk pengguna Rekber Nusantara.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Judul artikel" },
+        "slug": { "type": "string", "description": "URL slug artikel" },
+        "content": { "type": "string", "description": "Konten lengkap artikel (Markdown)" },
+        "excerpt": { "type": "string", "description": "Ringkasan pendek artikel" },
+        "coverImage": { "type": "string", "description": "URL gambar sampul" },
+        "author": { "type": "string", "description": "Nama penulis" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Waktu posting" }
+      },
+      "required": ["title", "slug", "content"]
+    }
+  },
+  "auth": {
+    "providers": ["google.com"]
+  },
+  "firestore": {
+    "/blogs/{blogId}": {
+      "schema": "#/backend/entities/BlogPost",
+      "description": "Koleksi artikel blog."
+    }
+  }
+}
