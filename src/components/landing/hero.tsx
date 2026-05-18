@@ -55,7 +55,7 @@ export function Hero() {
           </h1>
           
           <p className="text-base sm:text-xl leading-relaxed text-slate-300 max-w-2xl mb-10">
-            Jasa Rekening Bersama terpercaya untuk semua kebutuhan transaksi digital Anda. Cepat, aman, dan biaya transparan Bersama Admin Profesional.
+            Jasa Rekening Bersama terpercaya untuk semua kebutuhan transaksi digital Anda. Cepat, aman, dan biaya transparan.
           </p>
           
           <div className="flex flex-col items-center justify-center w-full mb-16 gap-8">
