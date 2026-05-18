@@ -27,7 +27,7 @@ export function WhyUs() {
                 
                 <div className="flex items-start gap-1 mb-6">
                   <span className="text-8xl md:text-9xl font-black tracking-tighter text-slate-900 leading-none">
-                    1%
+                    2%
                   </span>
                   <Sparkles className="h-8 w-8 text-yellow-400 fill-yellow-400 mt-4 animate-pulse" />
                 </div>
