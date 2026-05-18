@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -15,38 +14,33 @@ import {
 } from "@/components/ui/carousel";
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-const blogPosts = [
+export const blogPosts = [
   {
     id: 1,
+    slug: "tips-korban-penipuan-rekber",
     category: "Tips Keamanan",
     title: "Tips Jika Menjadi Korban Penipuan Rekber",
-    excerpt: "Jerat Hukum Penipuan Lewat Rekber Pasal mengenai penipuan secara umum diatur pada Pasal 378 KUHP yang berbunyi:...",
+    excerpt: "Jerat Hukum Penipuan Lewat Rekber. Pasal mengenai penipuan secara umum diatur pada Pasal 378 KUHP...",
     date: "22 Apr 2026",
     imageId: "blog-1"
   },
   {
     id: 2,
+    slug: "jenis-penipuan-marketplace",
     category: "Marketplace",
-    title: "Jenis2 Penipuan di Marketplace, Pembeli Online...",
-    excerpt: "1. Meminta transaksi di luar marketplace tanpa rekening bersama (rekber). Marketplace bertindak sebagai penengah...",
+    title: "Jenis2 Penipuan di Marketplace Online",
+    excerpt: "Hati-hati dengan permintaan transaksi di luar marketplace tanpa rekening bersama (rekber). Marketplace bertindak sebagai penengah...",
     date: "22 Apr 2026",
     imageId: "blog-2"
   },
   {
     id: 3,
+    slug: "cara-aman-transaksi-digital",
     category: "Edukasi",
     title: "Cara Aman Bertransaksi Produk Digital Online",
-    excerpt: "Tips Aman Bertransaksi Online 1. Jaga kerahasiaan data pribadi Anda harus menjaga kerahasiaan data pribadi, dengan...",
+    excerpt: "Tips Aman Bertransaksi Online: Jaga kerahasiaan data pribadi Anda dan gunakan jasa rekber terpercaya...",
     date: "22 Apr 2026",
     imageId: "blog-3"
-  },
-  {
-    id: 4,
-    category: "Tips Keamanan",
-    title: "Mengenal Phishing dan Cara Menghindarinya",
-    excerpt: "Hati-hati dengan link palsu yang mengatasnamakan admin. Selalu verifikasi nomor admin di website resmi kami...",
-    date: "21 Apr 2026",
-    imageId: "blog-1"
   }
 ];
 
@@ -103,7 +97,7 @@ export function BlogSection() {
                           {post.excerpt}
                         </p>
                         <Link 
-                          href={`/blog`} 
+                          href={`/blog/${post.slug}`} 
                           className="inline-flex items-center gap-2 text-primary font-black text-sm uppercase tracking-wider group/link"
                         >
                           Baca Selengkapnya
