@@ -185,7 +185,7 @@ export function TransactionForm() {
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel className="text-xs cursor-pointer">
-                          Saya setuju untuk menggunakan sistem Rekber Go dan mematuhi kebijakan keamanan yang berlaku.
+                          Saya setuju untuk menggunakan sistem Rekber Nusantara dan mematuhi kebijakan keamanan yang berlaku.
                         </FormLabel>
                         <FormMessage />
                       </div>

@@ -25,7 +25,7 @@ const testimonials = [
     title: 'Penjual Jasa Freelance',
     rating: 5,
     quote:
-      'Sering pake Rekber Go buat transaksi jasa desain saya. Sangat membantu biar klien juga merasa aman dan saya tenang nunggu dana cair.',
+      'Sering pake Rekber Nusantara buat transaksi jasa desain saya. Sangat membantu biar klien juga merasa aman dan saya tenang nunggu dana cair.',
   },
   {
     name: 'Budi Santoso',
@@ -41,7 +41,7 @@ const testimonials = [
     title: 'Pemain Pro MLBB',
     rating: 5,
     quote:
-      'Layanan mediasi terbaik. Sempat ada salah paham sama seller, tapi admin jadi penengah yang adil banget. Dana balik aman. Makasih Rekber Go!',
+      'Layanan mediasi terbaik. Sempat ada salah paham sama seller, tapi admin jadi penengah yang adil banget. Dana balik aman. Makasih Rekber Nusantara!',
   },
   {
     name: 'Rina Kartika',
