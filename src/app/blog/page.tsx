@@ -1,6 +1,6 @@
 import { Navbar } from '@/components/landing/navbar';
 import { Footer } from '@/components/landing/footer';
-import { blogPosts } from '@/components/landing/blog-section';
+import { blogPosts } from '@/lib/blog-data';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, ArrowRight } from 'lucide-react';

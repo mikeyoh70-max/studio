@@ -1,6 +1,6 @@
 import { Navbar } from '@/components/landing/navbar';
 import { Footer } from '@/components/landing/footer';
-import { blogPosts } from '@/components/landing/blog-section';
+import { blogPosts } from '@/lib/blog-data';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -9,7 +9,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-// Simulasi konten artikel lengkap
 const postContents: Record<string, string> = {
   "tips-korban-penipuan-rekber": `
     <p>Menjadi korban penipuan adalah pengalaman yang tidak menyenangkan. Namun, ada langkah hukum yang bisa Anda ambil untuk menindak pelaku.</p>
@@ -44,15 +43,16 @@ const postContents: Record<string, string> = {
   `
 };
 
-export default function BlogDetailPage({ params }: { params: { slug: string } }) {
-  const post = blogPosts.find(p => p.slug === params.slug);
+export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = blogPosts.find(p => p.slug === slug);
   
   if (!post) {
     notFound();
   }
 
   const placeholder = PlaceHolderImages.find(img => img.id === post.imageId);
-  const fullContent = postContents[post.slug] || "<p>Konten sedang dalam proses pembaruan...</p>";
+  const fullContent = postContents[slug] || "<p>Konten sedang dalam proses pembaruan...</p>";
 
   return (
     <div className="flex flex-col min-h-dvh bg-white">
