@@ -11,8 +11,8 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 
 const mockTransactions = [
-  { id: 1, item: "Akun Mobile Legends - Mythic", price: "Rp 350.000", time: "2 menit yang lalu" },
-  { id: 2, item: "Jasa Joki Rank Valorant", price: "Rp 150.000", time: "5 menit yang lalu" },
+  { id: 1, item: "Akun Mobile Legends - Mythic", price: "Rp 350.000", time: "23 menit yang lalu" },
+  { id: 2, item: "Jasa Joki Rank Valorant", price: "Rp 150.000", time: "58 menit yang lalu" },
   { id: 3, item: "Akun Genshin Impact AR 55", price: "Rp 1.200.000", time: "3 jam yang lalu" },
   { id: 4, item: "Top Up Diamond FF", price: "Rp 50.000", time: "5 jam yang lalu" },
   { id: 5, item: "Jasa Desain Banner", price: "Rp 200.000", time: "6 jam yang lalu" },
