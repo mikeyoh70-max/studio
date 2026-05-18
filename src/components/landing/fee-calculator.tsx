@@ -35,7 +35,7 @@ export function FeeCalculator() {
       return 20000;
     }
     if (amount > 1000000) {
-      return amount * 0.025;
+      return amount * 0.02;
     }
     return 0;
   }, [amount]);
@@ -76,7 +76,6 @@ export function FeeCalculator() {
                   <div className="p-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-white/5">
                     <p className="text-sm text-slate-400">Total Biaya yang Harus Dibayar</p>
                     
-                    {/* Display breakdown as requested */}
                     <div className="mt-3 flex items-baseline gap-2 flex-wrap">
                       <span className="text-4xl font-bold tracking-tight text-white">
                         {formatCurrency(amount)}
@@ -86,7 +85,6 @@ export function FeeCalculator() {
                       </span>
                     </div>
 
-                    {/* Final sum display */}
                     <div className="mt-6 pt-4 border-t border-white/10 flex justify-between items-end">
                       <div>
                         <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Total Akhir</p>
@@ -136,7 +134,7 @@ export function FeeCalculator() {
                     </TableRow>
                     <TableRow className="border-none hover:bg-white/5">
                       <TableCell className="text-slate-300 px-6">&gt; Rp 1.000.000</TableCell>
-                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-white border-sky-400/30 bg-sky-400/10 font-bold text-lg">2.5%</Badge></TableCell>
+                      <TableCell className="text-right px-6"><Badge variant="outline" className="text-white border-sky-400/30 bg-sky-400/10 font-bold text-lg">2%</Badge></TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
