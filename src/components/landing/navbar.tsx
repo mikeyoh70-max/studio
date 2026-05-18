@@ -32,7 +32,7 @@ export function Navbar() {
             <ShieldCheck className="h-6 w-6 text-white" />
           </div>
           <span className="font-bold inline-block font-headline text-slate-900 text-base sm:text-lg tracking-tight">
-            Rekber <span className="text-primary">Nusantara</span>
+            PT Rekber <span className="text-primary">Nusantara</span>
           </span>
         </Link>
         
@@ -63,7 +63,7 @@ export function Navbar() {
                   Info Transaksi
                 </DialogTitle>
                 <DialogDescription className="text-sm sm:text-base pt-2 text-slate-600">
-                  Panduan aman bertransaksi di Rekber Nusantara.
+                  Panduan aman bertransaksi di PT Rekber Nusantara.
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-6 py-4">
@@ -106,7 +106,7 @@ export function Navbar() {
               <div className="flex flex-col h-full pt-10">
                 <Link href="/" className="flex items-center space-x-3 mb-10" onClick={() => setIsMobileMenuOpen(false)}>
                   <ShieldCheck className="h-8 w-8 text-primary" />
-                  <span className="font-bold font-headline text-slate-900">Rekber Nusantara</span>
+                  <span className="font-bold font-headline text-slate-900">PT Rekber Nusantara</span>
                 </Link>
                 <nav className="flex flex-col gap-6 text-lg font-medium">
                   {navLinks.map((link) => (

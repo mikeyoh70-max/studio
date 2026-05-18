@@ -51,7 +51,7 @@ export function Hero() {
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl font-headline mb-6 leading-[1.1]">
             <span className="text-white">Transaksi Aman,</span>
             <span className="block text-sky-400">Hati Tenang.</span>
-            <span className="block text-teal-400">Rekber Nusantara.</span>
+            <span className="block text-teal-400">PT Rekber Nusantara.</span>
           </h1>
           
           <p className="text-base sm:text-xl leading-relaxed text-slate-300 max-w-2xl mb-10">
