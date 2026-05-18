@@ -11,7 +11,7 @@ export function WhyUs() {
             Biaya
           </h2>
           <p className="text-lg text-slate-500 font-medium">
-            Biaya penanganan bersaing, transparan, dan tanpa kejutan tersembunyi.
+            Biaya penanganan Paling terjangkau , Transparan , dan tanpa kejutan tersembunyi
           </p>
         </div>
 
