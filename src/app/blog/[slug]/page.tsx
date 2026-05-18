@@ -8,6 +8,7 @@ import { Calendar, ArrowLeft, ShieldCheck, Share2, Info, AlertTriangle, CheckCir
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Metadata } from 'next';
 
 const postContents: Record<string, string> = {
   "tips-korban-penipuan-rekber": `
@@ -149,6 +150,24 @@ const postContents: Record<string, string> = {
     </div>
   `
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = blogPosts.find(p => p.slug === slug);
+  
+  if (!post) return { title: 'Artikel Tidak Ditemukan' };
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      publishedTime: post.date,
+    }
+  };
+}
 
 export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

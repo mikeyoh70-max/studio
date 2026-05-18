@@ -4,12 +4,38 @@ import { Toaster } from '@/components/ui/toaster';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'Rekber Nusantara - Jasa Rekening Bersama Terpercaya',
+  title: {
+    default: 'Rekber Nusantara - Jasa Rekening Bersama Terpercaya',
+    template: '%s | Rekber Nusantara'
+  },
   description: 'Jasa Rekening Bersama (Rekber) terpercaya untuk transaksi game online, akun, dan produk digital Anda. Aman, cepat, dan biaya transparan.',
+  keywords: ['rekber', 'rekening bersama', 'jasa rekber aman', 'rekber game online', 'transaksi digital aman', 'rekber nusantara'],
+  authors: [{ name: 'Rekber Nusantara Team' }],
+  creator: 'Rekber Nusantara',
+  publisher: 'PT Rekber Nusantara',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     title: 'Rekber Nusantara - Jasa Rekening Bersama Terpercaya',
     description: 'Aman, cepat, dan transparan untuk transaksi produk digital Anda.',
+    url: 'https://rekbernusantara.com',
+    siteName: 'Rekber Nusantara',
+    locale: 'id_ID',
     type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -19,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="id">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
