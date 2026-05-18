@@ -25,6 +25,8 @@ const stats = [
   { icon: <Clock className="h-4 w-4 text-orange-400" />, label: "24/7 Admin Aktif" },
 ];
 
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=hallo%20admin%20%2C%20saya%20mau%20Buat%20Rekber%20Sekarang%20Dong';
+
 export function Hero() {
   const heroImages = PlaceHolderImages.filter(p => p.id.startsWith('hero-'));
 
@@ -62,9 +64,9 @@ export function Hero() {
             <Button asChild size="lg" 
               className="btn-rgb h-12 px-8 sm:px-10 text-base sm:text-lg shadow-xl transform transition-transform hover:scale-105"
             >
-              <Link href="/buat-transaksi">
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                 Mulai Transaksi Sekarang
-              </Link>
+              </a>
             </Button>
 
             {/* Live Stats Section */}
