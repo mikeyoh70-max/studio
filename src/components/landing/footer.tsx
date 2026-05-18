@@ -81,11 +81,11 @@ export function Footer() {
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[500px] bg-white text-slate-900 border-slate-200">
                     <DialogHeader>
-                      <DialogTitle className="font-headline text-2xl text-slate-900">Tentang PT Rekber Nusantara</DialogTitle>
+                      <DialogTitle className="font-headline text-2xl text-slate-900">Tentang Rekber Nusantara</DialogTitle>
                     </DialogHeader>
                     <div className="py-4 space-y-4 text-slate-600 text-sm leading-relaxed">
                       <p>
-                        PT Rekber Nusantara adalah platform jasa Rekening Bersama (Rekber) independen yang didirikan pada tahun 2024. Kami hadir untuk menjawab tantangan keamanan dalam transaksi produk dan jasa digital di Indonesia.
+                        Rekber Nusantara adalah platform jasa Rekening Bersama (Rekber) independen yang didirikan pada tahun 2024. Kami hadir untuk menjawab tantangan keamanan dalam transaksi produk dan jasa digital di Indonesia.
                       </p>
                       <p>
                         Misi utama kami adalah menjadi penengah yang adil, netral, and aman bagi penjual maupun pembeli. Dengan sistem verifikasi admin yang ketat, kami berkomitmen untuk memberantas praktik penipuan di dunia digital.
@@ -116,9 +116,9 @@ export function Footer() {
                       <DialogTitle className="font-headline text-2xl text-slate-900">Syarat & Ketentuan</DialogTitle>
                     </DialogHeader>
                     <div className="py-4 space-y-4 text-slate-600 text-sm leading-relaxed">
-                      <p>Dengan menggunakan layanan PT Rekber Nusantara, Anda setuju untuk mematuhi aturan berikut:</p>
+                      <p>Dengan menggunakan layanan Rekber Nusantara, Anda setuju untuk mematuhi aturan berikut:</p>
                       <ul className="space-y-2 list-decimal list-inside">
-                        <li>PT Rekber Nusantara bertindak sebagai mediator (pihak ketiga) untuk mengamamanan dana transaksi.</li>
+                        <li>Rekber Nusantara bertindak sebagai mediator (pihak ketiga) untuk mengamamanan dana transaksi.</li>
                         <li>Transaksi hanya dianggap sah jika dilakukan melalui <strong>Admin Resmi</strong> yang nomornya terverifikasi di website ini.</li>
                         <li>Pembeli wajib mentransfer dana sesuai nominal dan kode unik yang diberikan Admin.</li>
                         <li>Penjual dilarang mengirimkan data/barang sebelum Admin mengonfirmasi dana masuk.</li>
@@ -211,7 +211,7 @@ export function Footer() {
         </div>
         
         <div className="mt-12 pt-8 border-t border-white/5 text-center text-sm text-slate-500 flex flex-col md:flex-row justify-between gap-4">
-          <p>&copy; 2026 PT Rekber Nusantara. All rights reserved.</p>
+          <p>&copy; 2026 Rekber Nusantara. All rights reserved.</p>
           <p className="max-w-2xl mx-auto md:mx-0">
             Layanan mediasi independen terpercaya sejak 2024.
           </p>

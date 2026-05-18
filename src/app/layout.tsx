@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   keywords: ['rekber', 'rekening bersama', 'jasa rekber aman', 'rekber game online', 'transaksi digital aman', 'rekber nusantara'],
   authors: [{ name: 'Rekber Nusantara Team' }],
   creator: 'Rekber Nusantara',
-  publisher: 'PT Rekber Nusantara',
+  publisher: 'Rekber Nusantara',
   formatDetection: {
     email: false,
     address: false,

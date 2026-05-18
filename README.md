@@ -3,7 +3,7 @@
 Website ini adalah platform landing page untuk jasa Rekening Bersama (Rekber) terpercaya di Indonesia.
 
 ## Fitur & Desain Saat Ini
-- **Brand**: Rekber Nusantara (PT Rekber Nusantara).
+- **Brand**: Rekber Nusantara.
 - **Tema**: Mixed Elegant (Perpaduan Hero Gelap dan Konten Putih Bersih).
 - **SEO Optimized**: Metadata dinamis untuk setiap halaman blog dan optimasi kata kunci pencarian.
 - **Blog Edukasi**: 5 Artikel profesional tentang keamanan transaksi digital, hukum penipuan, dan panduan aman.
