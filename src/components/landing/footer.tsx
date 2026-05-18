@@ -21,7 +21,7 @@ const paymentBrands = [
   { name: "SeaBank", color: "text-[#FF5100]" },
 ];
 
-const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=Halo%20Admin%20Rekber%20Nusantara,%20Saya%20ingin%20bertransaksi.';
+const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=hallo%20admin%20%2C%20saya%20mau%20Buat%20Rekber%20Sekarang%20Dong';
 const WHATSAPP_NUMBER = '+62 895-3230-91263';
 const EMAIL_SUPPORT = 'rekbernusantara777@gmail.com';
 
@@ -118,7 +118,7 @@ export function Footer() {
                     <div className="py-4 space-y-4 text-slate-600 text-sm leading-relaxed">
                       <p>Dengan menggunakan layanan PT Rekber Nusantara, Anda setuju untuk mematuhi aturan berikut:</p>
                       <ul className="space-y-2 list-decimal list-inside">
-                        <li>PT Rekber Nusantara bertindak sebagai mediator (pihak ketiga) untuk mengamankan dana transaksi.</li>
+                        <li>PT Rekber Nusantara bertindak sebagai mediator (pihak ketiga) untuk mengamamanan dana transaksi.</li>
                         <li>Transaksi hanya dianggap sah jika dilakukan melalui <strong>Admin Resmi</strong> yang nomornya terverifikasi di website ini.</li>
                         <li>Pembeli wajib mentransfer dana sesuai nominal dan kode unik yang diberikan Admin.</li>
                         <li>Penjual dilarang mengirimkan data/barang sebelum Admin mengonfirmasi dana masuk.</li>
