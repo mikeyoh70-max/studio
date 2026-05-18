@@ -17,6 +17,24 @@
       "description": "Seorang freelancer wanita sedang bekerja di laptopnya di kafe yang nyaman, melambangkan transaksi jasa freelance online.",
       "imageUrl": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmcmVlbGFuY2VyfGVufDB8fHx8MTc2OTE3NTM5OHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "freelancer woman"
+    },
+    {
+      "id": "blog-1",
+      "description": "Ilustrasi gedung bank dan dokumen hukum, melambangkan tips hukum jika menjadi korban penipuan.",
+      "imageUrl": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxidWlsZGluZyUyMGJhbmthfGVufDB8fHx8MTcyMTgzMTUyN3ww&ixlib=rb-4.1.0&q=80&w=800",
+      "imageHint": "bank building"
+    },
+    {
+      "id": "blog-2",
+      "description": "Laptop terbuka dengan tulisan E-commerce, melambangkan jenis penipuan di marketplace.",
+      "imageUrl": "https://images.unsplash.com/photo-1557821552-17105176677c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2V8ZW58MHx8fHwxNzIxODMxNTg1fDA&ixlib=rb-4.1.0&q=80&w=800",
+      "imageHint": "laptop ecommerce"
+    },
+    {
+      "id": "blog-3",
+      "description": "Seseorang memegang smartphone yang menampilkan ikon pembayaran digital di samping cangkir kopi.",
+      "imageUrl": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkaWdpdGFsJTIwcGF5bWVudHxlbnwwfHx8fDE3NjkxNzUzOTh8MA&ixlib=rb-4.1.0&q=80&w=800",
+      "imageHint": "digital payment"
     }
   ]
 }
