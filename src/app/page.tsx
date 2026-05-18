@@ -7,7 +7,6 @@ import { Faq } from '@/components/landing/faq';
 import { FeeCalculator } from '@/components/landing/fee-calculator';
 import { FloatingWhatsApp } from '@/components/landing/floating-whatsapp';
 import { RecentTransactions } from '@/components/landing/recent-transactions';
-import { TransactionTracker } from '@/components/landing/transaction-tracker';
 import { 
   Wallet, 
   PackageCheck, 
@@ -60,7 +59,6 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <TransactionTracker />
         
         {/* Section Cara Kerja */}
         <section className="py-24 bg-white">
