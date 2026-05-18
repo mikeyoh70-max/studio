@@ -7,7 +7,6 @@ import { Faq } from '@/components/landing/faq';
 import { FeeCalculator } from '@/components/landing/fee-calculator';
 import { FloatingWhatsApp } from '@/components/landing/floating-whatsapp';
 import { RecentTransactions } from '@/components/landing/recent-transactions';
-import { AdminVerification } from '@/components/landing/admin-verification';
 import { TransactionTracker } from '@/components/landing/transaction-tracker';
 import { 
   Wallet, 
@@ -98,7 +97,6 @@ export default function Home() {
            </div>
         </section>
 
-        <AdminVerification />
         <RecentTransactions />
         <WhyUs />
         <FeeCalculator />
