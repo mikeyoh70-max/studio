@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -10,14 +11,13 @@ import {
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
 import { ShieldCheck, Users, Clock } from 'lucide-react';
+import Link from 'next/link';
 
 const imageCaptions = [
   "Transaksi Akun Game",
   "Jasa & Produk Digital",
   "Top Up & Voucher"
 ];
-
-const WHATSAPP_LINK = 'https://wa.me/62895323091263?text=hallo%20admin%20%2C%20saya%20mau%20Buat%20Rekber%20Sekarang%20Dong';
 
 const stats = [
   { icon: <ShieldCheck className="h-4 w-4 text-teal-400" />, label: "770+ Transaksi Sukses" },
@@ -62,9 +62,9 @@ export function Hero() {
             <Button asChild size="lg" 
               className="btn-rgb h-12 px-8 sm:px-10 text-base sm:text-lg shadow-xl transform transition-transform hover:scale-105"
             >
-              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+              <Link href="/buat-transaksi">
                 Mulai Transaksi Sekarang
-              </a>
+              </Link>
             </Button>
 
             {/* Live Stats Section */}
