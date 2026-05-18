@@ -45,7 +45,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <Link href="/" className="flex items-center space-x-3">
             <ShieldCheck className="h-8 w-8 text-sky-400" />
-            <span className="text-xl font-bold font-headline text-white tracking-tight">PT Rekber Nusantara</span>
+            <span className="text-xl font-bold font-headline text-white tracking-tight">Rekber Nusantara</span>
           </Link>
           <div className="flex space-x-2">
             <Button variant="ghost" size="icon" asChild className="text-slate-400 hover:text-white">
