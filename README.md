@@ -14,7 +14,7 @@ Website ini adalah platform landing page untuk jasa Rekening Bersama (Rekber) te
 ## Panduan Push ke GitHub (Terminal)
 Lakukan langkah ini setiap kali ada perubahan untuk menayangkannya secara live:
 1. `git add .`
-2. `git commit -m "Deskripsi perubahan: Update blog, biaya, dan UI mobile"`
+2. `git commit -m "Update: Perubahan biaya ke 2 persen, hapus PT, dan optimasi SEO blog"`
 3. `git push origin main`
 
 *Tips: Gunakan **Personal Access Token (PAT)** GitHub sebagai pengganti password saat melakukan push.*
