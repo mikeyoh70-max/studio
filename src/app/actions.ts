@@ -1,6 +1,6 @@
 'use server';
 
-// A mock list of verified admin numbers. In a real application, this would come from a database.
+// A mock list of verified admin numbers.
 const verifiedAdmins = [
   '0895323091263',
   '+62895323091263'
