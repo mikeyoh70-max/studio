@@ -13,10 +13,10 @@ import Autoplay from "embla-carousel-autoplay";
 const mockTransactions = [
   { id: 1, item: "Akun Mobile Legends - Mythic", price: "Rp 350.000", time: "Baru saja" },
   { id: 2, item: "Jasa Joki Rank Valorant", price: "Rp 150.000", time: "2 menit yang lalu" },
-  { id: 3, item: "Akun Genshin Impact AR 55", price: "Rp 1.200.000", time: "5 menit yang lalu" },
-  { id: 4, item: "Top Up Diamond FF", price: "Rp 50.000", time: "8 menit yang lalu" },
-  { id: 5, item: "Jasa Desain Banner", price: "Rp 200.000", time: "12 menit yang lalu" },
-  { id: 6, item: "Akun PUBG Mobile - Skin M416", price: "Rp 850.000", time: "15 menit yang lalu" },
+  { id: 3, item: "Akun Genshin Impact AR 55", price: "Rp 1.200.000", time: "3 jam yang lalu" },
+  { id: 4, item: "Top Up Diamond FF", price: "Rp 50.000", time: "5 jam yang lalu" },
+  { id: 5, item: "Jasa Desain Banner", price: "Rp 200.000", time: "6 jam yang lalu" },
+  { id: 6, item: "Akun PUBG Mobile - Skin M416", price: "Rp 850.000", time: "8 jam yang lalu" },
 ];
 
 export function RecentTransactions() {
