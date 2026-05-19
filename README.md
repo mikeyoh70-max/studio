@@ -3,21 +3,22 @@
 Website ini adalah platform landing page untuk jasa Rekening Bersama (Rekber) terpercaya di Indonesia.
 
 ## Fitur & Desain Saat Ini
-- **Brand**: Rekber Nusantara.
-- **Tema**: Mixed Elegant (Perpaduan Hero Gelap dan Konten Putih Bersih).
-- **SEO Optimized**: Metadata dinamis untuk setiap halaman blog dan optimasi kata kunci pencarian.
-- **Blog Edukasi**: 5 Artikel profesional tentang keamanan transaksi digital, hukum penipuan, dan panduan aman.
-- **Mobile Friendly**: Blog carousel dengan *peek effect* (kartu terlihat sebagian di sisi) untuk navigasi swipe yang nyaman di HP.
-- **Biaya**: Struktur biaya transparan (2% untuk transaksi besar) dengan kalkulator otomatis.
-- **Support**: WhatsApp Official dengan pesan otomatis: "hallo admin , saya mau Buat Rekber Sekarang Dong".
+- **Brand**: Rekber Nusantara (Domain: rekbernusantara.biz.id).
+- **Tema**: Modern Dark & Clean White (Hero Gelap, Konten Putih).
+- **SEO Optimized**: Metadata biz.id dan JSON-LD FAQ Schema untuk optimasi Google.
+- **Biaya**: Struktur biaya 2% untuk transaksi besar, transparan dengan kalkulator otomatis.
+- **Verifikasi Admin**: Section khusus peringatan dan info nomor WhatsApp tunggal resmi.
+- **UI/UX**: Animasi "tipis-tipis" pada badge status dan desain mobile-friendly tanpa floating button agar lebih bersih.
+- **Blog Edukasi**: 5 Artikel profesional tentang keamanan transaksi digital.
 
 ## Panduan Push ke GitHub (Terminal)
-Lakukan langkah ini setiap kali ada perubahan untuk menayangkannya secara live:
+Jalankan perintah ini secara berurutan di terminal lu untuk update website secara live:
+
 1. `git add .`
-2. `git commit -m "Update: Perubahan biaya ke 2 persen, hapus PT, dan optimasi SEO blog"`
+2. `git commit -m "Update Final: Refine UI, biz.id domain, remove floating button, and SEO optimization"`
 3. `git push origin main`
 
-*Tips: Gunakan **Personal Access Token (PAT)** GitHub sebagai pengganti password saat melakukan push.*
+*Tips: Gunakan **Personal Access Token (PAT)** GitHub sebagai pengganti password saat melakukan push jika diminta.*
 
-## Kontak & Verifikasi
-Pastikan hanya menghubungi nomor resmi yang tertera di website ini untuk menghindari penipuan. Gunakan fitur cek nomor admin di halaman utama.
+## Kontak Resmi
+Pastikan hanya menghubungi nomor resmi: **0895323091263**. Segala bentuk transaksi di luar nomor ini bukan tanggung jawab Rekber Nusantara.
