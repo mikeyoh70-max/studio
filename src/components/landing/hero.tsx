@@ -43,7 +43,7 @@ export function Hero() {
           <div className="flex justify-center mb-6">
             <div className="relative inline-flex items-center gap-x-2 rounded-full bg-white/10 px-4 py-2 text-xs sm:text-sm font-medium text-white ring-1 ring-inset ring-white/20">
               <span className="flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-30"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-400"></span>
               </span>
               <span className="ml-1 sm:ml-2">100% Amanah - Terverifikasi Sejak 2024</span>
