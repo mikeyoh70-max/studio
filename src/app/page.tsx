@@ -5,7 +5,6 @@ import { Testimonials } from '@/components/landing/testimonials';
 import { Footer } from '@/components/landing/footer';
 import { Faq } from '@/components/landing/faq';
 import { FeeCalculator } from '@/components/landing/fee-calculator';
-import { FloatingWhatsApp } from '@/components/landing/floating-whatsapp';
 import { RecentTransactions } from '@/components/landing/recent-transactions';
 import { BlogSection } from '@/components/landing/blog-section';
 import { AdminVerification } from '@/components/landing/admin-verification';
@@ -106,7 +105,6 @@ export default function Home() {
         <Faq />
       </main>
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 }
