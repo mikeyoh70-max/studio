@@ -30,7 +30,7 @@ const PaymentTextLogos = () => (
     {paymentBrands.map((brand) => (
       <span 
         key={brand.name} 
-        className={`text-2xl md:text-3xl font-black tracking-tighter ${brand.color} drop-shadow-sm`}
+        className={`text-2xl md:text-3xl font-black tracking-tighter ${brand.color} drop-shadow-md hover:scale-110 transition-transform cursor-default`}
       >
         {brand.name}
       </span>
@@ -65,7 +65,7 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="mt-12 pt-10 pb-6 border-t border-white/5 text-center bg-white/5 rounded-xl">
+        <div className="mt-12 pt-10 pb-10 border-t border-white/5 text-center bg-white/5 rounded-3xl border border-white/10">
           <h3 className="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-8 font-headline">Metode Pembayaran Terverifikasi</h3>
           <PaymentTextLogos />
         </div>
@@ -77,11 +77,11 @@ export function Footer() {
               <li>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left">Tentang Kami</button>
+                    <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left font-medium">Tentang Kami</button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[500px] bg-white text-slate-900 border-slate-200">
                     <DialogHeader>
-                      <DialogTitle className="font-headline text-2xl text-slate-900">Tentang Rekber Nusantara</DialogTitle>
+                      <DialogTitle className="font-headline text-2xl text-slate-900 font-black">Tentang Rekber Nusantara</DialogTitle>
                     </DialogHeader>
                     <div className="py-4 space-y-4 text-slate-600 text-sm leading-relaxed">
                       <p>
@@ -93,14 +93,14 @@ export function Footer() {
                     </div>
                     <DialogFooter>
                       <DialogClose asChild>
-                        <Button type="button" className="bg-sky-500 hover:bg-sky-600 text-white">Tutup</Button>
+                        <Button type="button" className="bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-full">Tutup</Button>
                       </DialogClose>
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>
               </li>
-              <li><Link href="#why-us" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Mengapa Kami</Link></li>
-              <li><Link href="/blog" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Blog Edukasi</Link></li>
+              <li><Link href="#why-us" className="text-slate-400 hover:text-sky-400 transition-colors text-sm font-medium">Mengapa Kami</Link></li>
+              <li><Link href="/blog" className="text-slate-400 hover:text-sky-400 transition-colors text-sm font-medium">Blog Edukasi</Link></li>
             </ul>
           </div>
           <div className="col-span-1">
@@ -109,11 +109,11 @@ export function Footer() {
               <li>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left">Syarat & Ketentuan</button>
+                    <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left font-medium">Syarat & Ketentuan</button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[500px] bg-white text-slate-900 border-slate-200 max-h-[80vh] overflow-y-auto">
                     <DialogHeader>
-                      <DialogTitle className="font-headline text-2xl text-slate-900">Syarat & Ketentuan</DialogTitle>
+                      <DialogTitle className="font-headline text-2xl text-slate-900 font-black">Syarat & Ketentuan</DialogTitle>
                     </DialogHeader>
                     <div className="py-4 space-y-4 text-slate-600 text-sm leading-relaxed">
                       <p>Dengan menggunakan layanan Rekber Nusantara, Anda setuju untuk mematuhi aturan berikut:</p>
@@ -126,7 +126,7 @@ export function Footer() {
                     </div>
                     <DialogFooter>
                       <DialogClose asChild>
-                        <Button type="button" className="bg-sky-500 hover:bg-sky-600 text-white">Saya Setuju</Button>
+                        <Button type="button" className="bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-full">Saya Setuju</Button>
                       </DialogClose>
                     </DialogFooter>
                   </DialogContent>
@@ -135,11 +135,11 @@ export function Footer() {
               <li>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left">Kebijakan Privasi</button>
+                    <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left font-medium">Kebijakan Privasi</button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[425px] bg-white text-slate-900 border-slate-200">
                     <DialogHeader>
-                      <DialogTitle className="font-headline text-2xl text-slate-900">Kebijakan Privasi</DialogTitle>
+                      <DialogTitle className="font-headline text-2xl text-slate-900 font-black">Kebijakan Privasi</DialogTitle>
                     </DialogHeader>
                     <div className="py-4 space-y-4 text-slate-600 text-sm">
                       <p>Kami sangat menjaga kerahasiaan data Anda:</p>
@@ -150,7 +150,7 @@ export function Footer() {
                     </div>
                     <DialogFooter>
                       <DialogClose asChild>
-                        <Button type="button" className="bg-sky-500 hover:bg-sky-600 text-white">Tutup</Button>
+                        <Button type="button" className="bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-full">Tutup</Button>
                       </DialogClose>
                     </DialogFooter>
                   </DialogContent>
@@ -159,11 +159,11 @@ export function Footer() {
               <li>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left">Kebijakan Refund</button>
+                    <button className="text-slate-400 hover:text-sky-400 transition-colors text-sm text-left font-medium">Kebijakan Refund</button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[425px] bg-white text-slate-900 border-slate-200">
                     <DialogHeader>
-                      <DialogTitle className="font-headline text-2xl text-slate-900">Kebijakan Pengembalian</DialogTitle>
+                      <DialogTitle className="font-headline text-2xl text-slate-900 font-black">Kebijakan Pengembalian</DialogTitle>
                     </DialogHeader>
                     <div className="py-4">
                       <ul className="space-y-3 list-disc list-inside text-slate-600 text-sm">
@@ -174,7 +174,7 @@ export function Footer() {
                     </div>
                     <DialogFooter>
                       <DialogClose asChild>
-                        <Button type="button" className="bg-sky-500 hover:bg-sky-600 text-white">Saya Mengerti</Button>
+                        <Button type="button" className="bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-full">Saya Mengerti</Button>
                       </DialogClose>
                     </DialogFooter>
                   </DialogContent>
@@ -187,18 +187,18 @@ export function Footer() {
             <div className="space-y-4">
               <p className="text-sm text-slate-400 leading-relaxed">Butuh bantuan atau ingin melaporkan kendala transaksi? Hubungi tim support kami.</p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="outline" className="flex-1 justify-start gap-3 h-12 bg-white/5 border-white/10 text-white hover:bg-white/10" asChild>
+                <Button variant="outline" className="flex-1 justify-start gap-3 h-12 bg-white/5 border-white/10 text-white hover:bg-white/10 group" asChild>
                   <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                    <Phone className="h-4 w-4 text-green-500" />
+                    <Phone className="h-4 w-4 text-green-500 group-hover:scale-110 transition-transform" />
                     <div className="text-left">
                       <p className="text-[10px] uppercase font-bold text-slate-500 leading-none">WhatsApp</p>
                       <p className="text-sm">{WHATSAPP_NUMBER}</p>
                     </div>
                   </a>
                 </Button>
-                <Button variant="outline" className="flex-1 justify-start gap-3 h-12 bg-white/5 border-white/10 text-white hover:bg-white/10" asChild>
+                <Button variant="outline" className="flex-1 justify-start gap-3 h-12 bg-white/5 border-white/10 text-white hover:bg-white/10 group" asChild>
                   <a href={`mailto:${EMAIL_SUPPORT}`}>
-                    <Mail className="h-4 w-4 text-sky-400" />
+                    <Mail className="h-4 w-4 text-sky-400 group-hover:scale-110 transition-transform" />
                     <div className="text-left">
                       <p className="text-[10px] uppercase font-bold text-slate-500 leading-none">Support CS</p>
                       <p className="text-xs sm:text-sm lowercase">{EMAIL_SUPPORT}</p>
@@ -212,7 +212,7 @@ export function Footer() {
         
         <div className="mt-12 pt-8 border-t border-white/5 text-center text-sm text-slate-500 flex flex-col md:flex-row justify-between gap-4">
           <p>&copy; 2026 Rekber Nusantara. All rights reserved.</p>
-          <p className="max-w-2xl mx-auto md:mx-0">
+          <p className="max-w-2xl mx-auto md:mx-0 font-medium">
             Layanan mediasi independen terpercaya sejak 2024.
           </p>
         </div>

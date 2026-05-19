@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -10,7 +9,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
-import { ShieldCheck, Users, Clock } from 'lucide-react';
+import { ShieldCheck, Users, Clock, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 
 const imageCaptions = [
@@ -20,7 +19,7 @@ const imageCaptions = [
 ];
 
 const stats = [
-  { icon: <ShieldCheck className="h-4 w-4 text-teal-400" />, label: "770+ Transaksi Sukses" },
+  { icon: <CheckCircle2 className="h-4 w-4 text-teal-400" />, label: "770+ Transaksi Sukses" },
   { icon: <Users className="h-4 w-4 text-sky-400" />, label: "450+ Pelanggan Puas" },
   { icon: <Clock className="h-4 w-4 text-orange-400" />, label: "24/7 Admin Aktif" },
 ];
@@ -44,9 +43,10 @@ export function Hero() {
           <div className="flex justify-center mb-6">
             <div className="relative inline-flex items-center gap-x-2 rounded-full bg-white/10 px-4 py-2 text-xs sm:text-sm font-medium text-white ring-1 ring-inset ring-white/20">
               <span className="flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-400"></span>
               </span>
-              <span className="ml-1 sm:ml-2">Layanan Rekber Terpercaya #1</span>
+              <span className="ml-1 sm:ml-2">100% Amanah - Terverifikasi Sejak 2024</span>
             </div>
           </div>
           

@@ -1,4 +1,3 @@
-
 import { Navbar } from '@/components/landing/navbar';
 import { Hero } from '@/components/landing/hero';
 import { WhyUs } from '@/components/landing/why-us';
@@ -9,6 +8,7 @@ import { FeeCalculator } from '@/components/landing/fee-calculator';
 import { FloatingWhatsApp } from '@/components/landing/floating-whatsapp';
 import { RecentTransactions } from '@/components/landing/recent-transactions';
 import { BlogSection } from '@/components/landing/blog-section';
+import { AdminVerification } from '@/components/landing/admin-verification';
 import { 
   Wallet, 
   PackageCheck, 
@@ -97,6 +97,7 @@ export default function Home() {
            </div>
         </section>
 
+        <AdminVerification />
         <RecentTransactions />
         <WhyUs />
         <FeeCalculator />

@@ -44,12 +44,39 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apa itu Rekber (Rekening Bersama)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rekening Bersama (Rekber) adalah layanan pihak ketiga yang menengahi transaksi antara penjual dan pembeli untuk menjamin keamanan dana."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Berapa biaya jasa Rekber Nusantara?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Biaya jasa kami sangat kompetitif, mulai dari flat fee untuk transaksi kecil hingga hanya 2% untuk transaksi besar di atas 1 juta rupiah."
+        }
+      }
+    ]
+  };
+
   return (
     <html lang="id">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
       </head>
       <body className="font-body antialiased">
         <Script
