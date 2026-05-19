@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Rekber Nusantara - Jasa Rekening Bersama Terpercaya',
     description: 'Aman, cepat, dan transparan untuk transaksi produk digital Anda.',
-    url: 'https://rekbernusantara.com',
+    url: 'https://rekbernusantara.biz.id',
     siteName: 'Rekber Nusantara',
     locale: 'id_ID',
     type: 'website',

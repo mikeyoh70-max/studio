@@ -80,7 +80,7 @@ export function AdminVerification() {
                       <ShieldCheck className="h-4 w-4 text-blue-400" />
                     </div>
                     <p className="text-sm text-slate-300 leading-relaxed">
-                      Selalu buka website <span className="text-white font-bold">rekbernusantara.com</span> untuk memastikan keaslian kontak sebelum transfer.
+                      Selalu buka website <span className="text-white font-bold">rekbernusantara.biz.id</span> untuk memastikan keaslian kontak sebelum transfer.
                     </p>
                   </li>
                 </ul>
