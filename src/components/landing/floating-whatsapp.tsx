@@ -17,7 +17,7 @@ export function FloatingWhatsApp() {
         <div className="relative">
           <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5" />
           <span className="absolute -top-1 -right-1 flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-200 opacity-40"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-200 opacity-20"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400 border border-white"></span>
           </span>
         </div>
@@ -27,7 +27,7 @@ export function FloatingWhatsApp() {
         </div>
         
         <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-30"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-15"></span>
           <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-red-500 text-[9px] items-center justify-center font-bold">1</span>
         </span>
       </a>
